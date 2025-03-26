@@ -1,0 +1,15 @@
+# Node.js and dependencies
+node_modules/
+*.log
+npm-debug.log
+
+# Environment variables
+.env
+server/.env
+
+# macOS junk
+.DS_Store
+
+# Build output
+dist/
+build/
