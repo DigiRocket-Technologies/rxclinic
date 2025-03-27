@@ -27,6 +27,7 @@ import TickBite from "./components/forms/TickBite";
 import PinkEye from "./components/forms/PinkEyeOrEyeAllergies";
 import Muscle from "./components/forms/MuscleStrainsOrSprains";
 import Influenza from "./components/forms/InfluenzaTreatmentAndPrevention";
+import HepatitisA from "./components/forms/HepatitisA";
 
 // React 19 optimized component
 function App() {
@@ -114,6 +115,10 @@ function App() {
         <Route
           path="/minorAilmentsAndConditions/Other/InfluenzaTreatmentOrPrevention"
           element={<Influenza />}
+        />
+        <Route
+          path="/vaccinesOrInjections/HepatitisA"
+          element={<HepatitisA />}
         />
         <Route path="/prescription/new" element={<NewPrescription />} />
         <Route path="/prescription/refill" element={<PrescriptionRefill />} />

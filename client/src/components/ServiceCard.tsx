@@ -133,6 +133,9 @@ const ServiceCard = ({
           "/minorAilmentsAndConditions/Other/InfluenzaTreatmentOrPrevention"
         );
         break;
+      case "5-4":
+        navigate("/vaccinesOrInjections/HepatitisA");
+        break;
 
       default:
         // No navigation for other IDs
