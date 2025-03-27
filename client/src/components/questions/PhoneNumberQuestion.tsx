@@ -12,7 +12,7 @@ interface Option {
 interface PhoneInputQuestionProps {
   question: string;
   options: Option[];
-  onChange: (answer: string[]) => void; // Removed nestedAnswers from type
+  onChange: (answer: string[]) => void;
   selectedAnswer: string[];
 }
 
