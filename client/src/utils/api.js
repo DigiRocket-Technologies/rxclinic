@@ -1,6 +1,6 @@
 export const submitFormData = async (formData) => {
   try {
-    const response = await fetch("http://localhost:3000/submitForm", {
+    const response = await fetch("https://rxclinic-backend.vercel.app/submitForm", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
