@@ -1,194 +1,4 @@
-// src/questions/PatientInformationVaccine.tsx
-// import React, { useState, useEffect } from "react";
-
-// interface PatientInfo {
-//   firstName: string;
-//   lastName: string;
-//   dateOfBirth: string;
-//   address: string;
-//   pronouns?: string;
-//   healthCardNumber?: string;
-//   hasHealthCard?: string;
-// }
-
-// interface PatientInformationVaccineProps {
-//   question: string;
-//   onChange: (info: Partial<PatientInfo>) => void;
-//   currentPatientIndex: number;
-//   numPatients: number;
-//   initialData?: Partial<PatientInfo>;
-//   onDelete?: () => void; // For "Delete Patient" functionality (to be implemented later)
-// }
-
-// const PatientInformationVaccine: React.FC<PatientInformationVaccineProps> = ({
-//   question,
-//   onChange,
-//   currentPatientIndex,
-//   numPatients,
-//   initialData = {},
-//   onDelete,
-// }) => {
-//   const [formData, setFormData] = useState<Partial<PatientInfo>>({
-//     firstName: initialData.firstName || "",
-//     lastName: initialData.lastName || "",
-//     dateOfBirth: initialData.dateOfBirth || "",
-//     address: initialData.address || "",
-//     pronouns: initialData.pronouns || "",
-//     healthCardNumber: initialData.healthCardNumber || "",
-//     hasHealthCard: initialData.hasHealthCard || "yes",
-//   });
-
-//   // Sync formData to parent state whenever it changes
-//   useEffect(() => {
-//     onChange(formData);
-//   }, [formData, onChange]);
-
-//   const handleInputChange = (
-//     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-//   ) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-//     const checked = e.target.checked;
-//     setFormData((prev) => ({
-//       ...prev,
-//       hasHealthCard: checked ? "no" : "yes",
-//       healthCardNumber: checked ? "none" : "",
-//     }));
-//   };
-
-//   const isHealthCardDisabled = formData.hasHealthCard === "no";
-
-//   return (
-//     <div className="mb-6">
-//       <p className="text-center text-3xl font-medium">{question}</p>
-//       <div className="flex justify-between items-center mb-4">
-//         <h2 className="text-xl font-medium">
-//           Person {currentPatientIndex + 1}/{numPatients}
-//         </h2>
-//         <button
-//           onClick={onDelete}
-//           className="text-red-500 border border-red-500 px-3 py-1 rounded-md hover:bg-red-50"
-//         >
-//           Delete Patient
-//         </button>
-//       </div>
-//       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//         {/* First Name */}
-//         <div>
-//           <label className="block text-sm font-medium text-gray-700">
-//             First Name <span className="text-red-500">*</span>
-//           </label>
-//           <input
-//             type="text"
-//             name="firstName"
-//             value={formData.firstName}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             placeholder="First Name"
-//             required
-//           />
-//         </div>
-//         {/* Last Name */}
-//         <div>
-//           <label className="block text-sm font-medium text-gray-700">
-//             Last Name <span className="text-red-500">*</span>
-//           </label>
-//           <input
-//             type="text"
-//             name="lastName"
-//             value={formData.lastName}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             placeholder="Last Name"
-//             required
-//           />
-//         </div>
-//         {/* Date of Birth */}
-//         <div>
-//           <label className="block text-sm font-medium text-gray-700">
-//             Date of Birth <span className="text-red-500">*</span>
-//           </label>
-//           <input
-//             type="date"
-//             name="dateOfBirth"
-//             value={formData.dateOfBirth}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             required
-//           />
-//         </div>
-//         {/* Pronouns */}
-//         <div>
-//           <label className="block text-sm font-medium text-gray-700">
-//             Pronouns (optional)
-//           </label>
-//           <input
-//             type="text"
-//             name="pronouns"
-//             value={formData.pronouns || ""}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             placeholder="Pronouns"
-//           />
-//         </div>
-//         {/* Address */}
-//         <div className="md:col-span-2">
-//           <label className="block text-sm font-medium text-gray-700">
-//             Address <span className="text-red-500">*</span>
-//           </label>
-//           <input
-//             type="text"
-//             name="address"
-//             value={formData.address}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             placeholder="Address"
-//             required
-//           />
-//         </div>
-//         {/* Health Card Number */}
-//         <div className="md:col-span-2">
-//           <label className="block text-sm font-medium text-gray-700">
-//             Health Card Number (optional)
-//           </label>
-//           <input
-//             type="text"
-//             name="healthCardNumber"
-//             value={isHealthCardDisabled ? "" : formData.healthCardNumber || ""}
-//             onChange={handleInputChange}
-//             className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-//             placeholder="Health Card Number"
-//             disabled={isHealthCardDisabled}
-//           />
-//           <label className="flex items-center mt-2">
-//             <input
-//               type="checkbox"
-//               checked={formData.hasHealthCard === "no"}
-//               onChange={handleCheckboxChange}
-//               className="mr-2"
-//             />
-//             I do not have a health card
-//           </label>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default PatientInformationVaccine;
-
-// src/questions/PatientInformationVaccine.tsx
-// src/questions/PatientInformationVaccine.tsx
-// src/questions/PatientInformationVaccine.tsx
-import React, {
-  useState,
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-} from "react";
+import React, { useState, useImperativeHandle, forwardRef } from "react";
 
 interface PatientInfo {
   firstName: string;
@@ -210,7 +20,7 @@ interface PatientInformationVaccineProps {
   validate?: () => boolean;
 }
 
-interface PatientInformationVaccineRef {
+export interface PatientInformationVaccineRef {
   validateForm: () => boolean;
 }
 
@@ -242,10 +52,6 @@ const PatientInformationVaccine = forwardRef<
     const [errors, setErrors] = useState<
       Partial<Record<keyof PatientInfo, string>>
     >({});
-
-    useEffect(() => {
-      onChange(formData);
-    }, [formData, onChange]);
 
     const validateField = (name: keyof PatientInfo, value: string) => {
       if (
@@ -279,7 +85,9 @@ const PatientInformationVaccine = forwardRef<
         if (error) newErrors[field] = error;
       });
       setErrors(newErrors);
-      return Object.keys(newErrors).length === 0;
+      const isValid = Object.keys(newErrors).length === 0;
+      if (isValid) onChange(formData); // Only send data to parent if valid
+      return isValid;
     };
 
     useImperativeHandle(ref, () => ({
@@ -309,6 +117,7 @@ const PatientInformationVaccine = forwardRef<
 
     return (
       <div className="mb-6">
+        <p className="text-3xl font-medium text-center">Patient Information</p>
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-medium">
             Person {currentPatientIndex + 1}/{numPatients}
