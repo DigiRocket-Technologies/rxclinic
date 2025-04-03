@@ -8,11 +8,20 @@ interface ConsentForInjectionQuestionProps {
   ) => void;
   selectedAnswer: string[];
   nestedAnswers?: { question: string; answer: string[] }[];
+  name: string;
+  formName: string;
 }
 
 const ConsentForInjectionQuestion: React.FC<
   ConsentForInjectionQuestionProps
-> = ({ question, onChange, selectedAnswer = [], nestedAnswers = [] }) => {
+> = ({
+  question,
+  onChange,
+  selectedAnswer,
+  name,
+  formName = [],
+  nestedAnswers = [],
+}) => {
   const [fullName, setFullName] = useState<string>("");
   const [relationship, setRelationship] = useState<string>("");
 
@@ -73,13 +82,14 @@ const ConsentForInjectionQuestion: React.FC<
 
   return (
     <div className="mb-6">
+      <h1 className="text-lg text-center text-slate-500">{name}</h1>
+
       <h2 className="text-2xl font-semibold mb-4 text-center">{question}</h2>
       <div className="mb-4">
         <p className="text-gray-700">
           <span className="text-lg text-black">Declaration of Consent:</span>
-          <br />
-          - I have been explained the information regarding the risks, benefits
-          and potential side effects associated with the Hepatitis A
+          <br />- I have been explained the information regarding the risks,
+          benefits and potential side effects associated with the {formName}
           vaccine(s)/injection(s).
           <br />
           - I have had the opportunity to have my questions answered by the
