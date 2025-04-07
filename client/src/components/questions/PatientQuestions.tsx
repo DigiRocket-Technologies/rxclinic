@@ -1200,6 +1200,353 @@
 // };
 
 // export default PatientQuestions;
+
+//best versio till now rendering not working
+
+// import React, { useRef, useState } from "react";
+// import { motion } from "framer-motion";
+// import { ChevronsLeft, ChevronsRight } from "lucide-react";
+// import PatientInformationVaccine, {
+//   PatientInformationVaccineRef,
+// } from "./vaccine/PatientInformationVaccine";
+// import ButtonRadioQuestion from "../questions/vaccine/ButtonRadioVaccine";
+// import ConditionalButtonRadioQuestion from "../questions/vaccine/ConditionalButtonRadioVaccine";
+// import PrimaryCareProviderQuestion from "../questions/vaccine/PrimaryCareProviderVaccine";
+// import ConsentForInjection from "./vaccine/ConsentForInjectionQuestion";
+// import ButtonRadioWithInputQuestion from "./vaccine/GenderQuestionVaccine";
+
+// interface PatientInfo {
+//   firstName: string;
+//   lastName: string;
+//   dateOfBirth: string;
+//   address: string;
+//   pronouns?: string;
+//   healthCardNumber?: string;
+//   hasHealthCard?: string;
+// }
+
+// interface AnswerPair {
+//   question: string;
+//   answer: string[];
+// }
+
+// interface NestedAnswer {
+//   question: string;
+//   answer: string[];
+// }
+
+// const questions = [
+//   {
+//     id: 3,
+//     question: "Patient Information",
+//     type: "patient-information-vaccine",
+//   },
+//   {
+//     id: 4,
+//     question: "What sex were you assigned at birth?",
+//     type: "button-radio-input",
+//     options: ["Male", "Female"],
+//   },
+//   {
+//     id: 5,
+//     question:
+//       "Do you have any allergies to food, medications, eggs, latex or vaccine/injection?",
+//     type: "conditional-button-radio",
+//     options: [
+//       { value: "Yes", showsInput: true, label: "Please specify" },
+//       { value: "No", showsInput: false },
+//       { value: "I Don't Know", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 6,
+//     question:
+//       "Have you ever had a serious reaction after receiving a vaccine/injection?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 7,
+//     question: "Have you received a vaccine/injection in the last 4 weeks?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 8,
+//     question: "Are you, or could you be pregnant?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 9,
+//     question:
+//       "Do you have any problems with your immune system or take medications which affect your immune system?",
+//     type: "conditional-button-radio",
+//     options: [
+//       { value: "Yes", showsInput: true, label: "Please specify" },
+//       { value: "No", showsInput: false },
+//       { value: "I Don't Know", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 10,
+//     question:
+//       "Do you have a long term health problem (heart disease, lung disease, asthma, kidney disease, anemia, or other blood disorders)?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 11,
+//     question:
+//       "Are you taking any medications that could affect blood clotting (e.g., blood thinners)?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 12,
+//     question:
+//       "Are you sick today (ie. fever > 39.5C, breathing problems, active infection)?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 13,
+//     question: "Who is your primary care provider?",
+//     type: "primary-care-provider",
+//   },
+//   { id: 14, question: "Consent for Injection", type: "consent-for-injection" },
+//   {
+//     id: 15,
+//     question: "Are you a current patient at this location?",
+//     type: "button-radio",
+//     options: ["Yes", "No"],
+//   },
+//   {
+//     id: 16,
+//     question:
+//       "I'm interested in learning more about transferring my medications to this pharmacy",
+//     type: "button-radio",
+//     options: ["Yes", "No"],
+//   },
+// ];
+
+// interface PatientQuestionsProps {
+//   patientIndex: number;
+//   patientCount: number;
+//   formName: string;
+//   initialAnswers: {
+//     [questionId: number]: { answer: string[]; nestedAnswers?: NestedAnswer[] };
+//   };
+//   initialPatientInfo?: PatientInfo;
+//   currentQuestionIndex: number; // Controlled by Form.tsx
+//   onNext: (step: number) => void;
+//   onPrevious: () => void;
+//   onAnswerChange: (
+//     questionId: number,
+//     answer: string[],
+//     nestedAnswers?: NestedAnswer[]
+//   ) => void;
+//   onPatientInfoChange: (info: Partial<PatientInfo>) => void;
+//   onComplete: (data: {
+//     questionnaire: (AnswerPair | NestedAnswer)[][];
+//   }) => void;
+// }
+
+// const PatientQuestions: React.FC<PatientQuestionsProps> = ({
+//   patientIndex,
+//   patientCount,
+//   formName,
+//   initialAnswers,
+//   initialPatientInfo,
+//   currentQuestionIndex,
+//   onNext,
+//   onPrevious,
+//   onAnswerChange,
+//   onPatientInfoChange,
+//   onComplete,
+// }) => {
+//   const patientInfoRef = useRef<PatientInformationVaccineRef>(null);
+//   const [answers, setAnswers] = useState(initialAnswers);
+
+//   // console.log(
+//   //   `PatientQuestions Render - Patient: ${patientIndex}, Question Index: ${currentQuestionIndex}`
+//   // );
+
+//   const handleAnswerChangeLocal = (
+//     index: number,
+//     answer: string | string[],
+//     nestedAnswers?: NestedAnswer[]
+//   ) => {
+//     const answerArray = Array.isArray(answer) ? answer : [answer];
+//     setAnswers((prev) => ({
+//       ...prev,
+//       [questions[index].id]: { answer: answerArray, nestedAnswers },
+//     }));
+//     onAnswerChange(questions[index].id, answerArray, nestedAnswers);
+//     // console.log(
+//     //   `Answer Changed - Q${questions[index].id}, Answer: ${answerArray}`
+//     // );
+//   };
+
+//   const handleNext = () => {
+//     const currentAnswer = answers[questions[currentQuestionIndex].id];
+//     if (currentQuestionIndex === 0 && !patientInfoRef.current?.validateForm()) {
+//       console.log("Validation Failed at Q3");
+//       return;
+//     }
+//     if (!currentAnswer?.answer && currentQuestionIndex !== 0) {
+//       alert("Your response is required.");
+//       // console.log(`No Answer at Q${questions[currentQuestionIndex].id}`);
+//       // return;
+//     }
+
+//     const nextIndex = currentQuestionIndex + 1;
+//     const baseStep = 2 + patientIndex * 14;
+//     const nextStep = baseStep + nextIndex;
+
+//     if (nextIndex >= questions.length) {
+//       const questionnaireData: (AnswerPair | NestedAnswer)[][] = questions
+//         .filter((q) => q.question !== "Patient Information")
+//         .map((q) => {
+//           const answerData = answers[q.id] || { answer: [] };
+//           const basePair: AnswerPair = {
+//             question: q.question,
+//             answer: answerData.answer,
+//           };
+//           return answerData.nestedAnswers
+//             ? [basePair, ...answerData.nestedAnswers]
+//             : [basePair];
+//         });
+//       // console.log(
+//       //   `Patient ${patientIndex + 1} Complete, Step: ${
+//       //     baseStep + currentQuestionIndex
+//       //   }`
+//       // );
+//       onComplete({ questionnaire: questionnaireData });
+//     } else {
+//       // console.log(
+//       //   `Next: Q${questions[currentQuestionIndex].id} → Q${questions[nextIndex].id}, Step: ${nextStep}`
+//       // );
+//       onNext(nextStep);
+//     }
+//   };
+
+//   const currentQuestion = questions[currentQuestionIndex];
+
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, y: 20 }}
+//       animate={{ opacity: 1, y: 0 }}
+//       transition={{ duration: 0.5 }}
+//     >
+//       {currentQuestion.type === "patient-information-vaccine" && (
+//         <PatientInformationVaccine
+//           ref={patientInfoRef}
+//           question={currentQuestion.question}
+//           onChange={onPatientInfoChange}
+//           currentPatientIndex={patientIndex}
+//           numPatients={patientCount}
+//           initialData={initialPatientInfo}
+//         />
+//       )}
+//       {currentQuestion.type === "button-radio-input" && (
+//         <ButtonRadioWithInputQuestion
+//           question={currentQuestion.question}
+//           options={currentQuestion.options as string[]}
+//           onChange={(answer) =>
+//             handleAnswerChangeLocal(currentQuestionIndex, answer)
+//           }
+//           selectedAnswer={answers[currentQuestion.id]?.answer[0] as string}
+//           name={`${initialPatientInfo?.firstName || ""} ${
+//             initialPatientInfo?.lastName || ""
+//           }`}
+//         />
+//       )}
+//       {currentQuestion.type === "conditional-button-radio" && (
+//         <ConditionalButtonRadioQuestion
+//           question={currentQuestion.question}
+//           options={
+//             currentQuestion.options as {
+//               value: string;
+//               showsInput: boolean;
+//               label?: string;
+//             }[]
+//           }
+//           name={`${initialPatientInfo?.firstName || ""} ${
+//             initialPatientInfo?.lastName || ""
+//           }`}
+//           onChange={(answer, nested) =>
+//             handleAnswerChangeLocal(currentQuestionIndex, answer, nested)
+//           }
+//           selectedAnswer={answers[currentQuestion.id]?.answer}
+//           nestedAnswers={answers[currentQuestion.id]?.nestedAnswers}
+//         />
+//       )}
+//       {currentQuestion.type === "button-radio" && (
+//         <ButtonRadioQuestion
+//           question={currentQuestion.question}
+//           options={currentQuestion.options as string[]}
+//           onChange={(answer) =>
+//             handleAnswerChangeLocal(currentQuestionIndex, answer)
+//           }
+//           name={`${initialPatientInfo?.firstName || ""} ${
+//             initialPatientInfo?.lastName || ""
+//           }`}
+//           selectedAnswer={answers[currentQuestion.id]?.answer}
+//         />
+//       )}
+//       {currentQuestion.type === "primary-care-provider" && (
+//         <PrimaryCareProviderQuestion
+//           question={currentQuestion.question}
+//           onChange={(answer) =>
+//             handleAnswerChangeLocal(currentQuestionIndex, answer)
+//           }
+//           name={`${initialPatientInfo?.firstName || ""} ${
+//             initialPatientInfo?.lastName || ""
+//           }`}
+//           answer={answers[currentQuestion.id]?.answer || []}
+//         />
+//       )}
+//       {currentQuestion.type === "consent-for-injection" && (
+//         <ConsentForInjection
+//           question={currentQuestion.question}
+//           onChange={(answer) =>
+//             handleAnswerChangeLocal(currentQuestionIndex, answer)
+//           }
+//           name={`${initialPatientInfo?.firstName || ""} ${
+//             initialPatientInfo?.lastName || ""
+//           }`}
+//           selectedAnswer={answers[currentQuestion.id]?.answer}
+//           formName={formName}
+//         />
+//       )}
+//       <div className="mt-6 flex justify-between">
+//         <button
+//           onClick={onPrevious}
+//           className="text-gray-600 hover:text-gray-800 disabled:text-gray-400"
+//           disabled={history.length <= 1}
+//         >
+//           <div className="flex">
+//             <ChevronsLeft className="mr-2" />
+//             Previous
+//           </div>
+//         </button>
+//         <button
+//           onClick={handleNext}
+//           className="text-gray-600 hover:text-primary"
+//         >
+//           <div className="flex">
+//             Next
+//             <ChevronsRight />
+//           </div>
+//         </button>
+//       </div>
+//     </motion.div>
+//   );
+// };
+
+// export default PatientQuestions;
+
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
@@ -1246,6 +1593,12 @@ const questions = [
   },
   {
     id: 5,
+    question: "Are you, or could you be pregnant?",
+    type: "button-radio",
+    options: ["Yes", "No", "Not Sure"],
+  },
+  {
+    id: 6,
     question:
       "Do you have any allergies to food, medications, eggs, latex or vaccine/injection?",
     type: "conditional-button-radio",
@@ -1256,24 +1609,19 @@ const questions = [
     ],
   },
   {
-    id: 6,
+    id: 7,
     question:
       "Have you ever had a serious reaction after receiving a vaccine/injection?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
-    id: 7,
+    id: 8,
     question: "Have you received a vaccine/injection in the last 4 weeks?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-  {
-    id: 8,
-    question: "Are you, or could you be pregnant?",
-    type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
-  },
+
   {
     id: 9,
     question:
@@ -1308,23 +1656,23 @@ const questions = [
   },
   {
     id: 13,
-    question: "Who is your primary care provider?",
-    type: "primary-care-provider",
-  },
-  { id: 14, question: "Consent for Injection", type: "consent-for-injection" },
-  {
-    id: 15,
     question: "Are you a current patient at this location?",
     type: "button-radio",
     options: ["Yes", "No"],
   },
   {
-    id: 16,
+    id: 14,
     question:
       "I'm interested in learning more about transferring my medications to this pharmacy",
     type: "button-radio",
     options: ["Yes", "No"],
   },
+  {
+    id: 15,
+    question: "Who is your primary care provider?",
+    type: "primary-care-provider",
+  },
+  { id: 16, question: "Consent for Injection", type: "consent-for-injection" },
 ];
 
 interface PatientQuestionsProps {
@@ -1335,7 +1683,7 @@ interface PatientQuestionsProps {
     [questionId: number]: { answer: string[]; nestedAnswers?: NestedAnswer[] };
   };
   initialPatientInfo?: PatientInfo;
-  currentQuestionIndex: number; // Controlled by Form.tsx
+  currentQuestionIndex: number;
   onNext: (step: number) => void;
   onPrevious: () => void;
   onAnswerChange: (
@@ -1365,9 +1713,48 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
   const patientInfoRef = useRef<PatientInformationVaccineRef>(null);
   const [answers, setAnswers] = useState(initialAnswers);
 
-  // console.log(
-  //   `PatientQuestions Render - Patient: ${patientIndex}, Question Index: ${currentQuestionIndex}`
-  // );
+  const dependencyMap: { [key: number]: (answer: string[]) => number | null } =
+    {
+      4: (answer: string[]) => {
+        if (answer[0] === "Male") {
+          return 3; //index of that question
+        }
+        if (answer[0] === "Female") {
+          return 2;
+        }
+
+        return null;
+      },
+      5: () => 3,
+      6: (answer: string[]) => {
+        if (answer[0] === "Yes") {
+          return null;
+        }
+        return 4;
+      },
+      7: () => 5,
+      8: () => 6,
+      9: (answer: string[]) => {
+        if (answer[0] === "Yes") {
+          return null;
+        }
+        return 7;
+      },
+      10: () => 8,
+      11: () => 9,
+      12: () => 10,
+      13: (answer: string[]) => {
+        if (answer[0] === "Yes") {
+          return 12;
+        }
+        return 11;
+      },
+      14: () => 12,
+    };
+
+  console.log(
+    `PatientQuestions Render - Patient: ${patientIndex}, Question Index: ${currentQuestionIndex}`
+  );
 
   const handleAnswerChangeLocal = (
     index: number,
@@ -1380,9 +1767,19 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
       [questions[index].id]: { answer: answerArray, nestedAnswers },
     }));
     onAnswerChange(questions[index].id, answerArray, nestedAnswers);
-    // console.log(
-    //   `Answer Changed - Q${questions[index].id}, Answer: ${answerArray}`
-    // );
+    console.log(
+      `Answer Changed - Q${questions[index].id}, Answer: ${answerArray}`
+    );
+
+    const nextIndex = dependencyMap[questions[index].id]?.(answerArray);
+    if (nextIndex !== null && nextIndex !== undefined && nextIndex !== index) {
+      const baseStep = 2 + patientIndex * 14;
+      const nextStep = baseStep + nextIndex;
+      console.log(
+        `Auto-Next: Q${questions[index].id} → Q${questions[nextIndex].id}, Step: ${nextStep}`
+      );
+      onNext(nextStep);
+    }
   };
 
   const handleNext = () => {
@@ -1393,13 +1790,15 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
     }
     if (!currentAnswer?.answer && currentQuestionIndex !== 0) {
       alert("Your response is required.");
-      // console.log(`No Answer at Q${questions[currentQuestionIndex].id}`);
-      // return;
+      console.log(`No Answer at Q${questions[currentQuestionIndex].id}`);
+      return;
     }
 
-    const nextIndex = currentQuestionIndex + 1;
     const baseStep = 2 + patientIndex * 14;
-    const nextStep = baseStep + nextIndex;
+    const nextIndex =
+      dependencyMap[questions[currentQuestionIndex].id]?.(
+        currentAnswer?.answer ?? []
+      ) ?? currentQuestionIndex + 1;
 
     if (nextIndex >= questions.length) {
       const questionnaireData: (AnswerPair | NestedAnswer)[][] = questions
@@ -1414,16 +1813,17 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
             ? [basePair, ...answerData.nestedAnswers]
             : [basePair];
         });
-      // console.log(
-      //   `Patient ${patientIndex + 1} Complete, Step: ${
-      //     baseStep + currentQuestionIndex
-      //   }`
-      // );
+      console.log(
+        `Patient ${patientIndex + 1} Complete, Step: ${
+          baseStep + currentQuestionIndex
+        }`
+      );
       onComplete({ questionnaire: questionnaireData });
     } else {
-      // console.log(
-      //   `Next: Q${questions[currentQuestionIndex].id} → Q${questions[nextIndex].id}, Step: ${nextStep}`
-      // );
+      const nextStep = baseStep + nextIndex;
+      console.log(
+        `Manual Next: Q${questions[currentQuestionIndex].id} → Q${questions[nextIndex].id}, Step: ${nextStep}`
+      );
       onNext(nextStep);
     }
   };
@@ -1513,7 +1913,7 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
           name={`${initialPatientInfo?.firstName || ""} ${
             initialPatientInfo?.lastName || ""
           }`}
-          selectedAnswer={answers[currentQuestion.id]?.answer}
+          selectedAnswer={answers[currentQuestion.id]?.answer || []}
           formName={formName}
         />
       )}
