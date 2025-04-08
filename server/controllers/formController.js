@@ -3,15 +3,15 @@ import { generateFormHtml } from "../helper/htmlGenerator.js";
 
 export const submitForm = async (req, res) => {
   try {
-    const { questionnaire, patientInfo } = req.body;
+    const { questionnaire, patientInfo, formName } = req.body;
 
     // Validate required data
-    if (!questionnaire || !patientInfo || !patientInfo.email) {
+    if (!questionnaire || !formName || !patientInfo || !patientInfo.email) {
       return res.status(400).json({ error: "Missing required data" });
     }
 
     // Generate HTML content
-    const htmlContent = generateFormHtml(questionnaire, patientInfo);
+    const htmlContent = generateFormHtml(questionnaire, patientInfo, formName);
 
     // Define email details
     const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with client-provided email or env variable
