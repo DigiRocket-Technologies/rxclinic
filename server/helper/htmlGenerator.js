@@ -1,4 +1,4 @@
-export const generateFormHtml = (questionnaire, patientInfo) => {
+export const generateFormHtml = (questionnaire, patientInfo, formName) => {
   // Patient Info Section (unchanged)
   const patientInfoHtml = `
       <h2 style="color: #2c3e50;">Patient Information</h2>
@@ -91,7 +91,7 @@ export const generateFormHtml = (questionnaire, patientInfo) => {
       <html>
         <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 700px; margin: 0 auto; background-color: #f4f4f4;">
           <div style="background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
-            <h1 style="color: #3498db; text-align: center; margin-bottom: 20px;">New Patient Form Submission</h1>
+            <h1 style="color: #3498db; text-align: center; margin-bottom: 20px;">${formName} Form Submission</h1>
             ${patientInfoHtml}
             <h2 style="color: #2c3e50; margin-top: 30px; border-bottom: 2px solid #3498db; padding-bottom: 5px;">Questionnaire Responses</h2>
             <div style="margin-top: 15px;">
