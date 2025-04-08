@@ -258,6 +258,7 @@ const questions = [
 ];
 
 const Form: React.FC = () => {
+  const formName = "Influenza Treatment and Prevention";
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{
     [key: number]: {
@@ -422,6 +423,7 @@ const Form: React.FC = () => {
     const finalData = {
       questionnaire: questionnaireData,
       patientInfo,
+      formName,
     };
 
     console.log("Data to be sent to backend:", finalData);

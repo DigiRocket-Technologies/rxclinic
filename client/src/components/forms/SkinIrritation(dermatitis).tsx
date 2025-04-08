@@ -271,6 +271,7 @@ const questions = [
 ];
 
 const Form: React.FC = () => {
+  const formName = "Skin irritation (Dermatitis)";
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<{
     [key: number]: {
@@ -449,6 +450,7 @@ const Form: React.FC = () => {
     const finalData = {
       questionnaire: questionnaireData,
       patientInfo,
+      formName,
     };
 
     console.log("Data to be sent to backend:", finalData);
