@@ -423,10 +423,10 @@ const Form: React.FC = () => {
   };
 
   const handleFinalSubmit = async () => {
-    if (!patientInfo) {
-      alert("Please complete patient information.");
-      return;
-    }
+    // if (!patientInfo) {
+    //   alert("Please complete patient information.");
+    //   return;
+    // }
 
     const questionnaireData = getQuestionsAndAnswers();
     const finalData = {
