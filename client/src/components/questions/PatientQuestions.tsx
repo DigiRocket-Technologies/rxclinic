@@ -1752,9 +1752,9 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
       14: () => 12,
     };
 
-  console.log(
-    `PatientQuestions Render - Patient: ${patientIndex}, Question Index: ${currentQuestionIndex}`
-  );
+  // console.log(
+  //   `PatientQuestions Render - Patient: ${patientIndex}, Question Index: ${currentQuestionIndex}`
+  // );
 
   const handleAnswerChangeLocal = (
     index: number,
@@ -1767,9 +1767,9 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
       [questions[index].id]: { answer: answerArray, nestedAnswers },
     }));
     onAnswerChange(questions[index].id, answerArray, nestedAnswers);
-    console.log(
-      `Answer Changed - Q${questions[index].id}, Answer: ${answerArray}`
-    );
+    // console.log(
+    //   `Answer Changed - Q${questions[index].id}, Answer: ${answerArray}`
+    // );
 
     const nextIndex = dependencyMap[questions[index].id]?.(answerArray);
     if (nextIndex !== null && nextIndex !== undefined && nextIndex !== index) {
