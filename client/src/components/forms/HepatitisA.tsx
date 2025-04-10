@@ -1397,7 +1397,7 @@ const Form: React.FC = () => {
   const [questionnaireArray, setQuestionnaireArray] = useState<
     (AnswerPair | NestedAnswer)[][][]
   >([]);
-  const formName = "Hepatitis A Vaccine Form";
+  const formName = "Hepatitis A ";
 
   // Total steps: Part 1 (2) + Part 2 (14 per patient) + Part 3 (flexible, currently 1)
   const totalSteps = 2 + 14 * parseInt(patientCount) + questionsPart3.length;
@@ -1541,7 +1541,7 @@ const Form: React.FC = () => {
       setup: {
         patientCount: answers[-1]?.[1]?.answer[0] || "1",
         "What brought you here today?": answers[-1]?.[2]?.answer[0] || "",
-        name: formName,
+        formName,
       },
       questionnaire: filteredQuestionnaire,
       patientInfo: patientInfoArray,
