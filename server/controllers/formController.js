@@ -37,7 +37,8 @@ export const submitForm = async (req, res) => {
 
 export const submitVaccineForm = async (req, res) => {
   try {
-    const { setup, questionnaire, patientInfo, contactInfo } = req.body;
+    const { setup, questionnaire, patientInfo, contactInfo, MeetingDetails } =
+      req.body;
 
     // Validate required data
     if (
@@ -49,7 +50,10 @@ export const submitVaccineForm = async (req, res) => {
       !questionnaire ||
       !Array.isArray(questionnaire) ||
       !contactInfo ||
-      !contactInfo.email
+      !contactInfo.email ||
+      !MeetingDetails ||
+      !MeetingDetails.date ||
+      !MeetingDetails.timing
     ) {
       return res
         .status(400)
@@ -61,12 +65,10 @@ export const submitVaccineForm = async (req, res) => {
       patientInfo.length !== questionnaire.length ||
       patientInfo.length !== parseInt(setup.patientCount)
     ) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Mismatch between patient count, patientInfo, and questionnaire data",
-        });
+      return res.status(400).json({
+        error:
+          "Mismatch between patient count, patientInfo, and questionnaire data",
+      });
     }
 
     // Generate HTML content
@@ -74,7 +76,8 @@ export const submitVaccineForm = async (req, res) => {
       setup,
       questionnaire,
       patientInfo,
-      contactInfo
+      contactInfo,
+      MeetingDetails
     );
 
     // Define email details
