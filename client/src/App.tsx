@@ -28,6 +28,7 @@ import PinkEye from "./components/forms/PinkEyeOrEyeAllergies";
 import Muscle from "./components/forms/MuscleStrainsOrSprains";
 import Influenza from "./components/forms/InfluenzaTreatmentAndPrevention";
 import HepatitisA from "./components/forms/HepatitisA";
+import HepatitisB from "./components/forms/HepatitisB";
 
 // React 19 optimized component
 function App() {
@@ -119,6 +120,10 @@ function App() {
         <Route
           path="/vaccinesOrInjections/HepatitisA"
           element={<HepatitisA />}
+        />
+        <Route
+          path="/vaccinesOrInjections/HepatitisB"
+          element={<HepatitisB />}
         />
         <Route path="/prescription/new" element={<NewPrescription />} />
         <Route path="/prescription/refill" element={<PrescriptionRefill />} />
