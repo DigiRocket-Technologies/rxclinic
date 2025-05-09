@@ -16,7 +16,7 @@ interface PatientInformationVaccineProps {
   currentPatientIndex: number;
   numPatients: number;
   initialData?: Partial<PatientInfo>;
-  onDelete?: () => void;
+  //onDelete?: () => void;
   validate?: () => boolean;
 }
 
@@ -35,7 +35,7 @@ const PatientInformationVaccine = forwardRef<
       currentPatientIndex,
       numPatients,
       initialData = {},
-      onDelete,
+      //onDelete,
     },
     ref
   ) => {
@@ -122,12 +122,12 @@ const PatientInformationVaccine = forwardRef<
           <h2 className="text-xl font-medium">
             Person {currentPatientIndex + 1}/{numPatients}
           </h2>
-          <button
+          {/* <button
             onClick={onDelete}
             className="text-red-500 border border-red-500 px-3 py-1 rounded-md hover:bg-red-50"
           >
             Delete Patient
-          </button>
+          </button> */}
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -168,6 +168,24 @@ const PatientInformationVaccine = forwardRef<
               <p className="text-red-500 text-sm mt-1">{errors.lastName}</p>
             )}
           </div>
+          {/* <div>
+            <label className="block text-sm font-medium text-gray-700">
+              Date of Birth <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="date"
+              name="dateOfBirth"
+              value={formData.dateOfBirth}
+              onChange={handleInputChange}
+              className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
+                errors.dateOfBirth ? "border-red-500" : "border-gray-300"
+              }`}
+              required
+            />
+            {errors.dateOfBirth && (
+              <p className="text-red-500 text-sm mt-1">{errors.dateOfBirth}</p>
+            )}
+          </div> */}
           <div>
             <label className="block text-sm font-medium text-gray-700">
               Date of Birth <span className="text-red-500">*</span>
@@ -177,6 +195,7 @@ const PatientInformationVaccine = forwardRef<
               name="dateOfBirth"
               value={formData.dateOfBirth}
               onChange={handleInputChange}
+              max={new Date().toISOString().split("T")[0]} // Restrict to today or earlier
               className={`w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary ${
                 errors.dateOfBirth ? "border-red-500" : "border-gray-300"
               }`}
