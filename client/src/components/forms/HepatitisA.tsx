@@ -1330,11 +1330,12 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
-import RadioQuestion from "../questions/RadioQuestion";
-import ButtonRadioQuestion from "../questions/ButtonRadioQuestion";
-import PatientQuestions from "../questions/PatientQuestions";
+import RadioQuestion from "../questions/vaccine/RadioQuestionVaccine.js";
+import NumberOfPatientsQuestion from "../questions/vaccine/NumberOfPatientsQuestion.js";
+import PatientQuestions from "../questions/vaccine/PatientQuestions";
 import EmailPhoneInputQuestion from "../questions/vaccine/EmailPhoneInputQuestion"; // Adjust path as needed
-
+import { submitVaccineForm } from "../../utils/api.js";
+import ProgressBar from "../ui/CustomProgressbar.js";
 interface PatientInfo {
   firstName: string;
   lastName: string;
@@ -1394,6 +1395,10 @@ const Form: React.FC = () => {
   }>({});
   const [patientInfoArray, setPatientInfoArray] = useState<PatientInfo[]>([]);
   const [patientCount, setPatientCount] = useState<string>("1");
+  const [MeetingDetails, setMeetingDetails] = useState<{
+    date: string;
+    timing: string;
+  }>({ date: "", timing: "" });
   const [questionnaireArray, setQuestionnaireArray] = useState<
     (AnswerPair | NestedAnswer)[][][]
   >([]);
@@ -1417,6 +1422,10 @@ const Form: React.FC = () => {
   };
 
   const { phase, patientIndex, questionIndex } = getCurrentState(currentStep);
+  const handleMeetingData = (data: { date: string; timing: string }) => {
+    console.log(data, "data recieved to update");
+    setMeetingDetails(data);
+  };
 
   const handleAnswerChange = (
     questionId: number,
@@ -1494,7 +1503,7 @@ const Form: React.FC = () => {
             (na) => na.question === "Phone Number"
           )?.answer[0]?.length > 0;
         if (!emailValid && !phoneValid) {
-          alert("Please provide at least an email or phone number.");
+          alert("Please provide valid  email and phone number.");
           return;
         }
       }
@@ -1531,13 +1540,14 @@ const Form: React.FC = () => {
     }
   };
 
-  const handleFormComplete = () => {
+  const handleFormComplete = async () => {
     const filteredQuestionnaire = questionnaireArray.map((patientAnswers) =>
       patientAnswers.filter(
         (subArray) => subArray[0].question !== "Patient Information"
       )
     );
-    console.log("Final Data:", {
+    console.log(MeetingDetails, "meeting details before form submit");
+    const finalData = {
       setup: {
         patientCount: answers[-1]?.[1]?.answer[0] || "1",
         "What brought you here today?": answers[-1]?.[2]?.answer[0] || "",
@@ -1559,7 +1569,16 @@ const Form: React.FC = () => {
             (na) => na.question === "Preferred Contact Method"
           )?.answer[0] || "",
       },
-    });
+      MeetingDetails: MeetingDetails,
+    };
+    console.log("Final Data:");
+    try {
+      const result = await submitVaccineForm(finalData); // Call the reusable function
+      alert(result.message); // Show success message from backend
+    } catch (error) {
+      alert("Failed to submit form. Please try again."); // Show error message
+      console.error("Submission error:", error); // Log for debugging
+    }
   };
 
   const currentQuestionPart1 =
@@ -1571,14 +1590,15 @@ const Form: React.FC = () => {
     <div className="min-h-screen bg-neutral-50 flex items-center justify-center px-4 py-8 md:py-16">
       <div className="w-full max-w-3xl mx-auto">
         <div className="mb-8">
-          <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
+          {/* <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
             <motion.div
               className="h-3 bg-primary rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
               transition={{ duration: 0.5 }}
             />
-          </div>
+          </div> */}
+          <ProgressBar progress={progress} />
         </div>
         <motion.div
           key={phase === "part2" ? patientIndex : phase} // Stable key per phase or patient
@@ -1590,7 +1610,7 @@ const Form: React.FC = () => {
           {phase === "part1" && currentQuestionPart1 && (
             <>
               {currentQuestionPart1.type === "button-radio" && (
-                <ButtonRadioQuestion
+                <NumberOfPatientsQuestion
                   question={currentQuestionPart1.question}
                   options={currentQuestionPart1.options as string[]}
                   onChange={(answer) =>
@@ -1673,6 +1693,9 @@ const Form: React.FC = () => {
                       nestedAnswers
                     )
                   }
+                  setMeeting={handleMeetingData}
+                  onSubmit={handleFormComplete}
+                  numberOfPatients={patientCount}
                   selectedAnswer={
                     answers[-1]?.[currentQuestionPart3.id]?.answer || []
                   }
@@ -1681,6 +1704,7 @@ const Form: React.FC = () => {
                   }
                 />
               )}
+
               {/* Add more question types here as needed */}
               <div className="mt-6 flex justify-between">
                 <button
@@ -1693,21 +1717,25 @@ const Form: React.FC = () => {
                     Previous
                   </div>
                 </button>
-                <button
-                  onClick={() =>
-                    questionIndex < questionsPart3.length - 1
-                      ? handleNext(currentStep + 1)
-                      : handleFormComplete()
-                  }
-                  className="text-gray-600 hover:text-primary"
-                >
-                  <div className="flex">
-                    {questionIndex < questionsPart3.length - 1
-                      ? "Next"
-                      : "Submit"}
-                    <ChevronsRight />
-                  </div>
-                </button>
+                {questionIndex < questionsPart3.length - 1 ? (
+                  <button
+                    onClick={() =>
+                      questionIndex < questionsPart3.length - 1
+                        ? handleNext(currentStep + 1)
+                        : handleFormComplete()
+                    }
+                    className="text-gray-600 hover:text-primary"
+                  >
+                    <div className="flex">
+                      {questionIndex < questionsPart3.length - 1
+                        ? "Next"
+                        : "Submit"}
+                      <ChevronsRight />
+                    </div>
+                  </button>
+                ) : (
+                  <div></div>
+                )}
               </div>
             </>
           )}
