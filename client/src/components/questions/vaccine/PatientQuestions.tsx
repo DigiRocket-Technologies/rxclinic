@@ -1552,12 +1552,12 @@ import { motion } from "framer-motion";
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import PatientInformationVaccine, {
   PatientInformationVaccineRef,
-} from "./vaccine/PatientInformationVaccine";
-import ButtonRadioQuestion from "../questions/vaccine/ButtonRadioVaccine";
-import ConditionalButtonRadioQuestion from "../questions/vaccine/ConditionalButtonRadioVaccine";
-import PrimaryCareProviderQuestion from "../questions/vaccine/PrimaryCareProviderVaccine";
-import ConsentForInjection from "./vaccine/ConsentForInjectionQuestion";
-import ButtonRadioWithInputQuestion from "./vaccine/GenderQuestionVaccine";
+} from "./PatientInformationVaccine";
+import ButtonRadioQuestion from "./ButtonRadioVaccine";
+import ConditionalButtonRadioQuestion from "./ConditionalButtonRadioVaccine";
+import PrimaryCareProviderQuestion from "./PrimaryCareProviderVaccine";
+import ConsentForInjection from "./ConsentForInjectionQuestion";
+import ButtonRadioWithInputQuestion from "./GenderQuestionVaccine";
 
 interface PatientInfo {
   firstName: string;
