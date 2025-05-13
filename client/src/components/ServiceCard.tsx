@@ -133,11 +133,29 @@ const ServiceCard = ({
           "/minorAilmentsAndConditions/Other/InfluenzaTreatmentOrPrevention"
         );
         break;
+      case "5-1":
+        navigate("/vaccinesOrInjections/Covid19");
+        break;
       case "5-2":
         navigate("/vaccinesOrInjections/HepatitisA");
         break;
+      case "5-3":
+        navigate("/vaccinesOrInjections/HepatitisA&B");
+        break;
       case "5-4":
         navigate("/vaccinesOrInjections/HepatitisB");
+        break;
+      case "5-5":
+        navigate("/vaccinesOrInjections/HPV");
+        break;
+      case "5-6":
+        navigate("/vaccinesOrInjections/PneumococcalDisease");
+        break;
+      case "5-7":
+        navigate("/vaccinesOrInjections/Shingles");
+        break;
+      case "5-8":
+        navigate("/vaccinesOrInjections/VitaminB12");
         break;
 
       default:

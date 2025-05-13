@@ -29,6 +29,12 @@ import Muscle from "./components/forms/MuscleStrainsOrSprains";
 import Influenza from "./components/forms/InfluenzaTreatmentAndPrevention";
 import HepatitisA from "./components/forms/HepatitisA";
 import HepatitisB from "./components/forms/HepatitisB";
+import HepatitisAandB from "./components/forms/HepatitisAandB";
+import HPV from "./components/forms/HPV";
+import PneumococcalDisease from "./components/forms/PneumococcalDisease";
+import Shingles from "./components/forms/Shingles";
+import VitaminB12 from "./components/forms/Vitamin B12";
+import Covid19 from "./components/forms/Covid19Vaccine";
 
 // React 19 optimized component
 function App() {
@@ -125,6 +131,22 @@ function App() {
           path="/vaccinesOrInjections/HepatitisB"
           element={<HepatitisB />}
         />
+        <Route
+          path="/vaccinesOrInjections/HepatitisA&B"
+          element={<HepatitisAandB />}
+        />
+        <Route path="/vaccinesOrInjections/HPV" element={<HPV />} />
+        <Route
+          path="/vaccinesOrInjections/PneumococcalDisease"
+          element={<PneumococcalDisease />}
+        />
+        <Route path="/vaccinesOrInjections/Shingles" element={<Shingles />} />
+        <Route
+          path="/vaccinesOrInjections/VitaminB12"
+          element={<VitaminB12 />}
+        />
+        <Route path="/vaccinesOrInjections/Covid19" element={<Covid19 />} />
+
         <Route path="/prescription/new" element={<NewPrescription />} />
         <Route path="/prescription/refill" element={<PrescriptionRefill />} />
         <Route
