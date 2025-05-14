@@ -11,147 +11,358 @@ import PrimaryCareProviderQuestion from "../questions/PrimaryCareProviderQuestio
 import TermsAndConditions from "../questions/TermsAndConditions";
 import PatientInformation from "../questions/PatientInformation";
 import { submitFormData } from "../../utils/api.js";
+import ProgressBar from "../ui/CustomProgressbar.js";
 
+// const questions = [
+//   {
+//     id: 1,
+//     question: "What sex were you assigned at birth?",
+//     type: "button-radio-input",
+//     options: ["Male", "Female"],
+//   },
+//   {
+//     id: 2,
+//     question: "Do you experience any of the following?",
+//     type: "checkbox",
+//     options: [
+//       "Irregular or infrequent menstrual periods",
+//       "Excessive hair growth on the face, chest, and/or back",
+//       "Diagnosed with Polycystic Ovary Syndrome (PCOS)",
+//       "Insulin resistance",
+//       "Infertility",
+//       "None of the above",
+//       "Not sure",
+//     ],
+//   },
+//   {
+//     id: 3,
+//     question: "Are you (or could you be) pregnant?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 4,
+//     question: "Are you currently breastfeeding?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+
+//   {
+//     id: 5,
+//     question: "Is this the first time you are experiencing acne?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 6,
+//     question: "What areas are affected?",
+//     type: "checkbox",
+//     options: ["Face", "Neck", "Chest", "Upper back", "Under arm", "Other"],
+//   },
+//   {
+//     id: 7,
+//     question: "Describe your acne",
+//     type: "checkbox",
+//     options: [
+//       "Whiteheads",
+//       "Blackheads",
+//       "Small red bumps with or without a white top in the centre",
+//       "Larger red and inflamed bumps",
+//       "Nodules or cysts",
+//       "Not sure",
+//       "Other",
+//     ],
+//   },
+//   {
+//     id: 8,
+//     question:
+//       "Are you experiencing any of the following symptoms? Select all that apply.",
+//     type: "checkbox",
+//     options: [
+//       "Fever (temperature higher than 38°C)",
+//       "Joint pain or stiffness",
+//       "Spider-like veins on the face",
+//       "Generalized redness and flushing of the face",
+//       "Eye irritation",
+//       "None of the above",
+//       "Not sure",
+//     ],
+//   },
+//   {
+//     id: 9,
+//     question:
+//       "Are you experiencing any of the following as a result of your acne?",
+//     type: "checkbox",
+//     options: [
+//       "Anxiety",
+//       "Lowered self-esteem",
+//       "Depression",
+//       "Emotional distress",
+//       "None of the above",
+//       "Not sure",
+//     ],
+//   },
+//   {
+//     id: 10,
+//     question: "Do you have a family history of acne?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 11,
+//     question: "Do you use any skincare or cosmetic products?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+
+//   {
+//     id: 12,
+//     question: "Have you tried any treatments to help with your acne symptoms?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 13,
+//     question: "Did any of the treatments make your symptoms feel better?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please indicate which treatments made your symptoms feel better",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 14,
+//     question: "Did any of the treatments make your symptoms feel worse?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please indicate which treatments made your symptoms feel worse",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 15,
+//     question: "Did any of the treatments have no effect on your symptoms?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please indicate which treatments had no effect on your symptoms",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+
+//   {
+//     id: 16,
+//     question: "Do you have any allergies to medications?",
+//     type: "conditional-button-radio-inputs",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 17,
+//     question: "Have you started any new medications in the past month?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please specify the medication you recently",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+
+//   {
+//     id: 18,
+//     question: "Who is your primary care provider?",
+//     type: "primary-care-provider",
+//   },
+//   {
+//     id: 19,
+//     question: "Is there anything else we should know?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please explain",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 20,
+//     question: "Terms and Conditions",
+//     type: "terms-condition",
+//   },
+//   {
+//     id: 21,
+//     question: "Patient details",
+//     type: "patient-info",
+//   },
+
+//   // Add more questions here
+// ];
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What was your assigned sex at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 2,
-    question: "Do you experience any of the following?",
+    question: "Are you experiencing any of these conditions?",
     type: "checkbox",
     options: [
-      "Irregular or infrequent menstrual periods",
-      "Excessive hair growth on the face, chest, and/or back",
+      "Irregular or rare menstrual cycles",
+      "Unusual hair growth on face, chest, or back",
       "Diagnosed with Polycystic Ovary Syndrome (PCOS)",
-      "Insulin resistance",
-      "Infertility",
-      "None of the above",
-      "Not sure",
+      "Insulin sensitivity issues",
+      "Difficulty conceiving",
+      "None of these",
+      "Uncertain",
     ],
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question: "Is there a possibility you might be pregnant?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you currently nursing a baby?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
-
   {
     id: 5,
-    question: "Is this the first time you are experiencing acne?",
+    question: "Is this your first time dealing with acne?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
   {
     id: 6,
-    question: "What areas are affected?",
+    question: "Which areas are impacted by your acne?",
     type: "checkbox",
-    options: ["Face", "Neck", "Chest", "Upper back", "Under arm", "Other"],
+    options: ["Face", "Neck", "Chest", "Upper back", "Underarms", "Other"],
   },
   {
     id: 7,
-    question: "Describe your acne",
+    question: "How would you characterize your acne?",
     type: "checkbox",
     options: [
       "Whiteheads",
       "Blackheads",
-      "Small red bumps with or without a white top in the centre",
-      "Larger red and inflamed bumps",
+      "Small red bumps, with or without a white center",
+      "Larger, inflamed red bumps",
       "Nodules or cysts",
-      "Not sure",
+      "Uncertain",
       "Other",
     ],
   },
   {
     id: 8,
-    question:
-      "Are you experiencing any of the following symptoms? Select all that apply.",
+    question: "Are you noticing any of these symptoms? Choose all that apply.",
     type: "checkbox",
     options: [
-      "Fever (temperature higher than 38°C)",
-      "Joint pain or stiffness",
+      "Fever (temperature above 38°C)",
+      "Joint discomfort or stiffness",
       "Spider-like veins on the face",
-      "Generalized redness and flushing of the face",
+      "Widespread facial redness or flushing",
       "Eye irritation",
-      "None of the above",
-      "Not sure",
+      "None of these",
+      "Uncertain",
     ],
   },
   {
     id: 9,
-    question:
-      "Are you experiencing any of the following as a result of your acne?",
+    question: "Are you facing any of these effects due to your acne?",
     type: "checkbox",
     options: [
       "Anxiety",
-      "Lowered self-esteem",
+      "Reduced self-confidence",
       "Depression",
-      "Emotional distress",
-      "None of the above",
-      "Not sure",
+      "Emotional discomfort",
+      "None of these",
+      "Uncertain",
     ],
   },
   {
     id: 10,
-    question: "Do you have a family history of acne?",
+    question: "Is acne common in your family?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
   {
     id: 11,
-    question: "Do you use any skincare or cosmetic products?",
+    question: "Do you use skincare or cosmetic products?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
-
   {
     id: 12,
-    question: "Have you tried any treatments to help with your acne symptoms?",
+    question: "Have you attempted any treatments for your acne symptoms?",
     type: "button-radio",
-    options: ["Yes", "No", "Not Sure"],
+    options: ["Yes", "No", "Uncertain"],
   },
   {
     id: 13,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any treatments improve your acne symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments made your symptoms feel better",
+        label: "Please list the treatments that improved your symptoms",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments worsen your acne symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "Please specify which treatments made your symptoms worse",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
   {
     id: 15,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Did any treatments have no impact on your acne symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -161,57 +372,55 @@ const questions = [
           "Please indicate which treatments had no effect on your symptoms",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
-
   {
     id: 16,
-    question: "Do you have any allergies to medications?",
+    question: "Are you allergic to any medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "Please list your medication allergies, one per field, and use 'Add more' if necessary",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
   {
     id: 17,
-    question: "Have you started any new medications in the past month?",
+    question: "Have you begun any new medications in the last 30 days?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify the medication you recently",
+        label: "Please list the medications you recently started",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
-
   {
     id: 18,
-    question: "Who is your primary care provider?",
+    question: "Who is your primary healthcare provider?",
     type: "primary-care-provider",
   },
   {
     id: 19,
-    question: "Is there anything else we should know?",
+    question: "Is there any additional information we should know?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please provide details",
       },
       { value: "No", showsInput: false },
-      { value: "Not Sure", showsInput: false },
+      { value: "Uncertain", showsInput: false },
     ],
   },
   {
@@ -221,11 +430,9 @@ const questions = [
   },
   {
     id: 21,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 interface PatientInfo {
   firstName: string;
@@ -417,14 +624,48 @@ const Form: React.FC = () => {
       <div className="w-full max-w-3xl mx-auto">
         <div className="mb-8">
           {/* progress bar */}
-          <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
+          {/* <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
             <motion.div
               className="h-3 bg-primary rounded-full transition-width duration-200 ease-in-out"
               style={{ width: `${progress}%` }}
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
             />
-          </div>
+          </div> */}
+          {/* <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden relative">
+            <motion.div
+              className="h-3 absolute inset-0"
+              style={{
+                width: `${progress}%`,
+                background: "linear-gradient(90deg, #3b82f6, #06b6d4)",
+              }}
+              initial={{ width: "0%" }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.4, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="h-3 absolute inset-0"
+              style={{
+                width: `${progress}%`,
+                backgroundImage: `
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 10'%3E%3Cpath fill='none' stroke='rgba(255,255,255,0.3)' stroke-width='1' d='M0 5s4-3 10 0 10 0 10 0'/%3E%3C/svg%3E")
+      `,
+                backgroundSize: "20px 10px",
+                backgroundRepeat: "repeat-x",
+              }}
+              animate={{
+                backgroundPositionX: ["0%", "-100%"],
+              }}
+              transition={{
+                backgroundPositionX: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "linear",
+                },
+              }}
+            />
+          </div> */}
+          <ProgressBar progress={progress} />
         </div>
         {/* questions content */}
         <motion.div
