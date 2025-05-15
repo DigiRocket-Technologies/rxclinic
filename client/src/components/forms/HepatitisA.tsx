@@ -1395,10 +1395,10 @@ const Form: React.FC = () => {
   }>({});
   const [patientInfoArray, setPatientInfoArray] = useState<PatientInfo[]>([]);
   const [patientCount, setPatientCount] = useState<string>("1");
-  const [MeetingDetails, setMeetingDetails] = useState<{
-    date: string;
-    timing: string;
-  }>({ date: "", timing: "" });
+  // const [MeetingDetails, setMeetingDetails] = useState<{
+  //   date: string;
+  //   timing: string;
+  // }>({ date: "", timing: "" });
   const [questionnaireArray, setQuestionnaireArray] = useState<
     (AnswerPair | NestedAnswer)[][][]
   >([]);
@@ -1422,10 +1422,10 @@ const Form: React.FC = () => {
   };
 
   const { phase, patientIndex, questionIndex } = getCurrentState(currentStep);
-  const handleMeetingData = (data: { date: string; timing: string }) => {
-    console.log(data, "data recieved to update");
-    setMeetingDetails(data);
-  };
+  // const handleMeetingData = (data: { date: string; timing: string }) => {
+  //   console.log(data, "data recieved to update");
+  //   setMeetingDetails(data);
+  // };
 
   const handleAnswerChange = (
     questionId: number,
@@ -1546,7 +1546,15 @@ const Form: React.FC = () => {
         (subArray) => subArray[0].question !== "Patient Information"
       )
     );
-    console.log(MeetingDetails, "meeting details before form submit");
+    const meetingDetails =
+      answers[-1]?.[17]?.nestedAnswers?.find(
+        (na) => na.question === "Meeting Details"
+      )?.answer[0] ?? '"" | ""';
+
+    const [datePart, timePart] = meetingDetails.split("|");
+    console.log(datePart.trim(), "date part");
+    console.log(timePart.trim(), "time part");
+
     const finalData = {
       setup: {
         patientCount: answers[-1]?.[1]?.answer[0] || "1",
@@ -1569,9 +1577,12 @@ const Form: React.FC = () => {
             (na) => na.question === "Preferred Contact Method"
           )?.answer[0] || "",
       },
-      MeetingDetails: MeetingDetails,
+      MeetingDetails: {
+        date: datePart.trim(),
+        time: timePart.trim(),
+      },
     };
-    console.log("Final Data:");
+    console.log("Final Data:", finalData);
     try {
       const result = await submitVaccineForm(finalData); // Call the reusable function
       alert(result.message); // Show success message from backend
@@ -1693,7 +1704,7 @@ const Form: React.FC = () => {
                       nestedAnswers
                     )
                   }
-                  setMeeting={handleMeetingData}
+                  //setMeeting={handleMeetingData}
                   onSubmit={handleFormComplete}
                   numberOfPatients={patientCount}
                   selectedAnswer={
