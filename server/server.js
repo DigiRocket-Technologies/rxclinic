@@ -1,6 +1,10 @@
 import express from "express";
 import cors from "cors"; // Import cors
-import { submitForm, submitVaccineForm } from "./controllers/formController.js";
+import {
+  submitForm,
+  submitVaccineForm,
+  submitConsultationForm,
+} from "./controllers/formController.js";
 
 const app = express();
 
@@ -23,5 +27,6 @@ app.get("/", (req, res) => {
 
 app.post("/submitForm", submitForm);
 app.post("/submit-vaccine-form", submitVaccineForm);
+app.post("/submit-consultation-Form", submitConsultationForm);
 
 app.listen(3000, () => console.log(`Server listening at port 3000`));
