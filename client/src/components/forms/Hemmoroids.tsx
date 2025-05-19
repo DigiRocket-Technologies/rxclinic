@@ -12,6 +12,7 @@ import TermsAndConditions from "../questions/TermsAndConditions";
 import PatientInformation from "../questions/PatientInformation";
 import PhoneNumberQuestion from "../questions/PhoneNumberQuestion";
 import { submitFormData } from "../../utils/api.js";
+import ProgressBar from "../ui/CustomProgressbar.js";
 
 interface PatientInfo {
   firstName: string;
@@ -403,14 +404,15 @@ const Form: React.FC = () => {
       <div className="w-full max-w-3xl mx-auto">
         <div className="mb-8">
           {/* progress bar */}
-          <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
+          {/* <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
             <motion.div
               className="h-3 bg-primary rounded-full transition-width duration-200 ease-in-out"
               style={{ width: `${progress}%` }}
               initial={{ width: "0%" }}
               animate={{ width: `${progress}%` }}
             />
-          </div>
+          </div> */}
+          <ProgressBar progress={progress} />
         </div>
         {/* questions content */}
         <motion.div
