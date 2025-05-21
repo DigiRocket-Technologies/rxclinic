@@ -157,6 +157,12 @@ const ServiceCard = ({
       case "5-8":
         navigate("/vaccinesOrInjections/VitaminB12");
         break;
+      case "6-1":
+        navigate("/Consultation");
+        break;
+      case "6-2":
+        navigate("/Consultation");
+        break;
 
       default:
         // No navigation for other IDs
