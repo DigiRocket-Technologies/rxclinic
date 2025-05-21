@@ -68,7 +68,7 @@ const ServiceCard = ({
         break;
       case "2-1-4":
         navigate(
-          "/minorAilmentsAndConditions/digestiveConditions/NauseaAndVomitingInPregnancy"
+          "/minorAilmentsAndConditions-digestiveConditions-NauseaAndVomitingInPregnancy"
         );
         break;
       case "2-2-1":
@@ -87,7 +87,7 @@ const ServiceCard = ({
         navigate("/minorAilmentsAndConditions/EarEyesAndMouth/PinkEye");
         break;
       case "2-3-1":
-        navigate("/minorAilmentsAndConditions/SkinConditions/Acne");
+        navigate("/minorAilmentsAndConditions-SkinConditions-Acne");
         break;
       case "2-3-2":
         navigate(

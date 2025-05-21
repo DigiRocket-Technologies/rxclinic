@@ -45,7 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index />} />
         <Route
-          path="/minorAilmentsAndConditions/digestiveConditions/NauseaAndVomitingInPregnancy"
+          path="/minorAilmentsAndConditions-digestiveConditions-NauseaAndVomitingInPregnancy"
           element={<NauseaAndVomitingInPregnancy />}
         />
         <Route
@@ -57,7 +57,7 @@ function App() {
           element={<TickBite />}
         />
         <Route
-          path="/minorAilmentsAndConditions/SkinConditions/Acne"
+          path="/minorAilmentsAndConditions-SkinConditions-Acne"
           element={<Acne />}
         />
         <Route
