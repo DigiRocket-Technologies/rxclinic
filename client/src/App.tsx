@@ -35,6 +35,7 @@ import PneumococcalDisease from "./components/forms/PneumococcalDisease";
 import Shingles from "./components/forms/Shingles";
 import VitaminB12 from "./components/forms/Vitamin B12";
 import Covid19 from "./components/forms/Covid19Vaccine";
+import MedicationReview from "./components/forms/MedicationReview";
 
 // React 19 optimized component
 function App() {
@@ -145,6 +146,7 @@ function App() {
           path="/vaccinesOrInjections/VitaminB12"
           element={<VitaminB12 />}
         />
+        <Route path="/Consultation" element={<MedicationReview />} />
         <Route path="/vaccinesOrInjections/Covid19" element={<Covid19 />} />
 
         <Route path="/prescription/new" element={<NewPrescription />} />
