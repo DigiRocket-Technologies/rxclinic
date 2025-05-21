@@ -119,19 +119,19 @@ const Index = () => {
         },
       ],
     },
-    {
-      id: 3,
-      title: "Medical or Telemedicine Services",
-      icon: <MessageSquareTextIcon size={24} className="text-primary" />,
-      description: "Connect with healthcare professionals remotely",
-      subservices: [
-        {
-          id: "3-1",
-          title: "Telemedicine Clinic (Covered by OHIP+)",
-          icon: "telemedicine",
-        },
-      ],
-    },
+    // {
+    //   id: 3,
+    //   title: "Medical or Telemedicine Services",
+    //   icon: <MessageSquareTextIcon size={24} className="text-primary" />,
+    //   description: "Connect with healthcare professionals remotely",
+    //   subservices: [
+    //     {
+    //       id: "3-1",
+    //       title: "Telemedicine Clinic (Covered by OHIP+)",
+    //       icon: "telemedicine",
+    //     },
+    //   ],
+    // },
     {
       id: 4,
       title: "COVID-19",
