@@ -178,6 +178,15 @@ const Form: React.FC = () => {
     setHistory((prev) => prev.slice(0, -1));
     const prevStep = history[history.length - 2];
     setCurrentStep(prevStep);
+    console.log(
+      questionnaireArray.map(
+        (patientAnswers) => patientAnswers
+        // .filter(
+        //     (subArray) => subArray[0].question !== "Patient Information"
+        //   )
+      ),
+      "questionnaire"
+    );
   };
 
   const handlePatientComplete = (
@@ -197,27 +206,21 @@ const Form: React.FC = () => {
     }
   };
 
-  const handleFormComplete = async () => {
-    const filteredQuestionnaire = questionnaireArray.map((patientAnswers) =>
-      patientAnswers.filter(
-        (subArray) => subArray[0].question !== "Patient Information"
-      )
-    );
-    const meetingDetails =
-      answers[-1]?.[6]?.nestedAnswers?.find(
-        (na) => na.question === "Meeting Details"
-      )?.answer[0] ?? '"" | ""';
-
-    const [datePart, timePart] = meetingDetails.split("|");
-    console.log(datePart.trim(), "date part");
-    console.log(timePart.trim(), "time part");
+  const handleFormComplete = async (meetingDetails: {
+    date: string;
+    time: string;
+  }) => {
     //console.log(MeetingDetails, "meeting details before form submit");
     const finalData = {
       setup: {
         patientCount: answers[-1]?.[1]?.answer[0] || "1",
         formName,
       },
-      questionnaire: filteredQuestionnaire,
+      questionnaire: questionnaireArray.map((patientAnswers) =>
+        patientAnswers.filter(
+          (subArray) => subArray[0].question !== "Patient Information"
+        )
+      ),
       patientInfo: patientInfoArray,
       contactInfo: {
         email:
@@ -233,8 +236,8 @@ const Form: React.FC = () => {
           )?.answer[0] || "",
       },
       MeetingDetails: {
-        date: datePart.trim(),
-        time: timePart.trim(),
+        date: meetingDetails.date,
+        time: meetingDetails.time,
       },
     };
     console.log("Final Data: ", finalData);
@@ -307,14 +310,6 @@ const Form: React.FC = () => {
     <div className="min-h-screen bg-neutral-50 flex items-center justify-center px-4 py-8 md:py-16">
       <div className="w-full max-w-3xl mx-auto">
         <div className="mb-8">
-          {/* <div className="bg-gray-200 h-3 w-full rounded-full overflow-hidden">
-            <motion.div
-              className="h-3 bg-primary rounded-full"
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.5 }}
-            />
-          </div> */}
           <ProgressBar progress={progress} />
         </div>
         <motion.div
@@ -424,17 +419,11 @@ const Form: React.FC = () => {
                 </button>
                 {questionIndex < questionsPart3.length - 1 ? (
                   <button
-                    onClick={() =>
-                      questionIndex < questionsPart3.length - 1
-                        ? handleNext(currentStep + 1)
-                        : handleFormComplete()
-                    }
+                    onClick={() => handleNext(currentStep + 1)}
                     className="text-gray-600 hover:text-primary"
                   >
                     <div className="flex">
-                      {questionIndex < questionsPart3.length - 1
-                        ? "Next"
-                        : "Submit"}
+                      Next
                       <ChevronsRight />
                     </div>
                   </button>

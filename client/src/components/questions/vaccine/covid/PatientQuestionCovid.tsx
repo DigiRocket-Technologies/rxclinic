@@ -367,12 +367,12 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
 
   const dependencyMap: { [key: number]: (answer: string[]) => number | null } =
     {
-      4: (answer) => {
-        if (answer[0] === "No") {
-          return 3; // Index of question ID 5
-        }
-        return questions.length; // Skip to the end if "Yes"
-      },
+      // 4: (answer) => {
+      //   if (answer[0] === "No") {
+      //     return 3; // Index of question ID 5
+      //   }
+      //   return null; // Skip to the end if "Yes"
+      // },
     };
 
   const handleAnswerChangeLocal = (
@@ -399,6 +399,52 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
       onNext(nextStep);
     }
   };
+
+  // const handleNext = () => {
+  //   const currentAnswer = answers[questions[currentQuestionIndex].id];
+  //   if (currentQuestionIndex === 0 && !patientInfoRef.current?.validateForm()) {
+  //     console.log("Validation Failed at Q2");
+  //     return;
+  //   }
+  //   if (!currentAnswer?.answer && currentQuestionIndex !== 0) {
+  //     alert("Your response is required.");
+  //     console.log(`No Answer at Q${questions[currentQuestionIndex].id}`);
+  //     return;
+  //   }
+
+  //   const baseStep = 1 + patientIndex * 4;
+  //   const nextIndex =
+  //     dependencyMap[questions[currentQuestionIndex].id]?.(
+  //       currentAnswer?.answer ?? []
+  //     ) ?? currentQuestionIndex + 1;
+
+  //   if (nextIndex >= questions.length) {
+  //     const questionnaireData: (AnswerPair | NestedAnswer)[][] = questions
+  //       .filter((q) => q.question !== "Patient Information")
+  //       .map((q) => {
+  //         const answerData = answers[q.id] || { answer: [] };
+  //         const basePair: AnswerPair = {
+  //           question: q.question,
+  //           answer: answerData.answer,
+  //         };
+  //         return answerData.nestedAnswers
+  //           ? [basePair, ...answerData.nestedAnswers]
+  //           : [basePair];
+  //       });
+  //     console.log(
+  //       `Patient ${patientIndex + 1} Complete, Step: ${
+  //         baseStep + currentQuestionIndex
+  //       }`
+  //     );
+  //     onComplete({ questionnaire: questionnaireData });
+  //   } else {
+  //     const nextStep = baseStep + nextIndex;
+  //     console.log(
+  //       `Manual Next: Q${questions[currentQuestionIndex].id} → Q${questions[nextIndex].id}, Step: ${nextStep}`
+  //     );
+  //     onNext(nextStep);
+  //   }
+  // };
 
   const handleNext = () => {
     const currentAnswer = answers[questions[currentQuestionIndex].id];
@@ -445,7 +491,6 @@ const PatientQuestions: React.FC<PatientQuestionsProps> = ({
       onNext(nextStep);
     }
   };
-
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
