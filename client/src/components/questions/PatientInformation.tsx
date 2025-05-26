@@ -215,6 +215,7 @@ const PatientInformation: React.FC<PatientInformationProps> = ({
           <input
             type="date"
             name="dateOfBirth"
+            max={new Date().toISOString().split("T")[0]}
             value={formData.dateOfBirth}
             onChange={handleInputChange}
             className={`input-field ${
