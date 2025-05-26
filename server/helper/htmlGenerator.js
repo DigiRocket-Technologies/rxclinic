@@ -39,14 +39,14 @@ export const generateFormHtml = (questionnaire, patientInfo, formName) => {
           <td style="padding: 10px; border: 1px solid #ddd;"><strong>Health Card Number</strong></td>
           <td style="padding: 10px; border: 1px solid #ddd;">${patientInfo.healthCardNumber}</td>
         </tr>
-        <tr>
-          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Has Health Card</strong></td>
-          <td style="padding: 10px; border: 1px solid #ddd;">${patientInfo.hasHealthCard}</td>
-        </tr>
-        <tr style="background-color: #ecf0f1;">
-          <td style="padding: 10px; border: 1px solid #ddd;"><strong>Interested in Transfer</strong></td>
-          <td style="padding: 10px; border: 1px solid #ddd;">${patientInfo.interestedInTransfer}</td>
-        </tr>
+        // <tr>
+        //   <td style="padding: 10px; border: 1px solid #ddd;"><strong>Has Health Card</strong></td>
+        //   <td style="padding: 10px; border: 1px solid #ddd;">${patientInfo.hasHealthCard}</td>
+        // </tr>
+        // <tr style="background-color: #ecf0f1;">
+        //   <td style="padding: 10px; border: 1px solid #ddd;"><strong>Interested in Transfer</strong></td>
+        //   <td style="padding: 10px; border: 1px solid #ddd;">${patientInfo.interestedInTransfer}</td>
+        // </tr>
       </table>
     `;
 
@@ -309,7 +309,7 @@ export const generateVaccineFormHtml = (
       </tr>
       <tr>
         <td style="padding: 10px; border: 1px solid #ddd;"><strong>Timing</strong></td>
-        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.timing}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.time}</td>
       </tr>
     </table>
   `;
@@ -487,7 +487,7 @@ export const generateCovidVaccineFormHtml = (
       </tr>
       <tr>
         <td style="padding: 10px; border: 1px solid #ddd;"><strong>Timing</strong></td>
-        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.timing}</td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.time}</td>
       </tr>
     </table>
   `;
@@ -709,6 +709,222 @@ export const generateConsultationFormHtml = (
         </body>
       </html>
     `;
+};
+export const generateSymptonaticCovidFormHtml = (
+  setup,
+  questionnaire,
+  patientInfo,
+  contactInfo,
+  MeetingDetails
+) => {
+  // Contact Info Section
+  const contactInfoHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Contact Information</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Email</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          contactInfo.email
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          contactInfo.phoneNumber || "N/A"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Preferred Method</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          contactInfo.preferredMethod || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Meeting Details Section
+  const meetingDetailsHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Meeting Details</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Date</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.date}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Timing</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${MeetingDetails.time}</td>
+      </tr>
+    </table>
+  `;
+
+  // Setup Info Section
+  const setupInfoHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Form Details</h2>
+    <div style="margin-bottom: 25px;">
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background-color: #ecf0f1;">
+          <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Patient Count</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${setup.patientCount}</td>
+        </tr>
+      </table>
+    </div>
+  `;
+
+  // Patient Sections
+  const patientsHtml = patientInfo
+    .map((patient, index) => {
+      return `
+        <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px; margin-top: 30px;">
+          Patient ${index + 1} Information
+        </h2>
+        <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>First Name</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.firstName
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.lastName
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Gender</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.gender || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Date of Birth</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.dateOfBirth || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>City</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.city || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Postal Code</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.postalCode || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Address</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.address || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Email</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.email || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.phoneNumber || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Pregnant Status</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.isPregnant || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Symptoms</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.hasSymptoms || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Contact with COVID Patient</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.hasContact || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Vaccination Status</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.vaccinationStatus || "N/A"
+            }</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Health Card Number</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.healthCardNumber || "N/A"
+            }</td>
+          </tr>
+          <tr style="background-color: #ecf0f1;">
+            <td style="padding: 10px; border: 1px solid #ddd;"><strong>Has Health Card</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${
+              patient.hasHealthCard || "N/A"
+            }</td>
+          </tr>
+        </table>
+      `;
+    })
+    .join("");
+
+  // Questionnaire Section
+  const questionnaireHtml =
+    questionnaire.length > 0
+      ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px; margin-top: 30px;">
+      Questionnaire
+    </h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      ${questionnaire
+        .map((qa, index) => {
+          const answers = Array.isArray(qa.answer)
+            ? qa.answer.join(", ")
+            : qa.answer;
+          return `
+          <tr style="${index % 2 === 0 ? "background-color: #ecf0f1;" : ""}">
+            <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>${
+              qa.question
+            }</strong></td>
+            <td style="padding: 10px; border: 1px solid #ddd; color: #16a085;">${answers}</td>
+          </tr>
+        `;
+        })
+        .join("")}
+    </table>
+  `
+      : "";
+
+  // Full HTML
+  return `
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${setup.formName} Form Submission</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 800px; margin: 0 auto; background-color: #f4f4f4;">
+        <div style="background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h1 style="color: #3498db; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+            ${setup.formName} Form Submission
+          </h1>
+          ${contactInfoHtml}
+          ${meetingDetailsHtml}
+          ${setupInfoHtml}
+          ${patientsHtml}
+          ${questionnaireHtml}
+          <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <p>Submitted on: ${new Date().toLocaleString()}</p>
+            <p>Powered by Sky-Shop</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  `;
 };
 
 export default generateFormHtml;
