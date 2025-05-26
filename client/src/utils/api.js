@@ -1,6 +1,6 @@
 export const submitFormData = async (formData) => {
   try {
-    const response = await fetch("https://rxclinic-backend.vercel.app/submitForm", {
+    const response = await fetch(`${import.meta.env.VITE_DOMAIN}submitForm`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,13 +23,16 @@ export const submitFormData = async (formData) => {
 
 export const submitVaccineForm = async (formData) => {
   try {
-    const response = await fetch("http://localhost:3000/submit-vaccine-form", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${import.meta.env.VITE_DOMAIN}submit-vaccine-form`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
@@ -47,7 +50,33 @@ export const submitVaccineForm = async (formData) => {
 export const submitConsultationForm = async (formData) => {
   try {
     const response = await fetch(
-      "http://localhost:3000/submit-consultation-Form",
+      `${import.meta.env.VITE_DOMAIN}submit-consultation-Form`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const result = await response.json();
+    console.log("Form submission successful:", result);
+    return result; // e.g., { message: "Form submitted successfully, email sent" }
+  } catch (error) {
+    console.error("Error submitting form:", error.message);
+    throw error; // Re-throw to handle in the calling code
+  }
+};
+
+export const submitSymptomaticCovid = async (formData) => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.VITE_DOMAIN}submit-symptomatic-covid`,
       {
         method: "POST",
         headers: {
