@@ -426,10 +426,12 @@ const Form: React.FC = () => {
   };
 
   const handleFinalSubmit = async () => {
-    // if (!patientInfo) {
-    //   alert("Please complete patient information.");
-    //   return;
-    // }
+    if (!patientInfo) {
+      alert(
+        "Please make sure information is correctPlease ensure the accuracy of the information before submitting."
+      );
+      return;
+    }
 
     const questionnaireData = getQuestionsAndAnswers();
     const finalData = {

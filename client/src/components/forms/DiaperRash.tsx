@@ -368,10 +368,12 @@ const Form: React.FC = () => {
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
   const handleFinalSubmit = async () => {
-    // if (!patientInfo) {
-    //   alert("Please complete patient information.");
-    //   return;
-    // }
+    if (!patientInfo) {
+      alert(
+        "Please make sure information is correctPlease ensure the accuracy of the information before submitting."
+      );
+      return;
+    }
 
     const questionnaireData = getQuestionsAndAnswers();
     const finalData = {
