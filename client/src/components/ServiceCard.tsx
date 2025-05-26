@@ -136,6 +136,9 @@ const ServiceCard = ({
       case "4-1":
         navigate("/vaccinesOrInjections/Covid19");
         break;
+      case "4-2":
+        navigate("/Covid19/SymptomaticCOVID-19Test");
+        break;
       case "5-1":
         navigate("/vaccinesOrInjections/Covid19");
         break;

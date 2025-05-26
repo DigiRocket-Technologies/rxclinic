@@ -139,7 +139,7 @@ const Index = () => {
       description: "Access COVID-19 testing, vaccination, and information",
       subservices: [
         { id: "4-1", title: "COVID-19 Vaccine", icon: "vaccine" },
-        { id: "4-2", title: "COVID-19 + Flu Vaccine", icon: "vaccine" },
+        { id: "4-2", title: "Symptomatic COVID-19 Test", icon: "vaccine" },
       ],
     },
     {
