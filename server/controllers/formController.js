@@ -4,6 +4,7 @@ import {
   generateVaccineFormHtml,
   generateCovidVaccineFormHtml,
   generateConsultationFormHtml,
+  generateSymptonaticCovidFormHtml,
 } from "../helper/htmlGenerator.js";
 
 export const submitForm = async (req, res) => {
@@ -150,7 +151,7 @@ export const submitCovidVaccineForm = async (req, res) => {
     const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable later
     const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
     const text =
-      "A new vaccine form has been submitted with multiple patients. Please check the details in HTML format.";
+      "A new vaccine form has been submitted . Please check the details in HTML format.";
 
     // Send email
     await sendEmail(adminEmail, subject, text, htmlContent);
@@ -181,31 +182,7 @@ export const submitConsultationForm = async (req, res) => {
       date,
       timing,
     } = req.body;
-    // const form = req.body;
-    // console.log(form, "form");
 
-    //Validate required fields, including date and timing
-    // const requiredFields = [
-    //   "service",
-    //   "firstName",
-    //   "lastName",
-    //   "dateOfBirth",
-    //   "consultationType",
-    //   "isCurrentPatient",
-    //   "interestedInTransfer",
-    //   "email",
-    //   "phoneNumber",
-    //   "preferredContactMethod",
-    //   "date",
-    //   "timing",
-    // ];
-    // const missingFields = requiredFields.filter((field) => !formData[field]);
-
-    // if (!questionnaire || !formName || !patientInfo || !patientInfo.email) {
-    //   return res.status(400).json({ error: "Missing required data" });
-    // }
-
-    //Generate HTML content
     const htmlContent = generateConsultationFormHtml(
       service,
       firstName,
@@ -237,6 +214,59 @@ export const submitConsultationForm = async (req, res) => {
       .json({ message: "Form submitted successfully, email sent" });
   } catch (error) {
     console.error("Error in form submission:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+export const submitSymptomaticCovid = async (req, res) => {
+  try {
+    const { setup, questionnaire, patientInfo, contactInfo, MeetingDetails } =
+      req.body;
+
+    // Validate required data
+    // if (
+    //   !setup ||
+    //   !setup.formName ||
+    //   !setup.patientCount ||
+    //   !patientInfo ||
+    //   !Array.isArray(patientInfo) ||
+    //   !questionnaire ||
+    //   !Array.isArray(questionnaire) ||
+    //   !contactInfo ||
+    //   !contactInfo.email ||
+    //   !MeetingDetails ||
+    //   !MeetingDetails.date ||
+    //   !MeetingDetails.timing
+    // ) {
+    //   return res
+    //     .status(400)
+    //     .json({ error: "Missing or invalid required data" });
+    // }
+
+    // Generate HTML content
+    const htmlContent = generateSymptonaticCovidFormHtml(
+      setup,
+      questionnaire,
+      patientInfo,
+      contactInfo,
+      MeetingDetails
+    );
+
+    // Define email details
+    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable later
+    const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
+    const text =
+      "A new form has been submitted . Please check the details in HTML format.";
+
+    // Send email
+    await sendEmail(adminEmail, subject, text, htmlContent);
+
+    // Respond to frontend
+    res
+      .status(200)
+      .json({ message: " Form submitted successfully, email sent" });
+  } catch (error) {
+    console.error("Error in  form submission:", error);
     res.status(500).json({ error: "Internal server error" });
   }
 };

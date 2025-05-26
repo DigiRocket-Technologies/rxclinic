@@ -4,6 +4,7 @@ import {
   submitForm,
   submitVaccineForm,
   submitConsultationForm,
+  submitSymptomaticCovid,
 } from "./controllers/formController.js";
 
 const app = express();
@@ -28,5 +29,6 @@ app.get("/", (req, res) => {
 app.post("/submitForm", submitForm);
 app.post("/submit-vaccine-form", submitVaccineForm);
 app.post("/submit-consultation-Form", submitConsultationForm);
+app.post("/submit-symptomatic-covid", submitSymptomaticCovid);
 
 app.listen(3000, () => console.log(`Server listening at port 3000`));
