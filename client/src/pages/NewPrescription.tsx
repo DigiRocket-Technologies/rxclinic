@@ -577,7 +577,7 @@ import { useState } from "react";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { submitPrescriptionFormData } from "../utils/api.js";
+import { submitNewPrescriptionFormData } from "../utils/api.js";
 import PhoneInput from "react-phone-number-input";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import "react-phone-number-input/style.css";
@@ -696,7 +696,7 @@ const NewPrescription = () => {
         }
       });
 
-      const result = await submitPrescriptionFormData(formData);
+      const result = await submitNewPrescriptionFormData(formData);
       toast.success(result.message);
       navigate("/");
     } catch (error) {
