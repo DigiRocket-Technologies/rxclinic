@@ -32,3 +32,39 @@ export const sendEmail = async (email, subject, text, html) => {
     throw error; // Throw error to be caught in the controller
   }
 };
+
+export const sendEmailWithAttachments = async (
+  email,
+  subject,
+  text,
+  html,
+  attachments
+) => {
+  try {
+    const mailAttachments = attachments.map((file) => {
+      return {
+        filename: file.filename,
+        path: file.path,
+        contentType: file.mimetype,
+      };
+    });
+
+    const info = await transporter.sendMail({
+      from: {
+        name: "Sky-Shop",
+        address: process.env.EMAIL_USER,
+      },
+      to: email,
+      subject: subject,
+      text: text,
+      html: html,
+      attachments: mailAttachments,
+    });
+
+    console.log("Email with attachments sent:", info.messageId);
+    return info;
+  } catch (error) {
+    console.error("Error sending email with attachments:", error);
+    throw error;
+  }
+};
