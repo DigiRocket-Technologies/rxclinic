@@ -198,7 +198,7 @@ const Index = () => {
         {
           id: "4-2",
           title: "Symptomatic COVID-19 Test",
-          icon: "/images/Covid19/COVID-19 + Flu Vaccine.svg",
+          icon: "/images/Covid19/COVID-19FluVaccine.svg",
         },
       ],
     },
