@@ -6,6 +6,8 @@ import PatientQuestionCovid from "../questions/vaccine/covid/PatientQuestionCovi
 import EmailPhoneInputQuestion from "../questions/vaccine/EmailPhoneInputQuestion"; // Adjust path as needed
 import { submitVaccineForm } from "../../utils/api.js";
 import ProgressBar from "../ui/CustomProgressbar.js";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 interface PatientInfo {
   firstName: string;
   lastName: string;
@@ -59,6 +61,8 @@ const Form: React.FC = () => {
   const [questionnaireArray, setQuestionnaireArray] = useState<
     (AnswerPair | NestedAnswer)[][][]
   >([]);
+  const navigate = useNavigate();
+
   const formName = "Covid-19 Vaccine ";
 
   // Total steps: Part 1 (2) + Part 2 (14 per patient) + Part 3 (flexible, currently 1)
@@ -243,10 +247,21 @@ const Form: React.FC = () => {
     console.log("Final Data: ", finalData);
     try {
       const result = await submitVaccineForm(finalData); // Call the reusable function
-      alert(result.message); // Show success message from backend
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again."); // Show error message
-      console.error("Submission error:", error); // Log for debugging
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
+      console.error("Submission error:", error);
     }
   };
   // const handleFormComplete = async () => {

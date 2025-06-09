@@ -10,6 +10,8 @@ import EligibilityCriteriaQuestion from "../questions/symptomaticCovid19/Eligibi
 import ConsentQuestion from "../questions/symptomaticCovid19/ConsentForm";
 import { submitSymptomaticCovid } from "../../utils/api";
 import ProgressBar from "../ui/CustomProgressbar";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface PatientInfo {
   firstName: string;
@@ -67,6 +69,7 @@ const Form: React.FC = () => {
   }>({});
   const [patientInfoArray, setPatientInfoArray] = useState<PatientInfo[]>([]);
   const [patientCount, setPatientCount] = useState<string>("1");
+  const navigate = useNavigate();
 
   const formName = "Symptomatic COVID-19";
   const patientRefs = useRef<(PatientInformationCovidRef | null)[]>([]);
@@ -182,11 +185,22 @@ const Form: React.FC = () => {
       },
     };
     try {
-      console.log(finalData, "finaldata");
+      //console.log(finalData, "finaldata");
       const result = await submitSymptomaticCovid(finalData);
-      alert(result.message);
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again.");
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
       console.error("Submission error:", error);
     }
   };
