@@ -4,6 +4,8 @@ import { parsePhoneNumberFromString } from "libphonenumber-js";
 import "react-phone-number-input/style.css";
 import { submitConsultationForm } from "../../utils/api.js";
 import { PopupButton, useCalendlyEventListener } from "react-calendly";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 interface FormData {
   service: string;
@@ -47,6 +49,7 @@ const PharmacyConsultationForm: React.FC = () => {
   const [phoneValidationStatus, setPhoneValidationStatus] = useState<
     "invalid" | "valid" | "none"
   >("none");
+  const navigate = useNavigate();
 
   const services: string[] = ["Ask a Pharmacist", "Medication Review"];
   const consultationTypes: string[] = ["In-person", "Phone Call"];
@@ -70,7 +73,7 @@ const PharmacyConsultationForm: React.FC = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
 
       const data = await response.json();
-      console.log("Calendly event data:", data);
+      //console.log("Calendly event data:", data);
 
       const startTime = data?.resource?.start_time;
       const endTime = data?.resource?.end_time;
@@ -104,13 +107,13 @@ const PharmacyConsultationForm: React.FC = () => {
     onDateAndTimeSelected: (e) => console.log(e.data),
     onEventTypeViewed: () => console.log("onEventTypeViewed"),
     onEventScheduled: async (e) => {
-      console.log("Event Scheduled:", e.data.payload);
+      //console.log("Event Scheduled:", e.data.payload);
       const eventUri = e.data.payload.event.uri;
-      console.log(eventUri, "uri");
+      //console.log(eventUri, "uri");
       try {
         const { date, timing } = await fetchEventDetails(eventUri);
-        console.log(date, "date");
-        console.log(timing, "time");
+        // console.log(date, "date");
+        // console.log(timing, "time");
 
         // Update formData and pass the updated data to handleFinalSubmit
         setFormData((prevFormData) => {
@@ -256,10 +259,21 @@ const PharmacyConsultationForm: React.FC = () => {
     console.log(formData, "formdata end");
     try {
       const result = await submitConsultationForm(formData); // Call the reusable function
-      alert(result.message); // Show success message from backend
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again."); // Show error message
-      console.error("Submission error:", error); // Log for debugging
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
+      console.error("Submission error:", error);
     }
   };
 
