@@ -5,7 +5,12 @@ import {
   submitVaccineForm,
   submitConsultationForm,
   submitSymptomaticCovid,
+  submitNewPrescriptionData,
+  submitPrescriptionRefillData,
+  submitPrescriptionTransferData,
+  submitPrescriptionRenewalDataa,
 } from "./controllers/formController.js";
+//import { submitPrescriptionRenewalData } from "./controllers/PrescriptionRenewal.js";
 
 const app = express();
 
@@ -30,5 +35,10 @@ app.post("/submitForm", submitForm);
 app.post("/submit-vaccine-form", submitVaccineForm);
 app.post("/submit-consultation-Form", submitConsultationForm);
 app.post("/submit-symptomatic-covid", submitSymptomaticCovid);
+//prescription
+app.post("/submitNewPrescriptionData", submitNewPrescriptionData);
+app.post("/submitPrescriptionRefillData", submitPrescriptionRefillData);
+app.post("/submitPrescriptionTransferData", submitPrescriptionTransferData);
+app.post("/submitprescriptionrenewaldata", submitPrescriptionRenewalDataa);
 
 app.listen(3000, () => console.log(`Server listening at port 3000`));

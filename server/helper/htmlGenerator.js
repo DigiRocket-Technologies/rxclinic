@@ -600,7 +600,6 @@ export const generateCovidVaccineFormHtml = (
     </html>
   `;
 };
-
 export const generateConsultationFormHtml = (
   service,
   firstName,
@@ -919,6 +918,475 @@ export const generateSymptonaticCovidFormHtml = (
           ${questionnaireHtml}
           <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
             <p>Submitted on: ${new Date().toLocaleString()}</p>
+            <p>Powered by Sky-Shop</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  `;
+};
+export const generatePrescriptionRefillHtml = (
+  name,
+  firstName,
+  lastName,
+  numberOfItems,
+  pickupDate,
+  notifyMethod,
+  allDuePrescriptions, // Now treated as a string
+  phoneNumber,
+  isCurrentPatient,
+  textWhenReady,
+  autoRefill,
+  question,
+  deliveryOption,
+  submittedAt
+) => {
+  // Personal Details Section
+  const personalDetailsHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Personal Details</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>First Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${firstName}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${lastName}</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          phoneNumber || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Prescription Details Section
+  const prescriptionDetailsHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Prescription Details</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Delivery Option</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          deliveryOption || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Pickup Date</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          pickupDate || "N/A"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Number of Items</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          numberOfItems || "0"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Current Patient</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          isCurrentPatient ? "Yes" : "No"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Notification Method</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          notifyMethod || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Text When Ready</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          textWhenReady ? "Yes" : "No"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Auto Refill</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          autoRefill ? "Yes" : "No"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Prescriptions Section (simplified for string value)
+  const prescriptionsHtml = allDuePrescriptions
+    ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Prescription Details</h2>
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-bottom: 25px;">
+      ${allDuePrescriptions}
+    </div>
+  `
+    : "";
+
+  // Patient Query Section
+  const patientQueryHtml = question
+    ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Query</h2>
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-bottom: 25px;">
+      ${question}
+    </div>
+  `
+    : "";
+
+  // Full HTML
+  return `
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${name} Form Submission</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 800px; margin: 0 auto; background-color: #f4f4f4;">
+        <div style="background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h1 style="color: #3498db; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+            ${name} Form Submission
+          </h1>
+          ${personalDetailsHtml}
+          ${prescriptionDetailsHtml}
+          ${prescriptionsHtml}
+          ${patientQueryHtml}
+          <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <p>Submitted on: ${submittedAt || new Date().toLocaleString()}</p>
+            <p>Powered by Sky-Shop</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  `;
+};
+export const generatePrescriptionTransferHtml = (
+  name,
+  firstName,
+  lastName,
+  transferType,
+  previousPharmacyName,
+  previousPharmacyPhone,
+  prescriptionDetails,
+  phoneNumber,
+  dateOfBirth,
+  question, // Changed from questions to patientQuery (string)
+  submittedAt
+) => {
+  // Patient Information Section
+  const patientInfoHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Information</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>First Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${firstName}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${lastName}</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          phoneNumber || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Date of Birth</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          dateOfBirth || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Transfer Details Section
+  const transferDetailsHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Transfer Details</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Transfer Type</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          transferType || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Previous Pharmacy Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          previousPharmacyName || "N/A"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Previous Pharmacy Phone</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          previousPharmacyPhone || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Prescription Details Section
+  const prescriptionsHtml =
+    prescriptionDetails && prescriptionDetails.length > 0
+      ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Prescriptions to Transfer</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      ${prescriptionDetails
+        .map(
+          (item, index) => `
+        <tr style="${index % 2 === 0 ? "background-color: #ecf0f1;" : ""}">
+          <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Prescription ${
+            index + 1
+          }</strong></td>
+          <td style="padding: 10px; border: 1px solid #ddd;">${
+            item || "N/A"
+          }</td>
+        </tr>
+      `
+        )
+        .join("")}
+    </table>
+  `
+      : "";
+
+  // Patient Query Section (replaces Questions section)
+  const patientQueryHtml = question
+    ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Query</h2>
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-bottom: 25px;">
+      ${question}
+    </div>
+  `
+    : "";
+
+  // Full HTML
+  return `
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${name} Form Submission</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 800px; margin: 0 auto; background-color: #f4f4f4;">
+        <div style="background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h1 style="color: #3498db; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+            ${name} Form Submission
+          </h1>
+          ${patientInfoHtml}
+          ${transferDetailsHtml}
+          ${prescriptionsHtml}
+          ${patientQueryHtml}
+          <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <p>Submitted on: ${submittedAt || new Date().toLocaleString()}</p>
+            <p>Powered by Sky-Shop</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  `;
+};
+export const generateNewPrescriptionHtml = (
+  name,
+  firstName,
+  lastName,
+  isCurrentPatient,
+  textWhenReady,
+  autoRefill,
+  phoneNumber,
+  question, // Changed from questions to patientQuery (string)
+  submittedAt
+) => {
+  // Patient Information Section
+  const patientInfoHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Information</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>First Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${firstName}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${lastName}</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          phoneNumber || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Prescription Preferences Section
+  const preferencesHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Prescription Preferences</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Current Patient</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          isCurrentPatient ? "Yes" : "No"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Text When Ready</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          textWhenReady ? "Yes" : "No"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Auto Refill</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          autoRefill ? "Yes" : "No"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Patient Query Section (replaces Questions section)
+  const patientQueryHtml = question
+    ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Query</h2>
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-bottom: 25px;">
+      ${question}
+    </div>
+  `
+    : "";
+
+  // Full HTML
+  return `
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${name} Form Submission</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 800px; margin: 0 auto; background-color: #f4f4f4;">
+        <div style="background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h1 style="color: #3498db; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+            ${name} Form Submission
+          </h1>
+          ${patientInfoHtml}
+          ${preferencesHtml}
+          ${patientQueryHtml}
+          <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <p>Submitted on: ${submittedAt || new Date().toLocaleString()}</p>
+            <p>Powered by Sky-Shop</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  `;
+};
+export const generatePrescriptionRenewalHtml = (
+  name,
+  firstName,
+  lastName,
+  numberOfItems,
+  notifyMethod,
+  autoRefill,
+  phoneNumber,
+  question,
+  hasIssues,
+  deliveryOption,
+  pickupDate,
+  deliveryInstructions,
+  submittedAt
+) => {
+  // Patient Information Section
+  const patientInfoHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Information</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>First Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${firstName}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Last Name</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${lastName}</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Phone Number</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          phoneNumber || "N/A"
+        }</td>
+      </tr>
+    </table>
+  `;
+
+  // Delivery Details Section
+  const deliveryDetailsHtml = `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Delivery Details</h2>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd; width: 30%;"><strong>Delivery Option</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          deliveryOption || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Number of Items</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          numberOfItems || "0"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Pickup Date</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          pickupDate || "N/A"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Notification Method</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          notifyMethod || "N/A"
+        }</td>
+      </tr>
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Auto Refill</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          autoRefill ? "Yes" : "No"
+        }</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Has Issues</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${
+          hasIssues ? "Yes" : "No"
+        }</td>
+      </tr>
+      ${
+        deliveryInstructions
+          ? `
+      <tr style="background-color: #ecf0f1;">
+        <td style="padding: 10px; border: 1px solid #ddd;"><strong>Delivery Instructions</strong></td>
+        <td style="padding: 10px; border: 1px solid #ddd;">${deliveryInstructions}</td>
+      </tr>
+      `
+          : ""
+      }
+    </table>
+  `;
+
+  // Patient Query Section (replaces Questions section)
+  const patientQueryHtml = question
+    ? `
+    <h2 style="color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px;">Patient Query</h2>
+    <div style="background-color: #f8f9fa; border: 1px solid #ddd; padding: 15px; border-radius: 4px; margin-bottom: 25px;">
+      ${question}
+    </div>
+  `
+    : "";
+
+  // Full HTML
+  return `
+    <html>
+      <head>
+        <meta charset="UTF-8">
+        <title>${name} Form Submission</title>
+      </head>
+      <body style="font-family: Arial, sans-serif; color: #333; padding: 20px; max-width: 800px; margin: 0 auto; background-color: #f4f4f4;">
+        <div style="background-color: #fff; padding: 25px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+          <h1 style="color: #3498db; text-align: center; margin-bottom: 25px; border-bottom: 2px solid #3498db; padding-bottom: 15px;">
+            ${name} Form Submission
+          </h1>
+          ${patientInfoHtml}
+          ${deliveryDetailsHtml}
+          ${patientQueryHtml}
+          <footer style="margin-top: 40px; font-size: 12px; color: #7f8c8d; text-align: center; border-top: 1px solid #eee; padding-top: 15px;">
+            <p>Submitted on: ${submittedAt || new Date().toLocaleString()}</p>
             <p>Powered by Sky-Shop</p>
           </footer>
         </div>
