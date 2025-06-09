@@ -14,6 +14,8 @@ import NumberInputQuestion from "../questions/NumberInputQuestion";
 import PhoneNumberQuestion from "../questions/PhoneNumberQuestion";
 import { submitFormData } from "../../utils/api.js";
 import ProgressBar from "../ui/CustomProgressbar.js";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 // Patient info type
 interface PatientInfo {
   firstName: string;
@@ -273,6 +275,7 @@ const Form: React.FC = () => {
   }>({});
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [questionHistory, setQuestionHistory] = useState<number[]>([0]);
+  const navigate = useNavigate();
 
   // Dependency map (unchanged for brevity)
   const dependencyMap: { [key: number]: (answer: string) => number | null } = {
@@ -444,9 +447,16 @@ const Form: React.FC = () => {
 
     try {
       const result = await submitFormData(finalData); // Call the reusable function
-      alert(result.message); // Show success message from backend
+      //alert(result.message); // Show success message from backend
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      navigate("/");
     } catch (error) {
-      alert("Failed to submit form. Please try again."); // Show error message
+      //alert("Failed to submit form. Please try again."); // Show error message
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
       console.error("Submission error:", error); // Log for debugging
     }
   };

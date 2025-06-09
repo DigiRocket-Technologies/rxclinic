@@ -2132,7 +2132,7 @@ const Form: React.FC = () => {
       formName,
     };
 
-    console.log("Data to be sent to backend:", finalData);
+    //console.log("Data to be sent to backend:", finalData);
 
     try {
       const result = await submitFormData(finalData);

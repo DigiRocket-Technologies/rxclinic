@@ -12,6 +12,8 @@ import TermsAndConditions from "../questions/TermsAndConditions";
 import PatientInformation from "../questions/PatientInformation";
 import { submitFormData } from "../../utils/api.js";
 import ProgressBar from "../ui/CustomProgressbar.js";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface PatientInfo {
   firstName: string;
@@ -200,6 +202,7 @@ const Form: React.FC = () => {
   }>({});
   const [questionHistory, setQuestionHistory] = useState<number[]>([0]);
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
+  const navigate = useNavigate();
 
   const dependencyMap: { [key: number]: (answer: string) => number | null } = {
     1: () => 2,
@@ -325,11 +328,20 @@ const Form: React.FC = () => {
     console.log("Data to be sent to backend:", finalData);
 
     try {
-      const result = await submitFormData(finalData); // Call the reusable function
-      alert(result.message); // Show success message from backend
+      const result = await submitFormData(finalData);
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      navigate("/");
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again."); // Show error message
-      console.error("Submission error:", error); // Log for debugging
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
+      console.error("Submission error:", error);
     }
   };
 
