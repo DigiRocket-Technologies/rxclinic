@@ -1778,6 +1778,8 @@ import PatientInformation from "../questions/PatientInfoAcneTest";
 import { submitFormData } from "../../utils/api";
 import ProgressBar from "../ui/CustomProgressbar";
 import ConsentAcknowledgement from "../questions/ConsentAndAcknowledgement";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 const questions = [
   {
@@ -1996,6 +1998,7 @@ const Form: React.FC = () => {
   const [patientInfo, setPatientInfo] = useState<PatientInfo | null>(null);
   const [questionHistory, setQuestionHistory] = useState<number[]>([0]);
   const patientInfoRef = useRef<{ validateForm: () => boolean }>(null);
+  const navigate = useNavigate();
 
   const dependencyMap: { [key: number]: (answer: string) => number | null } = {
     2: (answer: string) => {
@@ -2133,9 +2136,18 @@ const Form: React.FC = () => {
 
     try {
       const result = await submitFormData(finalData);
-      alert(result.message);
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      navigate("/");
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again.");
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
       console.error("Submission error:", error);
     }
   };
