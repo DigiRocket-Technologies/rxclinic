@@ -432,6 +432,8 @@ import PatientQuestions from "../questions/vaccine/PatientQuestions";
 import EmailPhoneInputQuestion from "../questions/vaccine/EmailPhoneInputQuestion";
 import { submitVaccineForm } from "../../utils/api.js";
 import ProgressBar from "../ui/CustomProgressbar.js";
+import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
 
 interface PatientInfo {
   firstName: string;
@@ -493,6 +495,8 @@ const Form: React.FC = () => {
   const [questionnaireArray, setQuestionnaireArray] = useState<
     (AnswerPair | NestedAnswer)[][][]
   >([]);
+  const navigate = useNavigate();
+
   const formName = "HPV ";
 
   const totalSteps = 2 + 14 * parseInt(patientCount) + questionsPart3.length;
@@ -641,13 +645,24 @@ const Form: React.FC = () => {
       },
     };
 
-    console.log("Submitting form with data:", finalData);
+    //console.log("Submitting form with data:", finalData);
 
     try {
       const result = await submitVaccineForm(finalData);
-      alert(result.message);
+      toast.success(result.message, {
+        position: "top-right",
+      });
+      setTimeout(() => {
+        navigate("/");
+      }, 5000);
+
+      //alert(result.message);
     } catch (error) {
-      alert("Failed to submit form. Please try again.");
+      //alert("Failed to submit form. Please try again.");
+      toast.error("Failed to submit form. Please try again.", {
+        position: "top-right",
+      });
+
       console.error("Submission error:", error);
     }
   };
