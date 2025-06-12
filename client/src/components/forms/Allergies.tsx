@@ -34,10 +34,239 @@ interface PatientInfo {
 }
 
 // Your questions array (unchanged for brevity)
+// const questions = [
+//   {
+//     id: 1,
+//     question: "Where would you like the appointment to take place?",
+//     type: "phone-number",
+//     options: [
+//       { value: "In-person", showsInput: false },
+//       { value: "Phone Call", showsInput: true },
+//     ],
+//   },
+//   {
+//     id: 2,
+//     question: "What sex were you assigned at birth?",
+//     type: "button-radio-input",
+//     options: ["Male", "Female"],
+//   },
+//   {
+//     id: 3,
+//     question: "Are you (or could you be) pregnant?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 4,
+//     question: "Are you currently breastfeeding?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 5,
+//     question: "What symptoms are you experiencing?",
+//     type: "checkbox",
+//     options: [
+//       "Sneezing",
+//       "An itchy nose, mouth or throat",
+//       "A runny or stuffy nose",
+//       "Itchy or watery eyes",
+//       "None of the above",
+//     ],
+//   },
+//   {
+//     id: 6,
+//     question: "Are there any other symptoms you are experiencing?",
+//     type: "checkbox",
+//     options: [
+//       "Fever (temperature greater than 38 °C)",
+//       "Sore throat",
+//       "Pain or tenderness near your eyes or cheeks",
+//       "Greenish or yellow colored mucus from your nose",
+//       "None of the above",
+//     ],
+//   },
+//   {
+//     id: 7,
+//     question:
+//       "Do you have any other symptoms not mentioned in the last question?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please explain",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 8,
+//     question: "Are your symptoms present in only one nostril?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 9,
+//     question: "Do you know what triggers your allergy symptoms?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "What are your triggers?",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 10,
+//     question: "Are your symptoms present for 4 or more days per week?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 11,
+//     question: "Have your symptoms lasted for 4 or more weeks?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 12,
+//     question:
+//       "Are your symptoms making it difficult to perform your normal activities and sleep normally?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 13,
+//     question: "Do you have any of the following medical conditions?",
+//     type: "checkbox",
+//     options: [
+//       "Asthma",
+//       "History of sinus infections",
+//       "History of ear infections",
+//       "None of the above",
+//       "I don't know",
+//     ],
+//   },
+//   {
+//     id: 14,
+//     question: "Have you tried any treatments for your symptoms?",
+//     type: "button-radio",
+//     options: ["Yes", "No", "Not Sure"],
+//   },
+//   {
+//     id: 15,
+//     question: "Did any of the treatments make your symptoms feel better?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please indicate which treatments made your symptoms feel better",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 16,
+//     question: "Did any of the treatments make your symptoms feel worse?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please indicate which treatments made your symptoms feel worse",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 17,
+//     question: "Did any of the treatments had no effect on your symptoms?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please indicate which treatments have no effect on your symptoms",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 18,
+//     question: "Do you have any allergies to medications?",
+//     type: "conditional-button-radio-inputs",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label:
+//           "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 19,
+//     question: "Have you started any new medications in the past month?",
+//     type: "conditional-button-radio-inputs",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please specify the medication you recently started",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 20,
+//     question: "Who is your primary care provider?",
+//     type: "primary-care-provider",
+//   },
+//   {
+//     id: 21,
+//     question: "Is there anything else we should know?",
+//     type: "conditional-button-radio",
+//     options: [
+//       {
+//         value: "Yes",
+//         showsInput: true,
+//         label: "Please explain",
+//       },
+//       { value: "No", showsInput: false },
+//       { value: "Not Sure", showsInput: false },
+//     ],
+//   },
+//   {
+//     id: 22,
+//     question: "Terms and Conditions",
+//     type: "terms-condition",
+//   },
+//   {
+//     id: 23,
+//     question: "Patient details",
+//     type: "patient-info",
+//   },
+//   // Add more questions here
+// ];
+
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you like to attend your appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
@@ -46,50 +275,49 @@ const questions = [
   },
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What sex was recorded on your birth certificate?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question: "Is there a possibility that you are pregnant?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you currently nursing a child?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "What symptoms are you experiencing?",
+    question: "Which of the following symptoms are affecting you?",
     type: "checkbox",
     options: [
-      "Sneezing",
-      "An itchy nose, mouth or throat",
-      "A runny or stuffy nose",
-      "Itchy or watery eyes",
+      "Frequent sneezing",
+      "Irritation in the nose, throat, or mouth",
+      "Blocked or runny nose",
+      "Eyes that are itchy or watery",
       "None of the above",
     ],
   },
   {
     id: 6,
-    question: "Are there any other symptoms you are experiencing?",
+    question: "Do you have any of these other health symptoms?",
     type: "checkbox",
     options: [
-      "Fever (temperature greater than 38 °C)",
-      "Sore throat",
-      "Pain or tenderness near your eyes or cheeks",
-      "Greenish or yellow colored mucus from your nose",
+      "Temperature above 38°C",
+      "Scratchy or sore throat",
+      "Discomfort around the cheeks or eyes",
+      "Thick yellow or green nasal discharge",
       "None of the above",
     ],
   },
   {
     id: 7,
-    question:
-      "Do you have any other symptoms not mentioned in the last question?",
+    question: "Are there any symptoms not listed that you're dealing with?",
     type: "conditional-button-radio",
     options: [
       {
@@ -103,19 +331,19 @@ const questions = [
   },
   {
     id: 8,
-    question: "Are your symptoms present in only one nostril?",
+    question: "Do your symptoms only occur on one side of the nose?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 9,
-    question: "Do you know what triggers your allergy symptoms?",
+    question: "Are you aware of anything that causes your symptoms to start?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "What are your triggers?",
+        label: "What are your known triggers?",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -123,51 +351,50 @@ const questions = [
   },
   {
     id: 10,
-    question: "Are your symptoms present for 4 or more days per week?",
+    question: "Do your symptoms occur at least 4 days during the week?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question: "Have your symptoms lasted for 4 or more weeks?",
+    question: "Have your symptoms lasted longer than 4 weeks?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
     question:
-      "Are your symptoms making it difficult to perform your normal activities and sleep normally?",
+      "Are your symptoms interfering with your daily routine or sleep patterns?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question: "Do you have any of the following medical conditions?",
+    question: "Do you have any of the following medical histories?",
     type: "checkbox",
     options: [
       "Asthma",
-      "History of sinus infections",
-      "History of ear infections",
+      "Recurring sinus issues",
+      "Chronic ear infections",
       "None of the above",
       "I don't know",
     ],
   },
   {
     id: 14,
-    question: "Have you tried any treatments for your symptoms?",
+    question: "Have you used any methods to manage your symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 15,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the methods you tried provide relief?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments made your symptoms feel better",
+        label: "List treatments that helped improve your condition",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -175,13 +402,13 @@ const questions = [
   },
   {
     id: 16,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments you tried worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "Mention any treatments that had a negative effect",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -189,14 +416,13 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments had no effect on your symptoms?",
+    question: "Did any treatments you tried make no noticeable difference?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments have no effect on your symptoms",
+        label: "Which treatments showed no results?",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -204,14 +430,15 @@ const questions = [
   },
   {
     id: 18,
-    question: "Do you have any allergies to medications?",
+    question:
+      "Do you have allergies to any prescribed or over-the-counter drugs?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "Specify the medication allergies. List one per field, and click 'Add more' if needed.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -219,13 +446,14 @@ const questions = [
   },
   {
     id: 19,
-    question: "Have you started any new medications in the past month?",
+    question:
+      "Have you begun taking any new medications within the last month?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify the medication you recently started",
+        label: "Name the new medications you've started recently",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -233,12 +461,12 @@ const questions = [
   },
   {
     id: 20,
-    question: "Who is your primary care provider?",
+    question: "Who is your current primary care doctor or provider?",
     type: "primary-care-provider",
   },
   {
     id: 21,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you feel we should be aware of?",
     type: "conditional-button-radio",
     options: [
       {
@@ -252,15 +480,14 @@ const questions = [
   },
   {
     id: 22,
-    question: "Terms and Conditions",
+    question: "Review and agree to our terms of service",
     type: "terms-condition",
   },
   {
     id: 23,
-    question: "Patient details",
+    question: "Provide your personal and contact details",
     type: "patient-info",
   },
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
@@ -443,7 +670,7 @@ const Form: React.FC = () => {
       formName,
     };
 
-    console.log("Data to be sent to backend:", finalData);
+    //console.log("Data to be sent to backend:", finalData);
 
     try {
       const result = await submitFormData(finalData); // Call the reusable function
