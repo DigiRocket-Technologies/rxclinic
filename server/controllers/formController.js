@@ -29,7 +29,7 @@ export const submitForm = async (req, res) => {
     const htmlContent = generateFormHtml(questionnaire, patientInfo, formName);
 
     // Define email details
-    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with client-provided email or env variable
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with client-provided email or env variable
     const subject = `New Patient Form Submission - ${patientInfo.firstName} ${patientInfo.lastName}`;
     const text =
       "A new patient form has been submitted. Please check the details in HTML format.";
@@ -93,7 +93,7 @@ export const submitVaccineForm = async (req, res) => {
     );
 
     // Define email details
-    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable later
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with env variable later
     const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
     const text =
       "A new vaccine form has been submitted with multiple patients. Please check the details in HTML format.";
@@ -157,7 +157,7 @@ export const submitCovidVaccineForm = async (req, res) => {
     );
 
     // Define email details
-    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable later
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with env variable later
     const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
     const text =
       "A new vaccine form has been submitted . Please check the details in HTML format.";
@@ -209,7 +209,7 @@ export const submitConsultationForm = async (req, res) => {
     console.log(timing, "time");
 
     // Define email details
-    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable in production
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with env variable in production
     const subject = `New Pharmacy Consultation Request - ${firstName} ${lastName}`;
     const text =
       "A new pharmacy consultation form has been submitted. Please check the details in HTML format.";
@@ -262,7 +262,7 @@ export const submitSymptomaticCovid = async (req, res) => {
     );
 
     // Define email details
-    const adminEmail = "gagandeepsethi.7895@gmail.com"; // Replace with env variable later
+    const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with env variable later
     const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
     const text =
       "A new form has been submitted . Please check the details in HTML format.";
@@ -396,8 +396,7 @@ export const submitPrescriptionData = async (req, res) => {
 
       const customerName = `${firstName} ${lastName}`;
 
-      const adminEmail =
-        process.env.ADMIN_EMAIL || "gagandeepsethi.7895@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO;
       const subject = `New Prescription - ${customerName}`;
       const text = `A new prescription form has been submitted by ${customerName}. Please check the details in the email.`;
 
@@ -578,8 +577,7 @@ export const submitPrescriptionRefillData = async (req, res) => {
 
       const customerName = `${firstName} ${lastName}`;
 
-      const adminEmail =
-        process.env.ADMIN_EMAIL || "gagandeepsethi.7895@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO;
       const subject = `New Prescription - ${customerName}`;
       const text = `A new prescription form has been submitted by ${customerName}. Please check the details in the email.`;
 
@@ -668,8 +666,7 @@ export const submitPrescriptionTransferData = async (req, res) => {
 
       const customerName = `${firstName} ${lastName}`;
 
-      const adminEmail =
-        process.env.ADMIN_EMAIL || "gagandeepsethi.7895@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO;
       const subject = `New Prescription - ${customerName}`;
       const text = `A new prescription form has been submitted by ${customerName}. Please check the details in the email.`;
 
@@ -754,8 +751,7 @@ export const submitNewPrescriptionData = async (req, res) => {
 
       const customerName = `${firstName} ${lastName}`;
 
-      const adminEmail =
-        process.env.ADMIN_EMAIL || "gagandeepsethi.7895@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO;
       const subject = `New Prescription - ${customerName}`;
       const text = `A new prescription form has been submitted by ${customerName}. Please check the details in the email.`;
 
@@ -847,8 +843,7 @@ export const submitPrescriptionRenewalDataa = async (req, res) => {
 
       const customerName = `${firstName} ${lastName}`;
 
-      const adminEmail =
-        process.env.ADMIN_EMAIL || "gagandeepsethi.7895@gmail.com";
+      const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO;
       const subject = `New Prescription - ${customerName}`;
       const text = `A new prescription form has been submitted by ${customerName}. Please check the details in the email.`;
 
