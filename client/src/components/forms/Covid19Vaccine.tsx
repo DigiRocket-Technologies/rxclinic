@@ -4,7 +4,7 @@ import { ChevronsLeft, ChevronsRight } from "lucide-react";
 import NumberOfPatientsQuestion from "../questions/vaccine/NumberOfPatientsQuestion.js";
 import PatientQuestionCovid from "../questions/vaccine/covid/PatientQuestionCovid.js";
 import EmailPhoneInputQuestion from "../questions/vaccine/EmailPhoneInputQuestion"; // Adjust path as needed
-import { submitVaccineForm } from "../../utils/api.js";
+import { submitCovidVaccineForm } from "../../utils/api.js";
 import ProgressBar from "../ui/CustomProgressbar.js";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
@@ -246,7 +246,7 @@ const Form: React.FC = () => {
     };
     console.log("Final Data: ", finalData);
     try {
-      const result = await submitVaccineForm(finalData); // Call the reusable function
+      const result = await submitCovidVaccineForm(finalData); // Call the reusable function
       toast.success(result.message, {
         position: "top-right",
       });
