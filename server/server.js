@@ -9,6 +9,7 @@ import {
   submitPrescriptionRefillData,
   submitPrescriptionTransferData,
   submitPrescriptionRenewalDataa,
+  submitCovidVaccineForm,
 } from "./controllers/formController.js";
 //import { submitPrescriptionRenewalData } from "./controllers/PrescriptionRenewal.js";
 
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.post("/submitForm", submitForm);
 app.post("/submit-vaccine-form", submitVaccineForm);
+app.post("/submit-covidvaccine-form", submitCovidVaccineForm);
 app.post("/submit-consultation-Form", submitConsultationForm);
 app.post("/submit-symptomatic-covid", submitSymptomaticCovid);
 //prescription

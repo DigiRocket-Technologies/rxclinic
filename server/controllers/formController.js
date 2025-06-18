@@ -96,7 +96,7 @@ export const submitVaccineForm = async (req, res) => {
     const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_TO; // Replace with env variable later
     const subject = `New ${setup.formName} Form Submission (${setup.patientCount} Patients)`;
     const text =
-      "A new vaccine form has been submitted with multiple patients. Please check the details in HTML format.";
+      "A new vaccine form has been submitted . Please check the details in HTML format.";
 
     // Send email
     await sendEmail(adminEmail, subject, text, htmlContent);
