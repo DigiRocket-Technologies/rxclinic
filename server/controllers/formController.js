@@ -65,7 +65,7 @@ export const submitVaccineForm = async (req, res) => {
       !contactInfo.email ||
       !MeetingDetails ||
       !MeetingDetails.date ||
-      !MeetingDetails.timing
+      !MeetingDetails.time
     ) {
       return res
         .status(400)
@@ -129,7 +129,7 @@ export const submitCovidVaccineForm = async (req, res) => {
       !contactInfo.email ||
       !MeetingDetails ||
       !MeetingDetails.date ||
-      !MeetingDetails.timing
+      !MeetingDetails.time
     ) {
       return res
         .status(400)
@@ -231,26 +231,6 @@ export const submitSymptomaticCovid = async (req, res) => {
   try {
     const { setup, questionnaire, patientInfo, contactInfo, MeetingDetails } =
       req.body;
-
-    // Validate required data
-    // if (
-    //   !setup ||
-    //   !setup.formName ||
-    //   !setup.patientCount ||
-    //   !patientInfo ||
-    //   !Array.isArray(patientInfo) ||
-    //   !questionnaire ||
-    //   !Array.isArray(questionnaire) ||
-    //   !contactInfo ||
-    //   !contactInfo.email ||
-    //   !MeetingDetails ||
-    //   !MeetingDetails.date ||
-    //   !MeetingDetails.timing
-    // ) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "Missing or invalid required data" });
-    // }
 
     // Generate HTML content
     const htmlContent = generateSymptonaticCovidFormHtml(
