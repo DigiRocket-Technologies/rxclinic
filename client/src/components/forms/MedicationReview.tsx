@@ -722,7 +722,7 @@ const PharmacyConsultationForm: React.FC = () => {
               <div className="justify-center flex my-4">
                 <PopupButton
                   className="text-white bg-primary py-3 px-5 rounded-lg"
-                  url="https://calendly.com/gagandeepsethi-7895/schedule-meeting"
+                  url={import.meta.env.VITE_CALENDLY_MEET_15}
                   rootElement={document.getElementById("root")}
                   text={"Accept Terms & condition"}
                 />

@@ -208,3 +208,10 @@ export const submitPrescriptionTransferFormData = async (formData) => {
     throw error;
   }
 };
+export const calendlyLinks = [
+  import.meta.env.VITE_CALENDLY_MEET_15,
+  import.meta.env.VITE_CALENDLY_MEET_30,
+  import.meta.env.VITE_CALENDLY_MEET_45,
+  import.meta.env.VITE_CALENDLY_MEET_60,
+  import.meta.env.VITE_CALENDLY_MEET_75,
+];

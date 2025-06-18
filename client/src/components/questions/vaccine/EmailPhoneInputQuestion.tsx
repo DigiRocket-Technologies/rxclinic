@@ -1474,7 +1474,7 @@ import PhoneInput from "react-phone-number-input";
 import { parsePhoneNumberFromString } from "libphonenumber-js";
 import "react-phone-number-input/style.css";
 import { PopupButton, useCalendlyEventListener } from "react-calendly";
-
+import { calendlyLinks } from "../../../utils/api.js";
 interface EmailPhoneInputQuestionProps {
   question: string;
   onSubmit: (meetingDetails: { date: string; time: string }) => void;
@@ -1495,14 +1495,6 @@ const EmailPhoneInputQuestion: React.FC<EmailPhoneInputQuestionProps> = ({
   numberOfPatients,
   onSubmit,
 }) => {
-  const calendlyLinks = [
-    "https://calendly.com/gagandeepsethi-7895/schedule-meeting",
-    "https://calendly.com/gagandeepsethi-7895/schedule-meeting",
-    "https://calendly.com/gagandeepsethi-7895/schedule-meeting-3-patients",
-    "https://calendly.com/gagandeepsethi-7895/schedule-meeting-4-patients",
-    "https://calendly.com/gagandeepsethi-7895/schedule-meeting-5-patients",
-  ];
-
   const [email, setEmail] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [countryCode, setCountryCode] = useState<string>("+1");
