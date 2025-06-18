@@ -496,8 +496,8 @@ export const generateCovidVaccineFormHtml = (
   const setupInfoHtml = `
     <h2 style="color: #2c3e50;">Form Details</h2>
     <div style="margin-bottom: 20px;">
-      <p><strong>Patient Count:</strong> ${setup.patientCount}</p>
-      <p><strong>What brought you here today?</strong><span style="color: #16a085;"> ${setup["What brought you here today?"]}</span></p>
+      <p><strong>Patient Count:</strong> ${setup.patientCount}</p> 
+      
     </div>
   `;
 
