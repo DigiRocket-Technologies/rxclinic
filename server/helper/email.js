@@ -17,7 +17,7 @@ export const sendEmail = async (email, subject, text, html) => {
   try {
     const info = await transporter.sendMail({
       from: {
-        name: "Sky-Shop",
+        name: "Rx-Clinic",
         address: process.env.EMAIL_USER,
       },
       to: email,
@@ -51,7 +51,7 @@ export const sendEmailWithAttachments = async (
 
     const info = await transporter.sendMail({
       from: {
-        name: "Sky-Shop",
+        name: "Rx-Clinic",
         address: process.env.EMAIL_USER,
       },
       to: email,
