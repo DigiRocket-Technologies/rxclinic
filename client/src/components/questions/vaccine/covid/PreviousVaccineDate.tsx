@@ -62,7 +62,9 @@ const PreviousVaccineDate: React.FC<PreviousVaccineDateProps> = ({
           <label
             key={index}
             className={`flex items-center p-3 rounded-lg cursor-pointer text-gray-800 hover:bg-blue-50 transition-transform duration-200 hover:scale-[1.02] ${
-              selectedAnswer === option ? "bg-blue-500 text-white" : ""
+              selectedAnswer === option
+                ? "bg-blue-500 text-white hover:text-gray-800"
+                : ""
             }`}
           >
             <input
