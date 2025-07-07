@@ -670,21 +670,17 @@ const Form: React.FC = () => {
       formName,
     };
 
-    //console.log("Data to be sent to backend:", finalData);
-
     try {
       const result = await submitFormData(finalData); // Call the reusable function
-      //alert(result.message); // Show success message from backend
+
       toast.success(result.message, {
         position: "top-right",
       });
       navigate("/");
     } catch (error) {
-      //alert("Failed to submit form. Please try again."); // Show error message
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-      console.error("Submission error:", error); // Log for debugging
     }
   };
 

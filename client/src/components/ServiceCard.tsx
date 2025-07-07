@@ -37,7 +37,6 @@ const ServiceCard = ({
 
   const handleSubserviceClick = (e: React.MouseEvent, id: string) => {
     e.stopPropagation();
-    //console.log(`Selected subservice: ${id}`);
 
     // Navigate based on subservice id
     switch (id) {
