@@ -19,11 +19,11 @@ const ConsentAcknowledgement: React.FC<ConsentAcknowledgementProps> = ({
   };
 
   const consentStatements = [
-    "I confirm that the information I have provided is accurate and complete to the best of my knowledge.",
-    "I understand that this intake form does not guarantee a prescription. A pharmacist will review my responses and decide if treatment or a referral is appropriate.",
-    "I consent to receive services from the pharmacist, which may include assessment, prescribing medication, or providing further guidance.",
-    "I understand my personal health information may be used to provide care and shared with other health professionals when needed.",
-    "I understand that I may fill any prescription at a pharmacy of my choice.",
+    "I confirm that the information I’ve provided is true and complete to the best of my knowledge.",
+    "I acknowledge that completing this intake form does not guarantee a prescription. A pharmacist will review my responses to determine if treatment or referral is appropriate.",
+    "I consent to receive care from the pharmacist, which may include an assessment, a prescription, or additional guidance.",
+    "I understand that my personal health information may be used for my care and shared with other healthcare providers when necessary.",
+    "I acknowledge that I have the right to fill any prescription at the pharmacy of my choice.",
   ];
 
   return (
