@@ -220,8 +220,6 @@ const Form: React.FC = () => {
       },
     };
 
-    //console.log("Submitting form with data:", finalData);
-
     try {
       const result = await submitVaccineForm(finalData);
       toast.success(result.message, {
@@ -230,15 +228,10 @@ const Form: React.FC = () => {
       setTimeout(() => {
         navigate("/");
       }, 5000);
-
-      //alert(result.message);
     } catch (error) {
-      //alert("Failed to submit form. Please try again.");
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-
-      console.error("Submission error:", error);
     }
   };
 
