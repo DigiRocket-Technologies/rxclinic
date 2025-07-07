@@ -35,34 +35,32 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What gender was listed on your birth certificate?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
-
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or possibly expecting?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you nursing a baby at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 4,
-    question: "Do you wear contact lenses",
+    question: "Do you use contact lenses?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "What symptoms are you experiencing in your eyes?",
+    question: "Which of these issues are affecting your eyes?",
     type: "checkbox",
     options: [
       "Redness",
@@ -74,7 +72,7 @@ const questions = [
   },
   {
     id: 6,
-    question: "What symptoms are you experiencing ?",
+    question: "What other symptoms are you currently experiencing?",
     type: "checkbox",
     options: [
       "Vision changes",
@@ -87,14 +85,13 @@ const questions = [
   },
   {
     id: 7,
-    question: "Are you experiencing symptoms in both eyes?",
+    question: "Are these symptoms present in both of your eyes?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 8,
-    question:
-      "Do you have any other symptoms not mentioned in the last question?",
+    question: "Are you experiencing any other symptoms not already listed?",
     type: "conditional-button-radio",
     options: [
       {
@@ -106,17 +103,16 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 9,
-    question:
-      "Did you recently have trauma, injury, or an accident to your eye?",
+    question: "Have you recently injured your eye or experienced any trauma?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 10,
-    question: "Do you have any idea what may have caused your symptoms?",
+    question:
+      "Do you have any thoughts about what might have triggered your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -131,7 +127,7 @@ const questions = [
   {
     id: 11,
     question:
-      "Do you have any medical conditions relating to your eyes (e.g. glaucoma)?",
+      "Are there any known eye conditions you’ve been diagnosed with (e.g. glaucoma)?",
     type: "conditional-button-radio",
     options: [
       {
@@ -143,17 +139,15 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 12,
-    question:
-      "Have you tried any treatments (eg. medicine, eye drops etc.) to help with your eye symptoms?",
+    question: "Have you taken any steps or treatments for your eye symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the treatments relieve or reduce your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -168,7 +162,7 @@ const questions = [
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any of the treatments worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -182,7 +176,7 @@ const questions = [
   },
   {
     id: 15,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Did any treatments have no noticeable impact on your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -195,10 +189,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 16,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known drug allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -211,15 +204,14 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 17,
-    question: "Who is your primary care provider?",
+    question: "Who is your regular healthcare provider?",
     type: "primary-care-provider",
   },
   {
     id: 18,
-    question: "Is there anything else we should know?",
+    question: "Is there any additional information we should be aware of?",
     type: "conditional-button-radio",
     options: [
       {
@@ -241,8 +233,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {

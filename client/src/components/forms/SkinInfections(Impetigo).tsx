@@ -34,41 +34,39 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What gender was recorded at the time of your birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
-
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you pregnant or possibly pregnant at this time?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you nursing a child currently?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 4,
-    question:
-      "Have you been diagnosed with impetigo by a healthcare provider before?",
+    question: "Has a doctor ever diagnosed you with impetigo?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "Was the last time you had impetigo less than three months ago?",
+    question:
+      "Did your last episode of impetigo occur within the past 3 months?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "What symptoms are you experiencing?",
+    question: "Which symptoms are you currently experiencing?",
     type: "checkbox",
     options: [
       "Red, itchy bumps or sores",
@@ -81,7 +79,7 @@ const questions = [
   },
   {
     id: 7,
-    question: "What parts of your body are affected?",
+    question: "Where on your body are the affected areas?",
     type: "checkbox",
     options: [
       "Face",
@@ -91,17 +89,15 @@ const questions = [
       "Other",
     ],
   },
-
   {
     id: 8,
-    question: "Do you have 3 or or more impetigo sores?",
+    question: "Are there three or more impetigo sores present?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 9,
-    question:
-      "Do you have any medical conditions that may suppress your immune system?",
+    question: "Do you have any conditions that may weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -116,7 +112,7 @@ const questions = [
   {
     id: 10,
     question:
-      "Are you currently taking any medication that suppresses your immune system?",
+      "Are you currently on any medications that lower immune function?",
     type: "checkbox",
     options: [
       "Steroids",
@@ -129,28 +125,27 @@ const questions = [
   },
   {
     id: 11,
-    question: "Do you have valvular heart disease?",
+    question: "Have you been diagnosed with valvular heart disease?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 12,
     question:
-      "Have you ever been told by a healthcare provider that you are MRSA positive?",
+      "Have you ever tested positive for MRSA (Methicillin-resistant Staphylococcus aureus)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
     question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+      "Have you used any treatments (e.g., creams, medication) for your symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of those treatments improve your condition?",
     type: "conditional-button-radio",
     options: [
       {
@@ -165,7 +160,7 @@ const questions = [
   },
   {
     id: 15,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any of those treatments worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -179,7 +174,8 @@ const questions = [
   },
   {
     id: 16,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question:
+      "Were any of the treatments ineffective in relieving your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -192,10 +188,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 17,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -208,15 +203,14 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 18,
-    question: "Who is your primary care provider?",
+    question: "Who is your main healthcare provider or doctor?",
     type: "primary-care-provider",
   },
   {
     id: 19,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you’d like to provide?",
     type: "conditional-button-radio",
     options: [
       {
@@ -238,8 +232,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {

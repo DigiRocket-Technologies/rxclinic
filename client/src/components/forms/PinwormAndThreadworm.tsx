@@ -35,52 +35,49 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What is your weight in kg?",
+    question: "Please enter your current weight (in kilograms)",
     type: "number-input",
   },
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What gender was recorded on your birth certificate?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or is there a chance you might be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at this time?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question:
-      "Have you had pinworms before that were confirmed by a doctor or nurse practitioner?",
+    question: "Has a doctor or nurse ever confirmed that you had pinworms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Have you been treated for pinworms in the past month?",
+    question: "Did you receive treatment for pinworms within the last 30 days?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question:
-      "Do you live in the same household as someone who was recently diagnosed with pinworms or who has been in close contact with someone who has a pinworm infection within the past month?",
+    question: "Has anyone in your home or close contact recently had pinworms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 8,
-    question: "Do you have any of the following symptoms?",
+    question: "Are you experiencing any of the following health issues?",
     type: "checkbox",
     options: [
       "Stomach pain",
@@ -95,7 +92,7 @@ const questions = [
   },
   {
     id: 9,
-    question: "Do you have any of these symptoms?",
+    question: "Do any of these symptoms apply to you?",
     type: "checkbox",
     options: [
       "Itching near anal area",
@@ -110,21 +107,20 @@ const questions = [
   {
     id: 10,
     question:
-      "Have you seen small, white thread-like worms in your undergarments or near the anal area?",
+      "Have you noticed small white worms near the anal area or in underwear?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
     question:
-      "Have you ever been told by a healthcare provider that you have liver disease?",
+      "Has a medical professional ever diagnosed you with liver disease?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 12,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any medication allergies we should know about?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -139,12 +135,12 @@ const questions = [
   },
   {
     id: 13,
-    question: "Who is your primary care provider?",
+    question: "Who is your main doctor or healthcare provider?",
     type: "primary-care-provider",
   },
   {
     id: 14,
-    question: "Is there anything else we should know?",
+    question: "Is there any additional information you'd like to share?",
     type: "conditional-button-radio",
     options: [
       {
@@ -161,7 +157,6 @@ const questions = [
     question: "Terms and Conditions",
     type: "terms-condition",
   },
-
   {
     id: 16,
     question: "Patient details",

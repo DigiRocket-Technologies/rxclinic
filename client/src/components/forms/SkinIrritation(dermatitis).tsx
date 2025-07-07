@@ -34,34 +34,33 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What gender were you identified as at the time of birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Is there a chance you are currently pregnant?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at this moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 4,
-    question: "Have you been diagnosed with dermatitis before?",
+    question: "Have you ever been told by a doctor that you have dermatitis?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 5,
-    question: "Do you have any allergies (food, dust, outdoors etc).",
+    question:
+      "Do you suffer from any allergies (e.g. food, dust, environment)?",
     type: "conditional-button-radio",
     options: [
       {
@@ -76,7 +75,7 @@ const questions = [
   {
     id: 6,
     question:
-      "Were you exposed to something that may have triggered your symptoms?",
+      "Have you come into contact with anything that might have caused your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -90,7 +89,8 @@ const questions = [
   },
   {
     id: 7,
-    question: "What symptoms are you experiencing around the affected area?",
+    question:
+      "Which of the following symptoms are you noticing in the affected area?",
     type: "checkbox",
     options: [
       "Redness",
@@ -104,7 +104,7 @@ const questions = [
   },
   {
     id: 8,
-    question: "Are you experiencing any of the following symptoms?",
+    question: "Are you facing any of these additional symptoms?",
     type: "checkbox",
     options: [
       "Blisters or bruising",
@@ -116,7 +116,7 @@ const questions = [
   },
   {
     id: 9,
-    question: "Where are you experiencing your symptoms?",
+    question: "Which parts of your body are affected by the symptoms?",
     type: "checkbox",
     options: [
       "Face",
@@ -129,7 +129,7 @@ const questions = [
   },
   {
     id: 10,
-    question: "Are you experiencing any other symptoms?",
+    question: "Do you have any other symptoms not listed above?",
     type: "conditional-button-radio",
     options: [
       {
@@ -144,13 +144,13 @@ const questions = [
   {
     id: 11,
     question:
-      "Are your symptoms bothersome enough that they interfere with your daily activities or sleep?",
+      "Are your symptoms severe enough to disrupt daily tasks or sleep?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "How long ago did your symptoms start?",
+    question: "When did your symptoms first appear?",
     type: "checkbox",
     options: [
       "During the past week",
@@ -162,13 +162,13 @@ const questions = [
   {
     id: 13,
     question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+      "Have you used any kind of treatment (e.g. creams or medicines) to manage your symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any treatment you used help improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -182,7 +182,7 @@ const questions = [
   },
   {
     id: 15,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatment worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -196,7 +196,8 @@ const questions = [
   },
   {
     id: 16,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question:
+      "Were there treatments that had no noticeable effect on your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -209,10 +210,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 17,
-    question: "Do you have any allergies to medications?",
+    question: "Are you allergic to any medicines?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -227,7 +227,8 @@ const questions = [
   },
   {
     id: 18,
-    question: "Have you started any new medications in the past month?",
+    question:
+      "Have you started taking any new medication within the last month?",
     type: "conditional-button-radio",
     options: [
       {
@@ -241,7 +242,7 @@ const questions = [
   },
   {
     id: 19,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you'd like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
@@ -255,10 +256,9 @@ const questions = [
   },
   {
     id: 20,
-    question: "Who is your primary care provider?",
+    question: "Can you tell us who your main healthcare provider is?",
     type: "primary-care-provider",
   },
-
   {
     id: 21,
     question: "Terms and Conditions",
@@ -269,8 +269,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
