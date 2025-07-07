@@ -34,26 +34,26 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Have you ever been diagnosed with cold sores in the past?",
+    question: "Have you ever received a diagnosis for cold sores before?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 2,
     question:
-      "Do you currently have any active cold sore symptoms (tingling, burning, itching around the lip area)?",
+      "Are you currently noticing any cold sore symptoms like tingling, burning, or itching around your lips?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "What symptoms are you currently experiencing?",
+    question: "Which of the following sensations are you feeling right now?",
     type: "checkbox",
     options: ["Tingling", "Burning", "Itching", "Other"],
   },
   {
     id: 4,
-    question: "What symptoms are you currently experiencing?",
+    question: "Are you experiencing any of these additional symptoms?",
     type: "checkbox",
     options: [
       "Fever (temperature higher than 38°C)",
@@ -67,25 +67,25 @@ const questions = [
   },
   {
     id: 5,
-    question: "When did your symptoms start?",
+    question: "When did you first begin to notice these symptoms?",
     type: "radio",
     options: ["Today", "1-2 days ago", "More than 2 days ago"],
   },
   {
     id: 6,
-    question: "Is the cold sore visible on your skin?",
+    question: "Can you currently see a cold sore on your skin?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question: "Has your cold sore been present for more than 7 days?",
+    question: "Has your visible cold sore lasted for longer than a week?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 8,
-    question: "Where is the cold sore located?",
+    question: "Where exactly is the cold sore located on your body?",
     type: "checkbox",
     options: [
       "On or around the mouth",
@@ -97,7 +97,7 @@ const questions = [
   {
     id: 9,
     question:
-      "Do you have any medical conditions that may suppress your immune system?",
+      "Do you have any health conditions that could weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -112,8 +112,7 @@ const questions = [
   },
   {
     id: 10,
-    question:
-      "Are you currently taking any medication that suppresses your immune system?",
+    question: "Are you on any medication known to suppress the immune system?",
     type: "checkbox",
     options: [
       "Steroids",
@@ -126,13 +125,13 @@ const questions = [
   },
   {
     id: 11,
-    question: "When did your symptoms start?",
+    question: "How many times have these symptoms occurred before now?",
     type: "radio",
     options: ["None", "1 to 5 episodes", "6 or more episodes"],
   },
   {
     id: 12,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -147,12 +146,12 @@ const questions = [
   },
   {
     id: 13,
-    question: "Who is your primary care provider?",
+    question: "Who is your main healthcare provider?",
     type: "primary-care-provider",
   },
   {
     id: 14,
-    question: "Is there anything else we should know?",
+    question: "Is there any other relevant information you'd like to share?",
     type: "conditional-button-radio",
     options: [
       {
@@ -171,7 +170,7 @@ const questions = [
   },
   {
     id: 16,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {

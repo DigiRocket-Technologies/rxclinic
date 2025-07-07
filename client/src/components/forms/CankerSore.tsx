@@ -35,56 +35,58 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What gender were you recorded as at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question:
+      "Are you currently pregnant or is there a possibility you could be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you nursing an infant at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
     question:
-      "Have you ever been diagnosed with canker sores by healthcare professional before?",
+      "Has a healthcare provider ever confirmed a diagnosis of canker sores?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "Is this your first canker sore?",
+    question: "Is this the first time you've experienced a canker sore?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Do your canker sores leave a scar?",
+    question: "Do your canker sores usually leave behind a mark or scar?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question: "Do your canker sores usually take more than 14 days to heal?",
+    question:
+      "Do your canker sores typically require more than two weeks to heal?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 8,
-    question: "What symptoms are you experiencing?",
+    question: "How long have you been experiencing these symptoms?",
     type: "radio",
     options: ["Less than 14 days", "14 days or longer"],
   },
   {
     id: 9,
-    question: "Describe the appearance of your canker sore(s):",
+    question: "How would you describe the way your canker sore(s) look?",
     type: "checkbox",
     options: [
       "Small (Less than 1cm in diameter)",
@@ -98,26 +100,25 @@ const questions = [
   {
     id: 10,
     question:
-      "Are any of your canker sores an irregular shape? (e.g., not round or oval).",
+      "Are any of your canker sores oddly shaped (not circular or oval)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question:
-      "Do you have a lot of tiny canker sores that group together in one cluster?",
+    question: "Do you have many small canker sores that form a cluster?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "How many canker scars do you currently have?",
+    question: "How many canker sores are present right now?",
     type: "radio",
     options: ["1-5", "6-10", "More than 10"],
   },
   {
     id: 13,
-    question: "Where is your canker sore(s) located?",
+    question: "Where on or inside your mouth are the canker sores located?",
     type: "checkbox",
     options: [
       "On or under the tongue",
@@ -131,33 +132,34 @@ const questions = [
   },
   {
     id: 14,
-    question: "Is your canker sore(s) painful enough that you cannot eat?",
+    question:
+      "Is the pain from the sore(s) so intense that you're unable to eat?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 15,
     question:
-      "Including this episode, have you had 6 or more episodes of canker sores in the past 12 months?",
+      "Have you had six or more episodes of canker sores in the past year?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 16,
-    question: "Do you smoke any tobacco/nicotine products?",
+    question:
+      "Do you currently use any products that contain tobacco or nicotine?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 17,
-    question: "Do you have any medical conditions?",
+    question: "Are you living with any health conditions?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 18,
-    question:
-      "Do you have any medical conditions that may suppress your immune system?",
+    question: "Do you have any illnesses that could weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -172,39 +174,37 @@ const questions = [
   },
   {
     id: 19,
-    question: "Do you suffer from Behcet's syndrome?",
+    question: "Have you ever been diagnosed with Behcet’s disease?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 20,
-    question: "Do you have inflammatory bowel disease?",
+    question: "Do you have a diagnosis of inflammatory bowel disease (IBD)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 21,
-    question:
-      "Are you currently taking any medication that suppresses your immune system?",
+    question: "Are you on any medications that impact your immune system?",
     type: "checkbox",
     options: [
       "Steroids",
       "Chemotherapy",
       "Biological agents",
-
       "None of the above",
       "Not sure",
     ],
   },
   {
     id: 22,
-    question: "Have you tried anything to help with your canker sore(s) ",
+    question: "Have you tried any remedies to treat your canker sore(s)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 23,
-    question: "Did any of the treatments make you feel better?",
+    question: "Did any treatments bring you relief from your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -218,7 +218,7 @@ const questions = [
   },
   {
     id: 24,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments seem to make things worse for you?",
     type: "conditional-button-radio",
     options: [
       {
@@ -232,7 +232,7 @@ const questions = [
   },
   {
     id: 25,
-    question: "Did any of the treatments make your symptoms stay the same?",
+    question: "Did any treatments leave your symptoms unchanged?",
     type: "conditional-button-radio",
     options: [
       {
@@ -245,10 +245,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 26,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known drug allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -261,15 +260,14 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 27,
-    question: "Who is your primary care provider?",
+    question: "Who is your main healthcare provider?",
     type: "primary-care-provider",
   },
   {
     id: 28,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you would like to share?",
     type: "conditional-button-radio",
     options: [
       {
@@ -283,13 +281,12 @@ const questions = [
   },
   {
     id: 29,
-    question: "Terms and Conditions",
+    question: "Terms and Conditions.",
     type: "terms-condition",
   },
-
   {
     id: 30,
-    question: "Patient details",
+    question: "Personal details.",
     type: "patient-info",
   },
 ];

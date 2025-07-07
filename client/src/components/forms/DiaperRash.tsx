@@ -35,14 +35,14 @@ const questions = [
   {
     id: 1,
     question:
-      "Have there been multiple diaper rashes occurring frequently with or without time for full recovery in between?",
+      "Have there been repeated diaper rashes, whether or not previous ones fully healed?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 2,
     question:
-      "Does the rash only occur after applying specific products to the area?",
+      "Does the rash seem to happen only after using certain products in the affected area?",
     type: "conditional-button-radio",
     options: [
       {
@@ -56,7 +56,7 @@ const questions = [
   },
   {
     id: 3,
-    question: "Where is the rash occurring?",
+    question: "What area of the body is affected by the rash?",
     type: "checkbox",
     options: [
       "Inside the diaper area",
@@ -68,7 +68,7 @@ const questions = [
   },
   {
     id: 4,
-    question: "How would you describe the appearance of the rash?",
+    question: "Can you describe how the rash looks?",
     type: "checkbox",
     options: [
       "Mild redness with or without minimal swelling",
@@ -78,13 +78,14 @@ const questions = [
   },
   {
     id: 5,
-    question: "Is there any bleeding, pus, or oozing on or around the rash?",
+    question:
+      "Is there any sign of bleeding, discharge, or pus in the rash area?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Are any of these symptoms present?",
+    question: "Are any of these additional symptoms currently present?",
     type: "checkbox",
     options: [
       "Fever (temperature higher than 38°C)and/or chills",
@@ -96,15 +97,14 @@ const questions = [
   },
   {
     id: 7,
-    question: "Has the rash been present for more than 3 days?",
+    question: "Has the rash lasted for more than three days?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 8,
     question:
-      "Do you have any medical conditions that may suppress your immune system?",
+      "Do you have any diagnosed medical conditions that could weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -119,7 +119,7 @@ const questions = [
   {
     id: 9,
     question:
-      "Are you currently taking any medication that suppresses your immune system?",
+      "Are you currently taking any medicines that can reduce your immune response?",
     type: "checkbox",
     options: [
       "Steroids",
@@ -130,17 +130,16 @@ const questions = [
       "I don't know",
     ],
   },
-
   {
     id: 10,
     question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+      "Have you used any remedies (like creams or medicines) to help with the rash?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the treatments improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -155,7 +154,7 @@ const questions = [
   },
   {
     id: 12,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments make your symptoms worse?",
     type: "conditional-button-radio",
     options: [
       {
@@ -169,7 +168,7 @@ const questions = [
   },
   {
     id: 13,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Were there any treatments that had no noticeable effect?",
     type: "conditional-button-radio",
     options: [
       {
@@ -182,10 +181,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 14,
-    question: "Do you have any allergies to medications?",
+    question: "Are you allergic to any medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -198,7 +196,6 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 15,
     question: "Who is your primary care provider?",
@@ -206,7 +203,7 @@ const questions = [
   },
   {
     id: 16,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you’d like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
@@ -228,8 +225,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
