@@ -45,7 +45,7 @@ const questionsPart1 = [
   },
   {
     id: 2,
-    question: "Number of people reporting symptoms (Max 5)",
+    question: "How many attendees (upto 5)",
     type: "button-radio",
     options: ["1", "2", "3", "4", "5"],
   },
