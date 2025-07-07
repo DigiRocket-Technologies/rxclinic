@@ -39,7 +39,7 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you prefer to attend your consultation?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
@@ -48,50 +48,50 @@ const questions = [
   },
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What was your sex at the time of birth registration?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question:
+      "Are you currently pregnant or is there a possibility you might be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question:
-      "Have you been diagnosed with a urinary tract infection (UTI) before?",
+    question: "Have you previously been diagnosed with a UTI?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Have you had another UTI in the last 30 days?",
+    question: "Have you experienced a UTI within the past month?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question: "Have you had another UTI in the last 6 months?",
+    question: "Have you had a UTI at any time in the past six months?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 8,
-    question: "Have you had at least 2 other UTIs in the last 12 months?",
+    question: "In the last year, have you had two or more UTIs?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 9,
-    question: "What symptoms are you experiencing ?",
+    question: "Which of the following symptoms are you currently noticing?",
     type: "checkbox",
     options: [
       "Discomfort, burning or pain with urination",
@@ -105,7 +105,7 @@ const questions = [
   },
   {
     id: 10,
-    question: "What symptoms are you experiencing ?",
+    question: "Are you experiencing any of these symptoms currently?",
     type: "checkbox",
     options: [
       "Painful intercourse",
@@ -119,28 +119,24 @@ const questions = [
   {
     id: 11,
     question:
-      "Do you have any other symptoms not mentioned in the last question?",
+      "Are there any additional symptoms you’re experiencing not listed above?",
     type: "conditional-button-radio",
     options: [
-      {
-        value: "Yes",
-        showsInput: true,
-        label: "Please explain",
-      },
+      { value: "Yes", showsInput: true, label: "Please explain" },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
   {
     id: 12,
-    question: "Do you have diabetes?",
+    question: "Have you been diagnosed with diabetes?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
     question:
-      "Do you have any medical conditions that may suppress your immune system?",
+      "Do you have any conditions that might weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -155,7 +151,7 @@ const questions = [
   {
     id: 14,
     question:
-      "Are you currently taking any medication that suppresses your immune system?",
+      "Are you currently on any medication that affects your immune system?",
     type: "checkbox",
     options: [
       "Steroids",
@@ -169,19 +165,20 @@ const questions = [
   {
     id: 15,
     question:
-      "Has a healthcare provider ever told you that you have poor kidney function?",
+      "Has a doctor ever mentioned that your kidneys are not functioning well?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 16,
-    question: "Have you ever had a spinal cord injury?",
+    question: "Have you suffered a spinal cord injury at any point?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 17,
-    question: "Do you have an abnormal urinary tract structure or function?",
+    question:
+      "Do you have any known issues with your urinary tract structure or function?",
     type: "checkbox",
     options: [
       "Indwelling Catheter",
@@ -193,13 +190,13 @@ const questions = [
   },
   {
     id: 18,
-    question: "Have you tried any treatments to help with your UTI symptoms?",
+    question: "Have you tried any remedies to relieve your UTI symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 19,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any treatment options improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -214,7 +211,7 @@ const questions = [
   },
   {
     id: 20,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any of the treatments worsen your condition?",
     type: "conditional-button-radio",
     options: [
       {
@@ -228,7 +225,7 @@ const questions = [
   },
   {
     id: 21,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Were there any treatments that didn’t change how you felt?",
     type: "conditional-button-radio",
     options: [
       {
@@ -241,10 +238,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 22,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known drug allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -259,7 +255,8 @@ const questions = [
   },
   {
     id: 23,
-    question: "Have you started any new medications in the past month?",
+    question:
+      "Have you started taking any new medications within the last month?",
     type: "conditional-button-radio",
     options: [
       {
@@ -271,22 +268,17 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 24,
-    question: "Who is your primary care provider?",
+    question: "Who is the healthcare professional you primarily consult with?",
     type: "primary-care-provider",
   },
   {
     id: 25,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you'd like to share with us?",
     type: "conditional-button-radio",
     options: [
-      {
-        value: "Yes",
-        showsInput: true,
-        label: "Please explain",
-      },
+      { value: "Yes", showsInput: true, label: "Please explain" },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
@@ -296,7 +288,6 @@ const questions = [
     question: "Terms and Conditions",
     type: "terms-condition",
   },
-
   {
     id: 27,
     question: "Patient details",

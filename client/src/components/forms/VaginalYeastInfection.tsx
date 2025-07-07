@@ -38,25 +38,25 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What was your assigned sex at the time of birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or is there a chance you might be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you nursing an infant at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Which of the following symptoms are you experiencing?",
+    question: "Do you have any of the following symptoms right now?",
     type: "checkbox",
     options: [
       "Severe itching of vaginal areas",
@@ -67,7 +67,7 @@ const questions = [
   },
   {
     id: 5,
-    question: "Are you experiencing any of the following additional symptoms?",
+    question: "Are you noticing any other listed symptoms?",
     type: "checkbox",
     options: [
       "Frothy or foamy discharge",
@@ -80,7 +80,8 @@ const questions = [
   },
   {
     id: 6,
-    question: "Are you experiencing any other symptoms not already mentioned?",
+    question:
+      "Are there any other symptoms you've experienced not listed above?",
     type: "conditional-button-radio",
     options: [
       {
@@ -95,47 +96,47 @@ const questions = [
   {
     id: 7,
     question:
-      "Have you experienced similar symptoms before or been diagnosed with a vaginal yeast infection before?",
+      "Have you ever had similar symptoms or been told you had a vaginal yeast infection?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 8,
     question:
-      "If Yes to “Have you experienced similar symptoms before?”: How long ago did you experience similar symptoms",
+      "If yes to the previous question, when did you last notice similar symptoms?",
     type: "radio",
     options: ["Within the past 2 months", "Over 2 months ago"],
   },
   {
     id: 9,
     question:
-      "Do you have a history of STI's (sexually transmitted infections)?",
+      "Have you ever been diagnosed with any sexually transmitted infections (STIs)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 10,
     question:
-      "Is this your third or more vaginal yeast infection in the past 12 months?",
+      "Have you had three or more vaginal yeast infections in the past year?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question: "Do you have any medical conditions or are taking medications?",
+    question:
+      "Are you currently managing any health conditions or taking medications?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "Do you have diabetes?",
+    question: "Do you currently have diabetes?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question:
-      "Do you have any medical conditions that may suppress your immune system?",
+    question: "Do you have any illnesses that might weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
@@ -151,7 +152,7 @@ const questions = [
   {
     id: 14,
     question:
-      "Are you currently taking any medication that suppresses your immune system?",
+      "Are you on any medications that may lower your immune system response?",
     type: "checkbox",
     options: [
       "Steroids",
@@ -164,8 +165,7 @@ const questions = [
   },
   {
     id: 15,
-    question:
-      "Have you tried any treatments in the past to help with similar symptoms?",
+    question: "Have you used any remedies in the past to treat these symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -179,7 +179,7 @@ const questions = [
   },
   {
     id: 16,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the treatments you used improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -194,7 +194,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments cause your symptoms to get worse?",
     type: "conditional-button-radio",
     options: [
       {
@@ -208,7 +208,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Were there any treatments that had no effect on your condition?",
     type: "conditional-button-radio",
     options: [
       {
@@ -223,7 +223,7 @@ const questions = [
   },
   {
     id: 19,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known allergies to medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -238,12 +238,12 @@ const questions = [
   },
   {
     id: 20,
-    question: "Who is your primary care provider?",
+    question: "Who do you see for your primary medical care?",
     type: "primary-care-provider",
   },
   {
     id: 21,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you'd like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
@@ -260,7 +260,6 @@ const questions = [
     question: "Terms and Conditions",
     type: "terms-condition",
   },
-
   {
     id: 23,
     question: "Patient details",

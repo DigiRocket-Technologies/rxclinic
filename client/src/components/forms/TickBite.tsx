@@ -35,28 +35,27 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What was your sex at the time of birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
-
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Is there a possibility that you are currently pregnant?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
     question:
-      "  Were you recently in an outdoor location considered to be tick infested?",
+      "Have you recently visited an outdoor area known for tick activity?",
     type: "conditional-button-radio",
     options: [
       {
@@ -70,61 +69,59 @@ const questions = [
   },
   {
     id: 5,
-    question: "When were you in this location?",
+    question: "When did you visit this area?",
     type: "text-input",
   },
   {
     id: 6,
-    question: "Were you bitten by a tick?",
+    question: "Have you ever been bitten by a tick?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question: "When were you beaten by a tick??",
+    question: "On what date did the tick bite occur?",
     type: "text-input",
   },
-
   {
     id: 8,
-    question: "Was the tick attached to your skin for more than 24 hours?",
+    question: "Did the tick stay attached to your skin for over 24 hours?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 9,
-    question: "Was the tick removed from your skin?",
+    question: "Have you removed the tick from your body?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 10,
-    question: "Was the tick removed more than 3 days ago?",
+    question: "Has it been more than 3 days since the tick was removed?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question: "Was the tick swollen (and not flat)?",
+    question: "Did the tick appear enlarged rather than flat?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "Did the tick have black legs?",
+    question: "Did the tick have dark-colored legs?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question:
-      "Do you have a rash where you may have gotten bitten by the tick?",
+    question: "Is there a rash in the area you suspect the tick bite happened?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 14,
-    question: "Do you have any of the following symptoms?",
+    question: "Are you currently experiencing any of these symptoms?",
     type: "checkbox",
     options: [
       "Fever (temperature higher than 38°C), chills, or lack of energy",
@@ -138,17 +135,15 @@ const questions = [
       "None of the above",
     ],
   },
-
   {
     id: 15,
-    question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+    question: "Have you used any medications or remedies for your symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 16,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any treatments seem to improve your condition?",
     type: "conditional-button-radio",
     options: [
       {
@@ -163,7 +158,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments worsen your condition?",
     type: "conditional-button-radio",
     options: [
       {
@@ -177,7 +172,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Did any of the treatments have no noticeable effect?",
     type: "conditional-button-radio",
     options: [
       {
@@ -190,10 +185,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 19,
-    question: "Do you have any allergies to medications?",
+    question: "Are you allergic to any medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -206,15 +200,14 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 20,
-    question: "Who is your primary care provider?",
+    question: "Who is the healthcare provider you regularly visit?",
     type: "primary-care-provider",
   },
   {
     id: 21,
-    question: "Is there anything else we should know?",
+    question: "Is there any additional information you'd like to share?",
     type: "conditional-button-radio",
     options: [
       {
@@ -236,8 +229,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
