@@ -407,23 +407,16 @@ const Form: React.FC = () => {
       formName,
     };
 
-    //console.log("Data to be sent to backend:", finalData);
-
     try {
       const result = await submitFormData(finalData);
       toast.success(result.message, {
         position: "top-right",
       });
       navigate("/");
-
-      //alert(result.message);
     } catch (error) {
-      //alert("Failed to submit form. Please try again.");
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-
-      console.error("Submission error:", error);
     }
   };
 

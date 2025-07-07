@@ -73,7 +73,6 @@ const PharmacyConsultationForm: React.FC = () => {
         throw new Error(`HTTP error! Status: ${response.status}`);
 
       const data = await response.json();
-      //console.log("Calendly event data:", data);
 
       const startTime = data?.resource?.start_time;
       const endTime = data?.resource?.end_time;
@@ -103,17 +102,11 @@ const PharmacyConsultationForm: React.FC = () => {
   };
 
   useCalendlyEventListener({
-    onProfilePageViewed: () => console.log("onProfilePageViewed"),
-    onDateAndTimeSelected: (e) => console.log(e.data),
-    onEventTypeViewed: () => console.log("onEventTypeViewed"),
     onEventScheduled: async (e) => {
-      //console.log("Event Scheduled:", e.data.payload);
       const eventUri = e.data.payload.event.uri;
-      //console.log(eventUri, "uri");
+
       try {
         const { date, timing } = await fetchEventDetails(eventUri);
-        // console.log(date, "date");
-        // console.log(timing, "time");
 
         // Update formData and pass the updated data to handleFinalSubmit
         setFormData((prevFormData) => {
@@ -122,13 +115,12 @@ const PharmacyConsultationForm: React.FC = () => {
             date,
             timing,
           };
-          console.log(updatedFormData, "formdata after update");
+
           // Call handleFinalSubmit with the updated form data
           handleFinalSubmit(updatedFormData);
           return updatedFormData;
         });
       } catch (error) {
-        console.error("Error in onEventScheduled:", error);
         alert("Failed to process scheduled event. Please try again.");
       }
     },
@@ -232,31 +224,7 @@ const PharmacyConsultationForm: React.FC = () => {
     }
   };
 
-  // const handleAcceptTerms = () => {
-  //   // Here you would typically submit the form data to your backend
-  //   alert("Form submitted successfully!");
-  //   setShowTermsModal(false);
-
-  //   // Reset form after submission
-  //   // setFormData({
-  //   //   service: "",
-  //   //   firstName: "",
-  //   //   lastName: "",
-  //   //   dateOfBirth: "",
-  //   //   comments: "",
-  //   //   consultationType: "",
-  //   //   isCurrentPatient: null,
-  //   //   interestedInTransfer: false,
-  //   //   email: "",
-  //   //   phoneNumber: "",
-  //   //   preferredContactMethod: "",
-  //   // });
-  //   console.log(formData, "data");
-  //   //setPhoneValidationStatus("none");
-  // };
-
   const handleFinalSubmit = async (formData: FormData) => {
-    console.log(formData, "formdata end");
     try {
       const result = await submitConsultationForm(formData); // Call the reusable function
       toast.success(result.message, {
@@ -265,15 +233,10 @@ const PharmacyConsultationForm: React.FC = () => {
       setTimeout(() => {
         navigate("/");
       }, 5000);
-
-      //alert(result.message);
     } catch (error) {
-      //alert("Failed to submit form. Please try again.");
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-
-      console.error("Submission error:", error);
     }
   };
 
