@@ -25,7 +25,7 @@ export const sendEmail = async (email, subject, text, html) => {
       text: text,
       html: html,
     });
-    console.log("Email sent:", info.messageId);
+
     return info;
   } catch (error) {
     console.error("Error sending email:", error);
@@ -61,7 +61,6 @@ export const sendEmailWithAttachments = async (
       attachments: mailAttachments,
     });
 
-    console.log("Email with attachments sent:", info.messageId);
     return info;
   } catch (error) {
     console.error("Error sending email with attachments:", error);

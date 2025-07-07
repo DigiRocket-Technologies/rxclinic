@@ -308,7 +308,6 @@ const deleteUploadedFiles = (files) => {
   files.forEach((file) => {
     try {
       fs.unlinkSync(file.path);
-      //console.log(`Deleted file: ${file.path}`);
     } catch (err) {
       console.error(`Error deleting file ${file.path}:`, err);
     }
