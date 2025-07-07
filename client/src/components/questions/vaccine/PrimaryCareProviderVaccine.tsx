@@ -28,28 +28,6 @@ const PrimaryCareProviderQuestion: React.FC<
   const isChecked = answer.includes("I do not have a primary care provider");
 
   return (
-    // <div className="mb-6">
-    //   <h1 className="text-lg text-center text-slate-500">{name}</h1>
-
-    //   <h2 className="text-xl font-medium mb-4">{question}</h2>
-    //   <input
-    //     type="text"
-    //     value={isChecked ? "" : answer[0] || ""}
-    //     onChange={handleInputChange}
-    //     className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary mb-4"
-    //     placeholder="Please specify..."
-    //     disabled={isChecked}
-    //   />
-    //   <label className="flex items-center">
-    //     <input
-    //       type="checkbox"
-    //       checked={isChecked}
-    //       onChange={handleCheckboxChange}
-    //       className="mr-2"
-    //     />
-    //     I do not have a primary care provider
-    //   </label>
-    // </div>
     <div className="max-w-lg mx-auto my-6 p-6 bg-white rounded-xl shadow-md border-2 border-blue-200">
       <h1 className="text-lg text-center italic text-gray-600 mb-2">{name}</h1>
       <h2 className="text-2xl font-semibold text-center text-gray-900 mb-4">
