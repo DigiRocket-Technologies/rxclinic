@@ -83,14 +83,6 @@ const Form: React.FC = () => {
   };
 
   const { phase, patientIndex, questionIndex } = getCurrentState(currentStep);
-  // const handleMeetingData = (data: { date: string; timing: string }) => {
-  //   console.log(data, "data recieved to update");
-  //   setMeetingDetails(data);
-  // };
-  // const handleMeetingData = (data: { date: string; timing: string }) => {
-  //   console.log(data, "data received to update");
-  //   setMeetingDetails(data);
-  // };
 
   const handleAnswerChange = (
     questionId: number,
@@ -182,15 +174,6 @@ const Form: React.FC = () => {
     setHistory((prev) => prev.slice(0, -1));
     const prevStep = history[history.length - 2];
     setCurrentStep(prevStep);
-    console.log(
-      questionnaireArray.map(
-        (patientAnswers) => patientAnswers
-        // .filter(
-        //     (subArray) => subArray[0].question !== "Patient Information"
-        //   )
-      ),
-      "questionnaire"
-    );
   };
 
   const handlePatientComplete = (
@@ -214,7 +197,6 @@ const Form: React.FC = () => {
     date: string;
     time: string;
   }) => {
-    //console.log(MeetingDetails, "meeting details before form submit");
     const finalData = {
       setup: {
         patientCount: answers[-1]?.[1]?.answer[0] || "1",
@@ -244,7 +226,7 @@ const Form: React.FC = () => {
         time: meetingDetails.time,
       },
     };
-    console.log("Final Data: ", finalData);
+
     try {
       const result = await submitCovidVaccineForm(finalData); // Call the reusable function
       toast.success(result.message, {
@@ -253,68 +235,12 @@ const Form: React.FC = () => {
       setTimeout(() => {
         navigate("/");
       }, 5000);
-
-      //alert(result.message);
     } catch (error) {
-      //alert("Failed to submit form. Please try again.");
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-
-      console.error("Submission error:", error);
     }
   };
-  // const handleFormComplete = async () => {
-  //   const filteredQuestionnaire = questionnaireArray.map((patientAnswers) =>
-  //     patientAnswers.filter(
-  //       (subArray) => subArray[0].question !== "Patient Information"
-  //     )
-  //   );
-
-  //   // Extract MeetingDetails from nestedAnswers
-  //   console.log(answers[-1]?.[6]?.nestedAnswers?.find(
-  //       (na) => na.question === "Meeting Details"
-  //     )?.answer[0] || "" ,"dates and")
-  //   const meetingDetailsAnswer =
-  //     answers[-1]?.[6]?.nestedAnswers?.find(
-  //       (na) => na.question === "Meeting Details"
-  //     )?.answer[0] || "";
-  //   const [date = "", timing = ""] = meetingDetailsAnswer.split("|");
-
-  //   const finalData = {
-  //     setup: {
-  //       patientCount: answers[-1]?.[1]?.answer[0] || "1",
-  //       formName,
-  //     },
-  //     questionnaire: filteredQuestionnaire,
-  //     patientInfo: patientInfoArray,
-  //     contactInfo: {
-  //       email:
-  //         answers[-1]?.[6]?.nestedAnswers?.find((na) => na.question === "Email")
-  //           ?.answer[0] || "",
-  //       phoneNumber:
-  //         answers[-1]?.[6]?.nestedAnswers?.find(
-  //           (na) => na.question === "Phone Number"
-  //         )?.answer[0] || "",
-  //       preferredMethod:
-  //         answers[-1]?.[6]?.nestedAnswers?.find(
-  //           (na) => na.question === "Preferred Contact Method"
-  //         )?.answer[0] || "",
-  //     },
-  //     MeetingDetails: {
-  //       date,
-  //       timing,
-  //     },
-  //   };
-  //   console.log("Final Data: ", finalData);
-  //   try {
-  //     const result = await submitVaccineForm(finalData);
-  //     alert(result.message);
-  //   } catch (error) {
-  //     alert("Failed to submit form. Please try again.");
-  //     console.error("Submission error:", error);
-  //   }
-  // };
 
   const currentQuestionPart1 =
     phase === "part1" ? questionsPart1[questionIndex] : null;
