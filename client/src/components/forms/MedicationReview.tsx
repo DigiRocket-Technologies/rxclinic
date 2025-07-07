@@ -664,48 +664,49 @@ const PharmacyConsultationForm: React.FC = () => {
             <h2 className="text-xl font-bold mb-4">Terms and Conditions</h2>
             <div className="mb-6 text-gray-700">
               <p className="mb-4">
-                These Terms and Conditions ("Terms") govern your use of our
-                pharmacy consultation services. By using our services, you agree
-                to these Terms.
+                These Terms and Conditions (“Terms”) outline the rules for using
+                our pharmacy consultation services. By accessing or using these
+                services, you agree to comply with these Terms.
               </p>
 
-              <h3 className="font-semibold mb-2">1. Healthcare Information</h3>
+              <h3 className="font-semibold mb-2">1. Medical Disclaimer</h3>
               <p className="mb-3">
-                Information provided during consultations is not a substitute
+                The information shared during consultations is intended for
+                general guidance only and should not be considered a replacement
                 for professional medical advice, diagnosis, or treatment. Always
-                seek the advice of your physician or other qualified health
-                provider with any questions you may have regarding a medical
-                condition.
+                consult your doctor or a qualified healthcare provider regarding
+                any health concerns.
               </p>
 
-              <h3 className="font-semibold mb-2">2. Privacy</h3>
+              <h3 className="font-semibold mb-2">2. Privacy Commitment</h3>
               <p className="mb-3">
-                We respect your privacy and will maintain the confidentiality of
-                your personal and health information in accordance with
-                applicable laws. Your information will only be used to provide
-                you with our services and as permitted by law.
+                We are committed to protecting your privacy. Your personal and
+                health data will be kept confidential and used solely for
+                providing our services, in accordance with applicable privacy
+                laws.
               </p>
 
               <h3 className="font-semibold mb-2">3. Service Availability</h3>
               <p className="mb-3">
-                Our pharmacists will make reasonable efforts to accommodate your
-                preferred consultation method and time. However, availability
-                may vary and is subject to change without notice.
+                Our pharmacists aim to accommodate your preferred consultation
+                times and methods. However, service availability may vary and
+                can change without prior notice.
               </p>
 
-              <h3 className="font-semibold mb-2">4. No Guarantee</h3>
+              <h3 className="font-semibold mb-2">4. No Outcome Guarantees</h3>
               <p className="mb-3">
-                We do not guarantee specific outcomes or results from our
-                consultation services. The advice provided is based on the
-                information you share and current professional standards.
+                We cannot promise specific results from our consultation
+                services. The guidance provided is based on the information you
+                give us and aligns with current professional practices.
               </p>
 
-              <h3 className="font-semibold mb-2">5. Changes to Terms</h3>
+              <h3 className="font-semibold mb-2">5. Updates to Terms</h3>
               <p className="mb-3">
-                We may modify these Terms at any time. Your continued use of our
-                services constitutes your acceptance of the revised Terms.
+                These Terms may be updated at any time. By continuing to use our
+                services after changes are made, you agree to the revised Terms.
               </p>
             </div>
+
             <div className="flex justify-end">
               <button
                 onClick={() => setShowTermsModal(false)}
@@ -713,12 +714,7 @@ const PharmacyConsultationForm: React.FC = () => {
               >
                 Cancel
               </button>
-              {/* <button
-                onClick={handleAcceptTerms}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-              >
-                Accept & Submit
-              </button> */}
+
               <div className="justify-center flex my-4">
                 <PopupButton
                   className="text-white bg-primary py-3 px-5 rounded-lg"
