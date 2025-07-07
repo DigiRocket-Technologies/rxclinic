@@ -36,37 +36,37 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Are you filling this form out for your baby?",
+    question: "Are you completing this form on behalf of your baby?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 2,
-    question: "Has your baby been diagnosed with oral thrush before?",
+    question: "Has your baby previously been diagnosed with oral thrush?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Is this baby currently being breastfed?",
+    question: "Is your baby currently being breastfed?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "What symptoms is your experiencing?",
+    question: "Which symptoms is your baby experiencing?",
     type: "checkbox",
     options: [
-      "White patches on the tonque, back of throat, or inside the cheeks",
+      "White patches on the tongue, back of the throat, or inside the cheeks",
       "Redness inside the mouth and throat",
-      "Sores in the mouth that are swollen or burning",
+      "Painful sores or a burning sensation in the mouth",
       "None of the above",
     ],
   },
   {
     id: 5,
     question:
-      "Do your baby have any other symptoms not mentioned in the last question?",
+      "Is your baby showing any other symptoms not listed in the previous question?",
     type: "conditional-button-radio",
     options: [
       {
@@ -80,18 +80,18 @@ const questions = [
   },
   {
     id: 6,
-    question: "Whendid the symptoms starts?",
+    question: "When did your baby's symptoms begin?",
     type: "text-input",
   },
   {
     id: 7,
-    question: "Do your baby use any inhalers?",
+    question: "Is your baby using any inhalers?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify the inhaler(s) they use",
+        label: "Please specify the inhaler(s) your baby is using",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -99,21 +99,20 @@ const questions = [
   },
   {
     id: 8,
-    question:
-      "Has your baby been treated with antibiotics in the past 2 weeks?",
+    question: "Has your baby received antibiotics within the last 2 weeks?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 9,
     question:
-      "Do you have any medical conditions that may suppress your immune system?",
+      "Do you have any health conditions that may weaken your immune system?",
     type: "checkbox",
     options: [
       "HIV/AIDS",
       "Cancer",
-      "Removal of Spleen",
-      "Transplant",
+      "Spleen removal",
+      "Organ transplant",
       "Other",
       "None of the above",
       "I don't know",
@@ -122,12 +121,12 @@ const questions = [
   {
     id: 10,
     question:
-      "Are you currently taking any medication that suppresses your immune system?",
+      "Are you currently taking any medications that suppress your immune system?",
     type: "checkbox",
     options: [
       "Steroids",
       "Chemotherapy",
-      "Biological agents",
+      "Biologic medications",
       "Other",
       "None of the above",
       "I don't know",
@@ -135,26 +134,25 @@ const questions = [
   },
   {
     id: 11,
-    question: "Has the baby started any new medications recently?",
+    question: "Has your baby recently started any new medications?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "Have you tried any treatments for your baby's symptoms?",
+    question: "Have you tried any treatments to manage your baby's symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any treatments help improve your baby's symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments made your symptoms feel better",
+        label: "Please list the treatments that were effective",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -162,13 +160,13 @@ const questions = [
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments make your baby's symptoms worse?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "Please list the treatments that worsened the symptoms",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -176,37 +174,34 @@ const questions = [
   },
   {
     id: 15,
-    question:
-      "Did any of the treatments have no effect on your baby's symptoms?",
+    question: "Did any treatments have no effect on your baby's symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please indicate which treatments had no effect on your baby's symptoms",
+          "Please list the treatments that had no noticeable effect on symptoms",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 16,
-    question: "Do you know if your baby has any allergies to medications?",
+    question: "Do you know if your baby has any medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "Please list the medications your baby is allergic to. Enter one per field and click 'Add more' as needed.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 17,
     question: "Who is your primary care provider?",
@@ -214,7 +209,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you'd like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
@@ -231,7 +226,6 @@ const questions = [
     question: "Terms and Conditions",
     type: "terms-condition",
   },
-
   {
     id: 20,
     question: "Patient details",

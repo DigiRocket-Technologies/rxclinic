@@ -33,14 +33,14 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What was your assigned sex at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
-    note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
+    note: "This is required for medical evaluation and insurance purposes. If neither applies, please specify.",
   },
   {
     id: 2,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
@@ -50,17 +50,16 @@ const questions = [
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 4,
     question:
-      "Have you experienced nausea and/or vomiting in your previous pregnancy or pregnancies?",
+      "Did you experience nausea or vomiting during any previous pregnancy?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "How far are you in your pregnancy?",
+    question: "How far along are you in your pregnancy?",
     type: "radio",
     options: [
       "First trimester (Week 1-13)",
@@ -69,10 +68,9 @@ const questions = [
       "Not Sure",
     ],
   },
-
   {
     id: 6,
-    question: "When did your symptoms start?",
+    question: "At what point in your pregnancy did the symptoms begin?",
     type: "radio",
     options: [
       "First trimester (Week 1-13)",
@@ -84,13 +82,13 @@ const questions = [
   {
     id: 7,
     question:
-      "Are you currently taking iron-containing vitamins or prenatal supplements?",
+      "Are you currently using prenatal supplements or iron-rich vitamins?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify how you take it",
+        label: "Please describe how you take them",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -98,46 +96,46 @@ const questions = [
   },
   {
     id: 8,
-    question:
-      "Are you experiencing any of the following symptoms of dehydration?",
+    question: "Are you showing any of these signs of dehydration?",
     type: "checkbox",
     options: [
-      "Urinating much less than normal",
-      "Persistent light-headness or feeling faint",
-      "Inability to keep food or drinks down for 12h or more",
-      "Weight loss of more than 5 pounds",
+      "Urinating significantly less than usual",
+      "Feeling dizzy or faint continuously",
+      "Inability to retain food or fluids for 12 hours or more",
+      "Lost more than 5 pounds recently",
       "None of the above",
       "Not sure",
     ],
   },
   {
     id: 9,
-    question: "Are you experiencing any of these symptoms?",
+    question: "Are you currently experiencing any of the following symptoms?",
     type: "checkbox",
     options: [
-      "Stomach or pelvic pain",
-      "Fever (temperature higher than 38°C)",
-      "Changes in bowel movements",
-      "Blood in the vomit",
+      "Stomach or lower abdominal pain",
+      "Fever (temperature above 38°C)",
+      "Changes in bowel habits",
+      "Presence of blood in vomit",
       "None of the above",
     ],
   },
   {
     id: 10,
-    question: "Do you have diabetes?",
+    question: "Have you been diagnosed with diabetes?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
     question:
-      "On average in a day, for how long do you feel nauseated or sick to your stomach?",
+      "On a typical day, how long do you feel nauseous or sick to your stomach?",
     type: "radio",
     options: ["Not at all", "1h or less", "2-3h", "4-6h", "More than 6h"],
   },
   {
     id: 12,
-    question: "On average in a day, how many times do you vomit or throw up?",
+    question:
+      "On average, how many times do you vomit or throw up in a single day?",
     type: "radio",
     options: [
       "None",
@@ -150,7 +148,7 @@ const questions = [
   {
     id: 13,
     question:
-      "On average in a day, how many times do you have retching or dry heaves without bringing anything up?",
+      "How often in a day do you have retching or dry heaves without vomiting?",
     type: "radio",
     options: [
       "None",
@@ -163,13 +161,13 @@ const questions = [
   {
     id: 14,
     question:
-      "Have you tried any treatments to help with your symptoms of nausea and/or vomiting?",
+      "Have you tried anything to relieve your nausea or vomiting symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 15,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the remedies help improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -183,7 +181,7 @@ const questions = [
   },
   {
     id: 16,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any of the treatments worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -197,7 +195,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Did any of the treatments have no noticeable effect?",
     type: "conditional-button-radio",
     options: [
       {
@@ -211,7 +209,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known allergies to medications?",
     type: "conditional-button-radio",
     options: [
       {
@@ -233,8 +231,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {

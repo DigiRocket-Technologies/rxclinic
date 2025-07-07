@@ -39,7 +39,7 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you prefer to attend the appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
@@ -48,38 +48,39 @@ const questions = [
   },
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What was your assigned sex at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question:
+      "Is there a chance you might be pregnant, or are you currently pregnant?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
     question:
-      "Have you been officially diagnosed with dysmenorrhea (painful periods) before?",
+      "Have you ever received a medical diagnosis of painful periods (dysmenorrhea)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
     question:
-      "Please rate your pain on a scale of 1-10. (1 being no pain and 10 being the worst possible pain).",
+      "On a scale from 1 to 10, how would you rate your pain? (1 = no pain, 10 = most severe pain)",
     type: "slider",
   },
   {
     id: 7,
-    question: "Where are you experiencing pain?",
+    question: "In which areas do you feel pain?",
     type: "checkbox",
     options: [
       "Lower stomach",
@@ -91,7 +92,7 @@ const questions = [
   },
   {
     id: 8,
-    question: "When does your pain usually start?",
+    question: "At what point during your cycle does the pain usually begin?",
     type: "radio",
     options: [
       "A few hours before or just after beginning of your period",
@@ -102,13 +103,13 @@ const questions = [
   },
   {
     id: 9,
-    question: "How long does the pain usually last for?",
+    question: "How many days does the pain typically persist?",
     type: "radio",
     options: ["1-2 days", "2-3 days", "More than 3 days"],
   },
   {
     id: 10,
-    question: "When did you first start experiencing painful periods?",
+    question: "When did you first start noticing painful menstrual periods?",
     type: "radio",
     options: [
       "During the first 2 years of my first period in my life",
@@ -119,26 +120,26 @@ const questions = [
   },
   {
     id: 11,
-    question: "Are most of your periods painful?",
+    question: "Would you describe most of your menstrual cycles as painful?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "Has your pain been getting worse with each period?",
+    question: "Does your menstrual pain seem to intensify with each cycle?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
     question:
-      "Did you get your first period in your life within the last 6 months?",
+      "Did you begin menstruating for the first time within the last 6 months?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 14,
-    question: "Are you using any form of birth control?",
+    question: "Are you currently using any method of birth control?",
     type: "conditional-button-radio",
     options: [
       {
@@ -152,13 +153,14 @@ const questions = [
   },
   {
     id: 15,
-    question: "Have you had an IUD inserted within the past 6 months?",
+    question:
+      "Have you had an intrauterine device (IUD) placed within the last 6 months?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 16,
-    question: "Are you experiencing any of these symptoms?",
+    question: "Are you currently experiencing any of the following symptoms?",
     type: "checkbox",
     options: [
       "Nausea or vomiting",
@@ -171,7 +173,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Do any of these describe your period flow?",
+    question: "Does your period flow match any of the following descriptions?",
     type: "checkbox",
     options: [
       "I am bleeding heavier than usual",
@@ -182,7 +184,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Are you experiencing any of these symptoms?",
+    question: "Are you dealing with any of the following issues currently?",
     type: "checkbox",
     options: [
       "Fever (temperature higher than 38°C) or chills",
@@ -194,7 +196,7 @@ const questions = [
   },
   {
     id: 19,
-    question: "Are you experiencing any other symptoms?",
+    question: "Do you have any additional symptoms you’d like to share?",
     type: "conditional-button-radio",
     options: [
       {
@@ -209,7 +211,7 @@ const questions = [
   {
     id: 20,
     question:
-      "Do you have a history of any of the following medical conditions?",
+      "Have you ever been diagnosed with any of the following health issues?",
     type: "checkbox",
     options: [
       "Endometriosis",
@@ -222,8 +224,7 @@ const questions = [
   },
   {
     id: 21,
-    question:
-      "Do you have a history of any of the following medical conditions?",
+    question: "Do you have a history of any of the following conditions?",
     type: "checkbox",
     options: [
       "Poor kidney function",
@@ -237,20 +238,20 @@ const questions = [
   },
   {
     id: 22,
-    question: "Are you taking any blood thinners?",
+    question: "Are you currently taking any medication that thins your blood?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 23,
     question:
-      "Have you tried any medications or treatments for your period pain? ",
+      "Have you ever used any treatments or medications to ease your period pain?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 24,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Have any treatments you’ve tried helped improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -264,7 +265,7 @@ const questions = [
   },
   {
     id: 25,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any of the treatments worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -278,7 +279,7 @@ const questions = [
   },
   {
     id: 26,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Have any treatments had no impact on how you felt?",
     type: "conditional-button-radio",
     options: [
       {
@@ -291,10 +292,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 27,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known allergies to medication?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -307,21 +307,19 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 28,
-    question: "Who is your primary care provider?",
+    question: "Who do you currently see for your general medical care?",
     type: "primary-care-provider",
   },
   {
     id: 29,
-    question: "Terms and Conditions",
+    question: "Terms and Condition",
     type: "terms-condition",
   },
-
   {
     id: 30,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
 ];

@@ -38,7 +38,7 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "What is your preferred method for attending the appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
@@ -47,32 +47,31 @@ const questions = [
   },
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What gender were you originally registered as at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
     note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
   },
-
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or is there a chance you could be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at this time?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "Where are you experiencing your pain?",
+    question: "Which part of your body is affected by the pain?",
     type: "text-input",
   },
   {
     id: 6,
-    question: "Do you know what caused your pain?",
+    question: "Do you have any idea what may have triggered your pain?",
     type: "conditional-button-radio",
     options: [
       {
@@ -86,18 +85,18 @@ const questions = [
   },
   {
     id: 7,
-    question: "When did your pain start",
+    question: "When did the pain first begin?",
     type: "text-input",
   },
   {
     id: 8,
     question:
-      "Please rate your pain on a scale of 1-10. (1 being no pain and 10 being the worst possible pain).",
+      "On a scale from 1 to 10, how severe is your pain? (1 = no pain, 10 = extreme pain)",
     type: "slider",
   },
   {
     id: 9,
-    question: "What symptoms are you experiencing in your eyes?",
+    question: "What symptoms are you noticing in or around your eyes?",
     type: "checkbox",
     options: [
       "Swelling",
@@ -109,7 +108,7 @@ const questions = [
   },
   {
     id: 10,
-    question: "Are you experiencing any of the following symptoms?",
+    question: "Are you having any of the following issues?",
     type: "checkbox",
     options: [
       "Confusion",
@@ -123,8 +122,7 @@ const questions = [
   },
   {
     id: 11,
-    question:
-      "Do you have any other symptoms not mentioned in the previous question?",
+    question: "Are there any additional symptoms you are experiencing?",
     type: "conditional-button-radio",
     options: [
       {
@@ -138,7 +136,7 @@ const questions = [
   },
   {
     id: 12,
-    question: "Which statement best describes your situation?",
+    question: "How would you describe your pain's progression over time?",
     type: "radio",
     options: [
       "My pain has been getting worse recently",
@@ -148,7 +146,7 @@ const questions = [
   },
   {
     id: 13,
-    question: "Do you have any of the following medical conditions?",
+    question: "Do you currently have any of the following health issues?",
     type: "checkbox",
     options: [
       "Poor kidney function",
@@ -163,21 +161,20 @@ const questions = [
   },
   {
     id: 14,
-    question: "Are you taking any blood thinners?",
+    question: "Are you currently on any blood thinning medication?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 15,
     question:
-      "Have you tried any treatments for your pain, such as Advil, Voltaren gel, ice packs etc.?",
+      "Have you used any remedies or medications like Advil, Voltaren gel, or ice packs to relieve your pain?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 16,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the remedies improve your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -192,7 +189,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments seem to worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -206,7 +203,7 @@ const questions = [
   },
   {
     id: 18,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Were there any treatments that had no impact on your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
@@ -219,10 +216,9 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 19,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
@@ -237,7 +233,8 @@ const questions = [
   },
   {
     id: 20,
-    question: "Have you started any new medications in the past month?",
+    question:
+      "Have you started taking any new medications within the last month?",
     type: "conditional-button-radio",
     options: [
       {
@@ -249,7 +246,6 @@ const questions = [
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 21,
     question: "Who is your primary care provider?",
@@ -257,7 +253,7 @@ const questions = [
   },
   {
     id: 22,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you'd like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
@@ -279,8 +275,6 @@ const questions = [
     question: "Patient details",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
