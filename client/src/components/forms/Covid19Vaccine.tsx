@@ -28,7 +28,7 @@ interface NestedAnswer {
 const questionsPart1 = [
   {
     id: 1,
-    question: "Number of people at the appointment (Max 5)",
+    question: "Number of attendees (up to 5)",
     type: "button-radio",
     options: ["1", "2", "3", "4", "5"],
   },

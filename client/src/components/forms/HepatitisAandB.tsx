@@ -460,13 +460,13 @@ interface NestedAnswer {
 const questionsPart1 = [
   {
     id: 1,
-    question: "How many people are booking an appointment?",
+    question: "Number of attendees",
     type: "button-radio",
     options: ["1", "2", "3", "4", "5"],
   },
   {
     id: 2,
-    question: "What brought you here today?",
+    question: "Please describe the reason for your visit.",
     type: "radio",
     options: [
       "I want to receive a vaccine or learn more about Hepatitis A vaccine/injection",
