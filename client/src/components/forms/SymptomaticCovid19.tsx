@@ -147,7 +147,6 @@ const Form: React.FC = () => {
     date: string;
     time: string;
   }) => {
-    console.log("final submit hit");
     const finalData = {
       setup: {
         patientCount: answers[-1]?.[2]?.answer[0] || "1",
@@ -185,7 +184,6 @@ const Form: React.FC = () => {
       },
     };
     try {
-      //console.log(finalData, "finaldata");
       const result = await submitSymptomaticCovid(finalData);
       toast.success(result.message, {
         position: "top-right",
@@ -193,20 +191,14 @@ const Form: React.FC = () => {
       setTimeout(() => {
         navigate("/");
       }, 5000);
-
-      //alert(result.message);
     } catch (error) {
-      //alert("Failed to submit form. Please try again.");
       toast.error("Failed to submit form. Please try again.", {
         position: "top-right",
       });
-
-      console.error("Submission error:", error);
     }
   };
 
   const handleNext = (nextStep: number) => {
-    console.log(patientInfoArray, "answers");
     if (
       phase === "part1" &&
       !answers[-1]?.[questionsPart1[questionIndex].id]?.answer?.length
@@ -241,7 +233,6 @@ const Form: React.FC = () => {
   };
 
   const handlePrevious = () => {
-    console.log(answers, "answers");
     if (history.length <= 1) return;
     setHistory((prev) => prev.slice(0, -1));
     setCurrentStep(history[history.length - 2]);
