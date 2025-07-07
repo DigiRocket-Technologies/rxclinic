@@ -35,76 +35,71 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you prefer to have your appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
       { value: "Phone Call", showsInput: true },
     ],
   },
-
   {
     id: 2,
-    question: "What sex were you assigned at birth?",
+    question: "What was your sex assigned at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
-    note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
+    note: "This information is required for medical assessment and billing purposes. If neither applies, please specify below.",
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or is there a chance you might be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at this time?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 5,
-    question:
-      "Have you been officially diagnosed with heartburn (GERD or gastroesophageal reflux disease) before?",
+    question: "Have you ever been diagnosed with heartburn (GERD)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Are you experiencing any of these symptoms ?",
+    question: "Which of the following symptoms are you currently experiencing?",
     type: "checkbox",
     options: [
-      "Heartburn (uncomfortable burning feeling in your chest or throat)",
-      "An unpleasant, sour taste in your mouth",
-      "Bad breath",
-      "Belching/burping",
+      "Burning sensation in chest or throat (Heartburn)",
+      "Sour taste in the mouth",
+      "Unpleasant breath odor",
+      "Frequent burping",
       "None of the above",
     ],
   },
   {
     id: 7,
-    question: "Are you experiencing any of these symptoms ?",
+    question: "Are you experiencing any of these symptoms currently?",
     type: "checkbox",
     options: [
-      "Chest pain",
-      "Difficulty or pain when swallowing",
-      "Bad breath",
-      "Belching/burping",
+      "Chest discomfort",
+      "Pain or difficulty swallowing",
+      "Unpleasant breath odor",
+      "Frequent burping",
       "None of the above",
     ],
   },
-
   {
     id: 8,
-    question:
-      "Do you have any other symptoms not mentioned in the previous questions?",
+    question: "Are you having any symptoms not already mentioned?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please describe the other symptoms",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -112,59 +107,56 @@ const questions = [
   },
   {
     id: 9,
-    question: "Is this the first time you experienced any of your symptoms?",
+    question: "Is this your first time experiencing these symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 10,
-    question: "Are you 50 years of age or older?",
+    question: "Are you 50 years old or above?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question:
-      "Are your symptoms severe or preventing you from performing your daily activities?",
+    question: "Are your symptoms intense or interfering with your daily life?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
-    question: "Do you experience your symptoms more than twice a week?",
+    question: "Do your symptoms occur more than twice weekly?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question:
-      "Are there specific times when you experience your symptoms the most?",
+    question: "When do your symptoms typically occur?",
     type: "checkbox",
     options: [
-      "During the day",
-      "When lying down or bending over",
-      "After eating meals or specific foods",
-      "There is no specific time",
+      "During daytime hours",
+      "While lying down or bending",
+      "After eating meals or certain foods",
+      "There’s no specific time",
       "None of the above",
     ],
   },
   {
     id: 14,
-    question:
-      "Do you have a first degree relative with gastrointestinal cancer?",
+    question: "Do you have a first-degree relative with GI cancer?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 15,
-    question: "Do you have any of the following conditions?",
+    question: "Have you been diagnosed with any of the following?",
     type: "checkbox",
     options: [
-      "History of stomach ulcers",
-      "Barrett's esophagus",
-      "Hiatus hernia",
+      "Stomach ulcers",
+      "Barrett’s esophagus",
+      "Hiatal hernia",
       "None of the above",
-      "I don't know",
+      "I’m not sure",
     ],
   },
   {
@@ -175,13 +167,13 @@ const questions = [
   },
   {
     id: 17,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Have any treatments improved your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments helped",
+        label: "Please list the treatments that helped",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -189,13 +181,13 @@ const questions = [
   },
   {
     id: 18,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Have any treatments worsened your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "Please list the treatments that made it worse",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -203,30 +195,28 @@ const questions = [
   },
   {
     id: 19,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Have any treatments had no impact on your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments had no effect on your symptoms",
+        label: "Please list the treatments that had no effect",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 20,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any medication allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "Please list each medication allergy individually. Use 'Add more' to include additional allergies.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -240,7 +230,7 @@ const questions = [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify the medication you recently started",
+        label: "Please specify the new medication(s)",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -248,18 +238,18 @@ const questions = [
   },
   {
     id: 22,
-    question: "Who is your primary care provider?",
+    question: "Who is your current primary care provider?",
     type: "primary-care-provider",
   },
   {
     id: 23,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you'd like us to know?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please provide additional details",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -267,16 +257,14 @@ const questions = [
   },
   {
     id: 24,
-    question: "Who is your primary care provider?",
+    question: "Terms and Conditions",
     type: "terms-condition",
   },
   {
     id: 25,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {

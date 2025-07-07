@@ -38,31 +38,29 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you prefer to attend the appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
       { value: "Phone Call", showsInput: true },
     ],
   },
-
   {
     id: 2,
     question: "What sex were you assigned at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
-    note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
+    note: "This question is required for clinical assessment and reimbursement purposes. If none of the above, please specify.",
   },
   {
     id: 3,
     type: "date-input",
     question: "What is your date of birth?",
   },
-
   {
     id: 4,
     question:
-      "Are you (or could be) pregnant or have you recently given birth in the last month?",
+      "Are you currently pregnant, or have you given birth in the past month?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
@@ -74,28 +72,28 @@ const questions = [
   },
   {
     id: 6,
-    question: "What is your weight?",
+    question: "What is your current weight?",
     type: "weight-input",
   },
   {
     id: 7,
-    question: "Are you experiencing any symptoms of influenza?",
+    question: "Are you currently experiencing any symptoms of influenza?",
     type: "radio",
     options: [
       "Yes",
-      "Not sure",
-      "No symptoms. I’m looking for preventative treatment.",
+      "Not Sure",
+      "No symptoms – I’m seeking preventative treatment",
     ],
   },
-
   {
     id: 8,
-    question: "What symptoms are you experiencing? Check all that may apply.",
+    question:
+      "Which of the following symptoms are you experiencing? (Check all that apply)",
     type: "checkbox",
     options: [
       "Fever (temperature higher than 38°C) and/or chills",
       "Headache",
-      "Muscle ache",
+      "Muscle aches",
       "Joint pain",
       "Fatigue",
       "Cough",
@@ -111,17 +109,17 @@ const questions = [
   {
     id: 9,
     question:
-      "What symptoms are you experiencing? (continued) Check all that may apply.",
+      "Are you experiencing any of the following additional symptoms? (Check all that apply)",
     type: "checkbox",
     options: [
       "Chest pain",
       "Shortness of breath",
       "Dizziness",
       "Vision changes",
-      "Numbness of tingling",
-      "Fever > 40.5°C or fever > 38°C for over 72 hours",
+      "Numbness or tingling",
+      "Fever > 40.5°C or fever > 38°C lasting more than 72 hours",
       "Confusion",
-      "Fever or cough that improves but then returns or worsens",
+      "Fever or cough that improved but then worsened again",
       "Severe abdominal pain",
       "Not urinating",
       "Seizure",
@@ -130,14 +128,12 @@ const questions = [
       "Other",
     ],
   },
-
   {
     id: 10,
-    question: "When did the symptoms first start?",
+    question: "When did your symptoms first begin?",
     type: "radio",
-    options: ["Less than 2 days ago", "More than 2 days ago", "Not sure"],
+    options: ["Less than 2 days ago", "More than 2 days ago", "Not Sure"],
   },
-
   {
     id: 11,
     question: "Have you recently tested positive for Influenza A or B?",
@@ -153,13 +149,14 @@ const questions = [
   {
     id: 13,
     question:
-      "Have you been given documented instructions to receive preventative treatment for influenza due to an outbreak?",
+      "Have you been advised to receive preventative treatment for influenza due to an outbreak?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 14,
-    question: "Do you have any of the following medical conditions?",
+    question:
+      "Do you currently have any of the following medical conditions? (Check all that apply)",
     type: "checkbox",
     options: [
       "Kidney disease",
@@ -169,32 +166,32 @@ const questions = [
       "Obesity",
       "Liver disease",
       "Lung disease",
-      "Brain,spine or nerve disorder",
-      "Obesity (BMI≥40)",
+      "Brain, spine, or nerve disorder",
+      "Obesity (BMI ≥ 40)",
       "None of the above",
-      "I dont't know",
+      "I don't know",
     ],
   },
   {
     id: 15,
     question:
-      "Do you have any medical conditions that suppress the immune system? Check all that apply:",
+      "Do you have any medical conditions that suppress the immune system? (Check all that apply)",
     type: "checkbox",
     options: [
       "Cancer",
       "HIV/AIDS",
-      "Removal of speen",
-      "Transplant",
+      "Spleen removal",
+      "Organ transplant",
       "Autoimmune disorder",
       "None of the above",
       "Other",
-      "Not sure",
+      "Not Sure",
     ],
   },
   {
     id: 16,
     question:
-      "Are you taking any of the following medications that can suppress the immune system?",
+      "Are you currently taking any medications that suppress the immune system? (Check all that apply)",
     type: "checkbox",
     options: [
       "Chemotherapy",
@@ -207,26 +204,24 @@ const questions = [
       "Azathioprine",
       "None of the above",
       "Other",
-      "Not sure",
+      "Not Sure",
     ],
   },
-
   {
     id: 17,
-    question: "Do you have any allergies ?",
+    question: "Do you have any allergies?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "Please list medication allergies. Add one per field and click 'Add more' as needed.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 18,
     question: "Who is your primary care provider?",
@@ -234,13 +229,13 @@ const questions = [
   },
   {
     id: 19,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you would like us to know?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please explain.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -253,11 +248,9 @@ const questions = [
   },
   {
     id: 21,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {

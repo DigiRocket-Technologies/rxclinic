@@ -35,7 +35,7 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "Where would you like the appointment to take place?",
+    question: "How would you prefer to attend the appointment?",
     type: "phone-number",
     options: [
       { value: "In-person", showsInput: false },
@@ -50,62 +50,61 @@ const questions = [
   },
   {
     id: 3,
-    question: "Are you (or could you be) pregnant?",
+    question:
+      "Are you currently pregnant or is there a possibility you might be?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 4,
-    question: "Are you currently breastfeeding?",
+    question: "Are you breastfeeding at the moment?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
-    question: "Have you experienced hemorrhoids before?",
+    question: "Have you previously been diagnosed with hemorrhoids?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 6,
-    question: "Are you 50 years of age or older?",
+    question: "Are you 50 years old or older?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 7,
-    question: "On a daily basis, are you experiencing:",
+    question: "How would you describe your current bowel movement frequency?",
     type: "radio",
     options: [
-      "More bowel movements than normal",
-      "Less bowel movements than normal",
-      "About the same number of bowel movements as normal",
+      "More bowel movements than usual",
+      "Fewer bowel movements than usual",
+      "About the same as usual",
     ],
   },
   {
     id: 8,
-    question: "Do you experience any of the symptoms listed below?",
+    question: "Do you currently have any of the following symptoms?",
     type: "checkbox",
     options: [
-      "Dark red blood or blood mixed within stools",
+      "Dark red blood or blood mixed with stools",
       "Black or tarry stools",
-      "Severe pain",
-      "Swelling or a mass in the rectal area",
+      "Severe rectal pain",
+      "Swelling or a lump in the rectal area",
       "Unexplained weight loss",
       "None of the above",
     ],
   },
   {
     id: 9,
-    question:
-      "Do you have any other symptoms not mentioned in the previous questions?",
+    question: "Do you have any symptoms not listed above?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+        label: "Please describe the additional symptoms, one per field.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -114,33 +113,33 @@ const questions = [
   {
     id: 10,
     question:
-      "Do you have a personal or family history of colorectal cancer or polyps?",
+      "Do you or any family members have a history of colorectal cancer or polyps?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
     question:
-      "Do you have a personal or family history of Inflammatory bowel disease (IBD)?",
+      "Do you or any family members have a history of inflammatory bowel disease (IBD)?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 12,
     question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+      "Have you used any treatments (e.g., creams, medications) for these symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 13,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Have any treatments improved your symptoms?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments helped",
+        label: "List the treatments that helped.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -148,13 +147,13 @@ const questions = [
   },
   {
     id: 14,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Have any treatments made your symptoms worse?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "List the treatments that worsened your symptoms.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -162,14 +161,13 @@ const questions = [
   },
   {
     id: 15,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Have any treatments had no effect on your symptoms?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments had no effect on your symptoms",
+        label: "List the treatments that had no effect.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -177,14 +175,14 @@ const questions = [
   },
   {
     id: 16,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known allergies to medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "List one medication allergy per field. Click 'Add more' if needed.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -197,13 +195,13 @@ const questions = [
   },
   {
     id: 18,
-    question: "Is there anything else we should know?",
+    question: "Is there anything else you’d like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please provide additional information.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -214,10 +212,9 @@ const questions = [
     question: "Terms and Conditions",
     type: "terms-condition",
   },
-
   {
     id: 20,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
 ];

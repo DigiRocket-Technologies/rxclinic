@@ -34,111 +34,101 @@ interface PatientInfo {
 const questions = [
   {
     id: 1,
-    question: "What sex were you assigned at birth?",
+    question: "What was your sex assigned at birth?",
     type: "button-radio-input",
     options: ["Male", "Female"],
-    note: "This question is required for clinical assessment and reimbursement purposes. If none of the above please specify",
+    note: "This is required for clinical evaluation and insurance documentation. If not listed, please specify below.",
   },
   {
     id: 2,
-    question: "Are you (or could you be) pregnant?",
+    question: "Are you currently pregnant or possibly pregnant?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 3,
-    question: "Are you currently breastfeeding?",
+    question: "Are you nursing an infant at this time?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 4,
-    question: "Were you bitten or stung by an insect?",
+    question: "Have you recently been bitten or stung by an insect?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 5,
     question:
-      "Were you stung multiple times by a bee, wasp or other stinging insect?",
+      "Were you stung multiple times by a bee, wasp, or similar insect?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
-
   {
     id: 6,
     question:
-      "Besides an insect, do you recall coming into contact with anything that might have caused the rash?",
+      "Did you come into contact with anything else that might have caused the rash?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify",
+        label: "Please describe the substance or material",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 7,
-    question: "What symptoms are you experiencing ?",
+    question: "Which of the following symptoms are you currently experiencing?",
     type: "checkbox",
     options: [
-      "A rash or bump on the skin",
+      "Skin rash or bump",
       "Swelling",
-      "Redness or a small rash",
+      "Redness or minor irritation",
       "Itching",
       "None of the above",
     ],
   },
   {
     id: 8,
-    question: "Do you have any of the following symptoms?",
+    question: "Are you experiencing any of the following additional symptoms?",
     type: "checkbox",
     options: [
-      "Fever (temperature higher than 38°C), chills or lack of energy",
-      "Nausea and vomiting",
-      "Affected area is warm to touch",
-      "Affected area have discharge or pus",
+      "Fever (above 38°C), chills, or fatigue",
+      "Nausea or vomiting",
+      "Warmth at the affected site",
+      "Discharge or pus from the affected area",
       "None of the above",
     ],
   },
-
   {
     id: 9,
-    question:
-      "Do you have any other symptoms not mentioned in the last question?",
+    question: "Are there any other symptoms not previously mentioned?",
     type: "conditional-button-radio",
     options: [
-      {
-        value: "Yes",
-        showsInput: true,
-        label: "Please explain",
-      },
+      { value: "Yes", showsInput: true, label: "Please describe" },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 10,
     question:
-      "Have you tried any treatments (eg creams, medication) for your symptoms?",
+      "Have you used any treatments (e.g., creams, medications) for your symptoms?",
     type: "button-radio",
     options: ["Yes", "No", "Not Sure"],
   },
   {
     id: 11,
-    question: "Did any of the treatments make your symptoms feel better?",
+    question: "Did any of the treatments improve your condition?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments helped",
+        label: "Please specify the effective treatments",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -146,13 +136,13 @@ const questions = [
   },
   {
     id: 12,
-    question: "Did any of the treatments make your symptoms feel worse?",
+    question: "Did any treatments worsen your symptoms?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please indicate which treatments made your symptoms feel worse",
+        label: "Please list the treatments that had adverse effects",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -160,30 +150,28 @@ const questions = [
   },
   {
     id: 13,
-    question: "Did any of the treatments have no effect on your symptoms?",
+    question: "Did any treatments have no noticeable impact?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label:
-          "Please indicate which treatments had no effect on your symptoms",
+        label: "Please mention treatments that had no effect",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
     ],
   },
-
   {
     id: 14,
-    question: "Do you have any allergies to medications?",
+    question: "Do you have any known allergies to medications?",
     type: "conditional-button-radio-inputs",
     options: [
       {
         value: "Yes",
         showsInput: true,
         label:
-          "Please specify medication allergies and please list one allergy per field and click 'Add more' if needed.",
+          "List one allergy per field and use 'Add more' to include additional allergies.",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -191,13 +179,13 @@ const questions = [
   },
   {
     id: 15,
-    question: "Have you started any new medications in the past month?",
+    question: "Have you started taking any new medications in the last month?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please specify the medication you recently",
+        label: "Please specify the new medication(s)",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -205,13 +193,13 @@ const questions = [
   },
   {
     id: 16,
-    question: "Is there anything else we should know?",
+    question: "Is there any other information you’d like to share with us?",
     type: "conditional-button-radio",
     options: [
       {
         value: "Yes",
         showsInput: true,
-        label: "Please explain",
+        label: "Please provide additional details",
       },
       { value: "No", showsInput: false },
       { value: "Not Sure", showsInput: false },
@@ -219,7 +207,7 @@ const questions = [
   },
   {
     id: 17,
-    question: "Who is your primary care provider?",
+    question: "Who is your current primary care provider?",
     type: "primary-care-provider",
   },
   {
@@ -229,11 +217,9 @@ const questions = [
   },
   {
     id: 19,
-    question: "Patient details",
+    question: "Patient Information",
     type: "patient-info",
   },
-
-  // Add more questions here
 ];
 
 const Form: React.FC = () => {
