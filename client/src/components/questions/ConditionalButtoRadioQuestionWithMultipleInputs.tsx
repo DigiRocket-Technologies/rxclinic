@@ -33,7 +33,6 @@ const ConditionalButtoRadioQuestionWithMultipleInputs: React.FC<
 
   const handleOptionChange = useCallback(
     (option: string) => {
-      console.log("handleOptionChange triggered", option);
       const selectedOption = options.find((opt) => opt.value === option);
       if (!selectedOption?.showsInput) {
         setAdditionalInfos(["N/A"]); // Set to "N/A" if the option doesn't show input
@@ -65,7 +64,6 @@ const ConditionalButtoRadioQuestionWithMultipleInputs: React.FC<
   );
 
   const handleAddMore = useCallback(() => {
-    console.log("handleAddMore triggered");
     setAdditionalInfos([...additionalInfos, ""]);
   }, [additionalInfos]);
 

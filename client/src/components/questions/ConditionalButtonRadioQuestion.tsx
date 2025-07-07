@@ -67,52 +67,6 @@ const ConditionalButtonRadioQuestion: React.FC<
   const showInput = selectedOption?.showsInput || false;
 
   return (
-    // <div className="mb-6">
-    //   <h2 className="text-xl font-medium mb-4">{question}</h2>
-    //   <div className="flex space-x-4 mb-4">
-    //     {options.map((option, index) => (
-    //       <label
-    //         key={index}
-    //         className={`flex-1 p-4 border rounded-lg cursor-pointer text-center ${
-    //           selectedAnswer.includes(option.value)
-    //             ? "bg-primary text-white"
-    //             : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-    //         }`}
-    //       >
-    //         <input
-    //           type="radio"
-    //           name="answer"
-    //           value={option.value}
-    //           checked={selectedAnswer.includes(option.value)}
-    //           onChange={() => handleOptionChange(option.value)}
-    //           className="hidden"
-    //         />
-    //         {option.value}
-    //       </label>
-    //     ))}
-    //   </div>
-    //   {showInput && (
-    //     <motion.div
-    //       initial={{ opacity: 0, y: 10 }}
-    //       animate={{ opacity: 1, y: 0 }}
-    //       transition={{ duration: 0.5 }}
-    //       className="mt-4"
-    //     >
-    //       {selectedOption?.label && (
-    //         <label className="block text-sm text-gray-700 mb-2">
-    //           {selectedOption.label}
-    //         </label>
-    //       )}
-    //       <input
-    //         type="text"
-    //         value={additionalInfo}
-    //         onChange={(e) => handleInputChange(e.target.value)}
-    //         className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
-    //         placeholder="Please specify..."
-    //       />
-    //     </motion.div>
-    //   )}
-    // </div>
     <div className="max-w-lg mx-auto my-6 p-6 bg-white rounded-xl shadow-md border-2 border-blue-200">
       <h2 className="text-2xl font-semibold text-center text-gray-900 mb-4">
         {question}
